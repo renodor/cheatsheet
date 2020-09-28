@@ -29,26 +29,6 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
-defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: "pages"
-    values:
-      layout: "default"
-      sections:
-        html:
-          - 'a'
-          - 'b'
-          - 'c'
-        css:
-          - 'd'
-          - 'e'
-          - 'f'
-        javascript:
-          - 'g'
-          - 'h'
-          - 'i'
 
 # Build settings
 theme: minima
@@ -74,4 +54,55 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "pages"
+    values:
+      layout: "default"
+      sections:
+        html:
+          - naming'
+          - 'boilerplate'
+          - 'tables'
+          - 'forms'
+        css:
+          - 'naming'
+          - 'priority'
+          - 'units'
+          - 'import-CSS-files'
+          - 'gradient-filter'
+          - 'positioning'
+          - 'display'
+          - 'flexbox'
+          - 'float'
+          - 'clear'
+          - 'the-box-model'
+          - 'margin-collapse'
+          - 'overflow'
+          - 'reset-default'
+          - 'box-model-border-box'
+          - 'colors'
+          - 'typography'
+          - 'grid'
+        javascript:
+          - 'variables'
+          - 'math'
+          - 'conditional-statements'
+          - 'functions'
+          - 'scope'
+          - 'arrays'
+          - 'loops'
+          - 'high-order-functions'
+          - 'iterators'
+          - 'objects'
+          - 'classes'
+          - 'modules'
+          - 'promises'
+          - 'async-await'
+          - 'http-requests'
+
 

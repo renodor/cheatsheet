@@ -1,0 +1,25 @@
+---
+---
+
+@import 'fonts';
+
+@import 'code-bloc';
+@import 'navbar';
+@import 'sections';
+
+
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: $body-font;
+  color: #212529;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-column-gap: 30px;
+  max-width: 1116px;
+  margin-left: auto;
+  margin-right: auto;
+}
