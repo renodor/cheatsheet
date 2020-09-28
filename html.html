@@ -1,6 +1,15 @@
 ---
 section-name: html
 ---
+
+{% for section in page.sections %}
+  {% if section[0] == page.section-name %}
+    {% for subsection in section[1] %}
+      {{ subsection }}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 <div class="section">
   <h1>{{ page.section-name }}</h1>
 
