@@ -1,22 +1,31 @@
-div.code-toolbar {
-  margin-bottom: 30px;
-  .toolbar {
-    top: 10px;
-    right: 10px;
-    .toolbar-item button {
-      background-color: white;
-      border-radius: 5px;
-      padding: 5px 10px;
-      font-size: 16px;
-      text-transform: uppercase;
-      cursor: pointer;
-      color: #2D2D2D;
-      opacity: 0.7;
-      transition: opacity .5s ease;
-      &:hover {
-        opacity: 1;
-      }
-    }
+// div.code-toolbar {
+//   margin-bottom: 30px;
+//   .toolbar {
+//     top: 10px;
+//     right: 10px;
+//     .toolbar-item button {
+//       background-color: white;
+//       border-radius: 5px;
+//       padding: 5px 10px;
+//       font-size: 16px;
+//       text-transform: uppercase;
+//       cursor: pointer;
+//       color: #2D2D2D;
+//       opacity: 0.7;
+//       transition: opacity .5s ease;
+//       &:hover {
+//         opacity: 1;
+//       }
+//     }
+//   }
+// }
+
+.highlight {
+  margin: 0 0 30px 0;
+  pre {
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
   }
 }
 
