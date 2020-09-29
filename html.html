@@ -7,7 +7,7 @@ section-name: html
 {% for section in page.sections %}
   {% if section[0] == page.section-name %}
     {% for subsection in section[1] %}
-      <div class="sub-section">
+      <div class="sub-section" id={{ subsection }}>
         <h2 class="sub-section-title">{{ subsection }}</h2>
         {% case subsection %}
           {% when 'naming' %}
@@ -18,13 +18,13 @@ section-name: html
           {% when 'tables' %}
             {% highlight html %}{{ tables }}{% endhighlight %}
           {% when 'forms' %}
-            <p>A form is defined by a <samp>{'<form>'}</samp> tag. Inside you define :</p>
+            <p>A form is defined by a <samp>&lt;form&gt;</samp> tag. Inside you define :</p>
             <ul>
               <li>An <samp>action</samp> : where to send the form data when submited</li>
               <li>A <samp>method</samp> : the HTTP request type (GET, POST, PUT, PATCH, DELETE)</li>
             </ul>
             {% highlight html %}{{ form }}{% endhighlight %}
-            <p><samp>{'<input>'}</samp> tags allows to create fields where visitors can type information. Input tags must have different attributes:</p>
+            <p><samp>&lt;input>&gt;</samp> tags allows to create fields where visitors can type information. Input tags must have different attributes:</p>
             <ul>
               <li><samp>name</samp> : that is how you will identify it when the form is send</li>
               <li><samp>value</samp> : the value of the field & the placeholder value before the user type it (will be paired with the name).</li>
@@ -56,15 +56,15 @@ section-name: html
               <li>Important when using checkbox or radio button. Because when you click on the label it will check the box</li>
             </ul>
             {% highlight html %}{{ input }}{% endhighlight %}
-            <p><samp>{'<select>'}</samp> tag allows you to create dropdown lists. Inside the select tags you need <samp>{'<options>'}</samp> tags each with a value with your different options:</p>
+            <p><samp>&lt;select&gt;</samp> tag allows you to create dropdown lists. Inside the select tags you need <samp>&lt;options&gt;</samp> tags each with a value with your different options:</p>
             <ul>
-              <li>The <samp>value</samp> of <samp>{'<option>'}</samp> is the text that will be send to the form</li>
-              <li>The text between the opening and closing <samp>{'<options>'}</samp> tag is the displayed text</li>
+              <li>The <samp>value</samp> of <samp>&lt;option&gt;</samp> is the text that will be send to the form</li>
+              <li>The text between the opening and closing <samp>&lt;options&gt;</samp> tag is the displayed text</li>
             </ul>
             {% highlight html %}{{ select }}{% endhighlight %}
-            <p><samp>{'<datalist>'}</samp> tag also create a dropdown but inside a text field, so that users can type into it to easily find options. Inside the datalist you put <samp>{'<options>'}</samp> tags. The <samp>{'<input>'}</samp> tag where the <samp>{'<datalist>'}</samp> is must have a <samp>list</samp> attribute with the value of the datalist id</p>
+            <p><samp>&lt;datalist&gt;</samp> tag also create a dropdown but inside a text field, so that users can type into it to easily find options. Inside the datalist you put <samp>&lt;options&gt;</samp> tags. The <samp>&lt;input&gt;</samp> tag where the <samp>&lt;datalist&gt;</samp> is must have a <samp>list</samp> attribute with the value of the datalist id</p>
             {% highlight html %}{{ datalist }}{% endhighlight %}
-            <p><samp>{'<textarea>'}</samp> tags are used to create a bigger text field. If you want a default text you need to include it between the opening and closing textarea tags. This field can take arguments:</p>
+            <p><samp>&lt;textarea&gt;</samp> tags are used to create a bigger text field. If you want a default text you need to include it between the opening and closing textarea tags. This field can take arguments:</p>
             <ul>
               <li><samp>rows</samp> : determine the width of the field</li>
               <li><samp>cols</samp> :  determine the height</li>
