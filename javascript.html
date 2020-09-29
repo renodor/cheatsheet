@@ -7,7 +7,7 @@ section-name: javascript
 {% for section in page.sections %}
   {% if section[0] == page.section-name %}
     {% for subsection in section[1] %}
-      <div class="sub-section">
+      <div class="sub-section" id={{ subsection }}>
         <h2 class="sub-section-title">{{ subsection }}</h2>
         {% case subsection %}
           {% when 'variables' %}

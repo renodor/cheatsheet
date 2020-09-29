@@ -40,7 +40,7 @@
         transition: all 0.2s;
         transition-delay: 0s;
       }
-      &[is-open=true] svg {
+      &[data-is-open=true] svg {
         transform: rotate(180deg);
       }
     }

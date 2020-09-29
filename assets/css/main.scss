@@ -9,6 +9,9 @@
 
 @import 'highlighter';
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-size: 1rem;
