@@ -21,7 +21,7 @@ section-name: javascript
                 <br />Same for <samp>-=</samp>, <samp>*=</samp>, <samp>/=</samp>
                 <br />Same for <samp>++</samp>, <samp>--</samp>, <samp>//</samp>, <samp>**</samp>, it means adding, subtract, divise or multiply by 1
               </p>
-              <p><b>String Interpolation:</b> to insert a variable within a string without using the "+". You need to wrap your string with backticks: <samp>`</samp> and interpolate code with <samp>{'${}'}</samp></p>
+              <p><b>String Interpolation:</b> to insert a variable within a string without using the "+". You need to wrap your string with backticks: <samp>`</samp> and interpolate code with <samp>${}</samp></p>
               {% highlight javascript %}{{ stringInterpolation }}{% endhighlight %}
             </div>
           {% when 'math' %}
@@ -72,7 +72,7 @@ section-name: javascript
               {% highlight javascript %}{{ arrowFunctions }}{% endhighlight %}
               <p><b>Arrow functions specificities:</b></p>
               <ul>
-                <li>Functions with only 1 argument doesn't need parenthesis: <samp>{'const varA = arg1 => { ... };'}</samp> (if there are 0 or more than 1 argument you do need parenthesis).</li>
+                <li>Functions with only 1 argument doesn't need parenthesis: <samp>const varA = arg1 => { ... };</samp> (if there are 0 or more than 1 argument you do need parenthesis).</li>
                 <li>Functions that only have 1 statement (one line of code) doesn't need braces nor return (its called "implicit return"): <samp>const sum = number => number + number;</samp></li>
                 <li><b>This binding:</b> arrow functions does not have its own binfing to <samp>this</samp>. With traditional functions, if you have a function inside a function, the <samp>this</samp> (referring to the function itself) will be lost in the nested function… So you needed to do : <samp>var that = this</samp> (to store the <samp>this</samp> somewhere to use it afterward). With arrow functions, the "context" of the "this" is preserved. So if you use an arrow function inside another function, the <samp>this</samp> of the arrow function will be the one of the higher function.</li>
               </ul>
@@ -122,38 +122,32 @@ section-name: javascript
             <div>
               <p><b>For Loop:</b></p>
               <p>
-                <samp>
-                  {`for (initialisation; stop condition; to execute at the end of each iteration) {
-                    code to execute;
-                  }`}
-                </samp>
+                <samp>for (initialisation; stop condition; to execute at the end of each iteration) {
+                  &nbsp;&nbsp;code to execute;
+                  }</samp>
               </p>
               <p>The <b>"stop condition"</b> is a boulean. The loop continues as long as this bolean is true. And it stops when the boulean is false.</p>
               <p><u>Ex:</u></p>
               {% highlight javascript %}{{ forLoop }}{% endhighlight %}
               <p><b>While Loop:</b></p>
               <p>
-                <samp>
-                  {`while (stop condition) {
-                    code to execute;
-                  }`}
-                </samp>
+                <samp>while (stop condition) {
+                  &nbsp;&nbsp;code to execute;
+                  }</samp>
               </p>
               <p>You just specify the stop condition. You have to define the initialisation before and the iteration within the code to execute</p>
               <p><u>Ex:</u></p>
               {% highlight javascript %}{{ whileLoop }}{% endhighlight %}
               <p><b>Do...While Loop</b></p>
               <p>
-                <samp>
-                  {`do {
-                    code to execute;
-                  } while (stop condition);`}
-                </samp>
+                <samp>do {
+                  &nbsp;&nbsp;code to execute;
+                  } while (stop condition)</samp>
               </p>
               <p>It is similar to the while loop but you specify the code to execute before. So it will execute at least one time (and until the stop condition is false). Whereas a normal while loop can sometimes never run if the stop condition is always false.</p>
               <p><u>Ex:</u></p>
               {% highlight javascript %}{{ doWhileLoop }}{% endhighlight %}
-              <p><b>Break:</b> the break kw allows you to force a loop to stop (even if the stop condition is still true). Inside the block code of your loop you have to add an if condition like that : <samp>{'if (condition) { break; }'}</samp></p>
+              <p><b>Break:</b> the break kw allows you to force a loop to stop (even if the stop condition is still true). Inside the block code of your loop you have to add an if condition like that : <samp>if (condition) { break; }</samp></p>
               <p>(A loop within a loop is called a "nested loop").</p>
             </div>
           {% when 'high-order-functions' %}
@@ -213,7 +207,7 @@ section-name: javascript
             </div>
           {% when 'objects' %}
             <div>
-              <p>In JS an Object is defined with the <samp>{'{ }'}</samp> notation : <samp>let spaceship = {'{}'};</samp></p>
+              <p>In JS an Object is defined with the <samp>{ }</samp> notation : <samp>let spaceship = {};</samp></p>
               <p>Objects are used to store data thanks to key/value pairs (called properties). Properties can be anything (string, number, functions etc...)</p>
               {% highlight javascript %}{{ objects }}{% endhighlight %}
               <p>You then access properties with the .dot operator: <samp>spaceship.color</samp> >>> will return <samp>silver</samp></p>
