@@ -1,0 +1,850 @@
+{% capture variables %}
+let favFood = "Pizza";
+console.log(favFood) // outputs: "Pizza"
+favFood = "Pasta"
+console.log(favFood); // outputs: "Pasta"
+
+const name = "Renaud";
+console.log(name); // outputs: "Renaud"
+name = "Pas Renaud"
+console.log(favFood); // outputs: "TypeError"
+{% endcapture %}
+
+{% capture stringInterpolation %}
+var myPet = "armadillo";
+console.log(\`I own a pet $\{myPet}.\`);
+// outputs: "I own a pet armadillo."
+{% endcapture %}
+
+{% capture conditionalStatements %}
+let numberOfApples = 0;
+if (numberOfApples) {
+   console.log('Let us eat apples!');
+} else {
+   console.log('No apples left!');
+}
+// outputs: "No Apples Left !"
+{% endcapture %}
+
+{% capture shortCircuitEvaluation %}
+let defaultName;
+if (username) {
+   defaultName = username;
+} else {
+defaultName = 'Stranger';
+}
+
+// is the same as
+let defaultName = username || 'Stranger'
+{% endcapture %}
+
+{% capture functions %}
+// To declare it
+function functionName() {
+  console.log('blablabla');
+}
+
+// To call it
+functionName();
+{% endcapture %}
+
+{% capture functionDefaultParameter %}
+function greeting(name = 'stranger') {
+  console.log(\`Hello, $\{name}!\`);
+}
+// Will return "Stranger" if name is not defined
+{% endcapture %}
+
+{% capture functionReturn %}
+function calculateArea(width, height) {
+  const area = width*height ;
+  return area ;
+}
+{% endcapture %}
+
+{% capture functionReturnKw %}
+function getRectArea(width, height) {
+  if (width > 0 && height > 0) {
+    return width * height;
+  }
+  return 0;
+}
+
+getRectArea(3, 4); // return 12
+
+getRectArea(-3, 4); // return 0
+{% endcapture %}
+
+{% capture functionExpression %}
+Const variableA = function(arg1, arg2) {
+  Blablabla;
+};
+variableA(arg1, arg2)
+{% endcapture %}
+
+{% capture arrowFunctions %}
+const rectangleArea = (width, height) => {
+  return width*height;
+};
+{% endcapture %}
+
+{% capture forLoop %}
+const grades = [10, 5, 13, 20, 18];
+let sum = 0
+for (let i = 0; i < grades.length; i++) {
+  sum = sum + grades[i];
+}
+console.log(sum) // outputs 66 >> (10 + 5 + 13 + 20 + 18)
+{% endcapture %}
+
+{% capture whileLoop %}
+const grades = [10, 5, 13, 20, 18];
+let sum = 0
+let i = 0
+
+while (i < grades.length) {
+  sum = sum + grades[i];
+  i++;
+}
+console.log(sum) // outputs 66 >> (10 + 5 + 13 + 20 + 18)
+{% endcapture %}
+
+{% capture doWhileLoop %}
+const grades = [10, 5, 13, 20, 18];
+let sum = 0
+let i = 0
+
+do {
+  sum = sum + grades[i];
+    i++;
+} while (i < grades.length);
+console.log(sum) // output 66 >> (10 + 5 + 13 + 20 + 18)
+{% endcapture %}
+
+{% capture highOrderFunctions %}
+const functionA = () => {
+  code;
+};
+const variableA = functionA; // >> You do it without parenthesis;
+{% endcapture %}
+
+{% capture forEach %}
+const fruits = ['pommes', 'poires', 'oranges', 'kiwi']
+
+fruits.forEach(fruit => {
+  console.log(\`- $\{fruit}\`);
+});
+{% endcapture %}
+
+{% capture map %}
+const numbers = [1, 2, 3, 4, 5];
+const bigNumbers = numbers.map(number => {
+  return number * 10;
+});
+// bigNumbers == [10, 20, 30, 40, 50]
+{% endcapture %}
+
+{% capture filter %}
+const words = ['chien', 'chat', 'poussin', 'trotinette', 'hiiiibou'];
+const smallWords = words.filter(word => {
+  return word.length < 6;
+}); // smallWords == ['chien', 'chat']
+{% endcapture %}
+
+{% capture findIndex %}
+const numbers = [40, 500, 230, 4, 9, 1] ;
+const smallNumbers = numbers.findIndex(number => {
+  return number < 10;
+});
+// smallNumbers will return 3 because this is the index of "4",
+// the first number inferior to 10 it finds.
+{% endcapture %}
+
+{% capture reduce %}
+const numbers = [1, 2, 4, 10];
+const summedNumbers = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+});
+{% endcapture %}
+
+{% capture reduce2 %}
+const numbers = [1, 2, 4, 10];
+const summedNumbers = numbers.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+ }, 100)
+
+{% endcapture %}
+
+{% capture objects %}
+const spaceship = {
+  'Fuel Type' : 'diesel', // need ' ' here because there is a space on the property name
+  color: 'silver'
+};
+{% endcapture %}
+
+{% capture objectWithMethod %}
+const alienShip = {
+  invade: function () {
+  console.log('Hello! We have come to dominate your planet!');
+  }
+};
+{% endcapture %}
+
+{% capture objectWithMethod2 %}
+const alienShip = {
+  invade () {
+  console.log('Hello! We have come to dominate your planet!');
+  }
+};
+{% endcapture %}
+
+{% capture passByReference %}
+// First you define your object:
+const spaceship = {
+  'Fuel Type' : 'Turbo Fuel',
+  homePlanet : 'Earth'
+};
+{% endcapture %}
+
+{% capture passByReference2 %}
+const greenEnergy = obj => {
+  obj['Fuel Type'] = 'Avocado Oil';
+};
+
+const remotelyDisable = obj => {
+  obj.disabled = true;
+};
+{% endcapture %}
+
+{% capture passByReference3 %}
+const spaceship = {
+  'Fuel Type': 'Avocado Oil',
+  homePlanet: 'Earth',
+  disabled: true
+};
+{% endcapture %}
+
+{% capture objectLoop %}
+const crew = {
+  captain: 'Lily',
+  'chief officer': 'Dan',
+  medic: 'Clem',
+  translator: 'Patrick'
+}
+
+for (let crewMember in crew) {
+  console.log(\`$\{crewMember}: $\{crew[crewMember]}\`);
+}
+{% endcapture %}
+
+{% capture thisKw %}
+const robot = {
+  model: '1E78V2',
+  energyLevel: 100,
+  provideInfo() {
+    return \`I am $\{this.model} and my current energy level is $\{this.energyLevel}.\`
+  }
+};
+
+console.log(robot.provideInfo());
+{% endcapture %}
+
+{% capture privacy %}
+const bankAccount = {
+ _amount: 1000
+};
+{% endcapture %}
+
+{% capture getter %}
+const person = {
+  _firstName: 'John',
+  _lastName: 'Doe',
+  get fullName() {
+    if (this._firstName && this._lastName) {
+      return \`$\{this._firstName} $\{this._lastName}\`;
+    } else {
+      return 'Missing a first name or a last name.';
+    }
+  }
+};
+
+// to call the getter method:
+person.fullName; // outputs 'John Doe'
+{% endcapture %}
+
+{% capture setter %}
+const person = {
+  _age: 37,
+  set age(newAge) {
+    if (typeof newAge === 'number') {
+      this._age = newAge;
+    } else {
+      console.log('You must assign a number to age');
+    }
+  }
+};
+
+// to use the setter method:
+person.age = 40; // now console.log(person._age); will outputs 40
+{% endcapture %}
+
+{% capture factoryFunctions %}
+const monsterFactory = (name, age, energySource, catchPhrase) => {
+  return {
+    name: name,
+    age: age,
+    energySource: energySource,
+    scare() {
+      console.log(catchPhrase);
+    }
+  }
+};
+{% endcapture %}
+
+{% capture createFactoryFunction %}
+const ghost = monsterFactory('Ghouly', 251, 'ectoplasm', 'BOO!');
+
+ghost.scare(); // outputs 'BOO!'
+{% endcapture %}
+
+{% capture factoryFunctionEs6 %}
+const monsterFactory = (name, age) => {
+  return {
+    name,
+    age
+  }
+};
+{% endcapture %}
+
+{% capture destructuredAssignment %}
+const vampire = {
+   name: 'Dracula',
+   residence: 'Transilvania',
+   preference: {
+    day: 'stay inside',
+    night: 'satisfy appetite'
+  }
+};
+
+const residence = vampire.residence;
+console.log(residence); // will print 'Transilvania'
+{% endcapture %}
+
+{% capture destructuredAssignment2 %}
+const {residence} = vampire;
+console.log(residence); // will print 'Transilvania'
+{% endcapture %}
+
+{% capture class %}
+let halley = {
+  _name: 'Halley',
+  _behavior: 0,
+
+  get name() {
+    return this._name;
+  },
+
+  get behavior() {
+    return this._behavior;
+  },
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+};
+{% endcapture %}
+
+{% capture class2 %}
+class Dog {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get behavior() {
+    return this._behavior;
+  }
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+};
+{% endcapture %}
+
+{% capture classInstance %}
+const halley = new Dog('Halley');
+
+// It will create this object:
+Dog {
+_name: 'Halley',
+_behavior: 0
+}
+{% endcapture %}
+
+{% capture inheritance %}
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  get behavior() {
+    return this._behavior;
+  }
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+};
+{% endcapture %}
+
+{% capture childClass %}
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+};
+{% endcapture %}
+
+{% capture superKw %}
+class Primary extends School {
+  constructor(name, numberOfStudents, pickupPolicy) {
+    super(name, 'primary', numberOfStudents);
+    this._pickupPolicy = pickupPolicy;
+  }
+};
+{% endcapture %}
+
+{% capture staticMethod %}
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  static generateName() {
+    const names = ['Angel', 'Spike', 'Buffy', 'Willow', 'Tara'];
+    const randomNumber = Math.floor(Math.random()*5);
+    return names[randomNumber];
+  }
+};
+{% endcapture %}
+
+{% capture oldModuleExport %}
+// export:
+let Airplane = {};
+Airplane.myAirplane = "StarJet";
+
+module.exports = Airplane;
+
+// import:
+const Airplane = require('./1-airplane.js');
+
+function displayAirplane() {
+  console.log(Airplane.myAirplane);
+}
+
+displayAirplane();
+{% endcapture %}
+
+{% capture oldModuleExportWrapped %}
+module.exports = {
+  myAirplane: 'CloudJest';
+};
+{% endcapture %}
+
+{% capture exportDefault %}
+// export:
+let Menu = {};
+
+export default Menu;
+
+// import (notice you don't need curly brackets):
+import Menu from './menu';
+{% endcapture %}
+
+{% capture namedExport %}
+// export
+let specialty = '';
+function isVegetarian() {
+};
+
+export { speciality, isVegetarian } from './menu';
+
+// import (notice you do need curly brackets):
+import { speciality, isVegetarian } from './menu';
+{% endcapture %}
+
+{% capture wrappedExport %}
+export let specialty = '';
+export function isVegetarian() {
+};
+{% endcapture %}
+
+{% capture exportAs %}
+let specialty = '';
+function isVegetarian() {
+};
+function isLowSodium() {
+};
+
+export { speciality as chefsSpecial, isVegetarian as is Veg, isLowSodium };
+{% endcapture %}
+
+{% capture exportAll %}
+// export
+let specialty = '';
+function isVegetarian() {
+};
+function isLowSodium() {
+};
+
+export { speciality as chefsSpecial, isVegetarian as is Veg, isLowSodium };
+
+// import
+import * as Menu from './menu';
+
+Menu.chefsSpecial;
+Menu.isVeg();
+Menu.isLowSodium();
+{% endcapture %}
+
+{% capture mixedExport %}
+// export
+let specialty = '';
+function isVegetarian() {
+};
+export function isLowSodium() {
+};
+function isGlutenFree() {
+};
+
+export { speciality as chefsSpecial, isVegetarian as is Veg };
+export default isGlutenFree;
+
+// import
+import { speciality, isVegetarian, isLowSodium } from './menu';
+
+import GlutenFree from './menu';
+{% endcapture %}
+
+{% capture promise %}
+const executorFunction = (resolve, reject) => {
+  if (someCondition) {
+      resolve('I resolved!');
+  } else {
+      reject('I rejected!');
+  }
+}
+const myFirstPromise = new Promise(executorFunction);
+{% endcapture %}
+
+{% capture setTimeout %}
+const delayedHello = () => {
+  console.log('Hi! This is an asynchronous greeting!');
+};
+
+setTimeout(delayedHello, 2000);
+
+// delayedHello() will be invoked but with a delay of 2 seconds.
+{% endcapture %}
+
+{% capture asynchronousPromise %}
+const returnPromiseFunction = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(( ) => {resolve('I resolved!')}, 1000);
+  });
+};
+
+const prom = returnPromiseFunction();
+{% endcapture %}
+
+{% capture then %}
+const prom = new Promise((resolve, reject) => {
+  resolve('Yay!');
+});
+
+const handleSuccess = (resolvedValue) => {
+  console.log(resolvedValue);
+};
+
+prom.then(handleSuccess); // outputs 'Yay!'
+{% endcapture %}
+
+{% capture then2 %}
+let prom = new Promise((resolve, reject) => {
+  let num = Math.random();
+  if (num < .5 ){
+    resolve('Yay!');
+  } else {
+    reject('Ohhh noooo!');
+  }
+});
+
+const handleSuccess = (resolvedValue) => {
+  console.log(resolvedValue);
+};
+
+const handleFailure = (rejectionReason) => {
+  console.log(rejectionReason);
+};
+
+prom.then(handleSuccess, handleFailure);
+{% endcapture %}
+
+{% capture catch %}
+prom
+  .then((resolvedValue) => {
+    console.log(resolvedValue);
+  })
+  .then(null, (rejectionReason) => {
+    console.log(rejectionReason);
+  });
+
+{% endcapture %}
+
+{% capture catch2 %}
+prom
+  .then((resolvedValue) => {
+    console.log(resolvedValue);
+  })
+  .catch((rejectionReason) => {
+    console.log(rejectionReason);
+  });
+
+{% endcapture %}
+
+{% capture chainingPromises %}
+firstPromiseFunction()
+.then((firstResolveVal) => {
+  return secondPromiseFunction(firstResolveVal);
+})
+.then((secondResolveVal) => {
+  console.log(secondResolveVal);
+});
+{% endcapture %}
+
+{% capture promiseAll %}
+let myPromises = Promise.all([returnsPromOne(), returnsPromTwo(), returnsPromThree()]);
+
+myPromises
+  .then((arrayOfValues) => {
+    console.log(arrayOfValues);
+  })
+  .catch((rejectionReason) => {
+    console.log(rejectionReason);
+  });
+
+{% endcapture %}
+
+{% capture async %}
+async function myFunc() {
+  // Function body here
+};
+
+myFunc();
+
+// or with arrow function:
+const myFunc = async () => {
+  // Function body here
+};
+
+myFunc();
+{% endcapture %}
+
+{% capture asyncVsPromise %}
+function asyncFuncExample(num){
+  return new Promise((resolve, reject) => {
+    if (num === 0){
+      resolve('zero');
+    } else {
+      resolve('not zero');
+    }
+  })
+}
+{% endcapture %}
+
+{% capture asyncVsPromise2 %}
+async function asyncFuncExample(num) {
+  if (num === 0) {
+    return 'zero';
+  } else {
+    return 'not zero';
+  }
+};
+{% endcapture %}
+
+{% capture await %}
+async function asyncFuncExample(){
+  let resolvedValue = await myPromise();
+  console.log(resolvedValue);
+}
+
+asyncFuncExample(); // outputs: I am resolved now!
+{% endcapture %}
+
+{% capture awaitChain %}
+function nativePromiseVersion() {
+  returnsFirstPromise()
+  .then((firstValue) => {
+    console.log(firstValue);
+    return returnsSecondPromise(firstValue);
+  })
+  .then((secondValue) => {
+    console.log(secondValue);
+  });
+}
+{% endcapture %}
+
+{% capture awaitChain2 %}
+async function asyncAwaitVersion() {
+  let firstValue = await returnsFirstPromise();
+  console.log(firstValue);
+  let secondValue = await returnsSecondPromise(firstValue);
+  console.log(secondValue);
+}
+{% endcapture %}
+
+{% capture tryCatch %}
+async function usingTryCatch() {
+  try {
+    let resolveValue = await asyncFunction('thing that will fail');
+    let secondValue = await secondAsyncFunction(resolveValue);
+  } catch (err) {
+    // Catches any errors in the try block
+    console.log(err);
+  }
+}
+
+usingTryCatch();
+{% endcapture %}
+
+{% capture independentPromises %}
+async function concurrent() {
+  const firstPromise = firstAsyncThing();
+  const secondPromise = secondAsyncThing();
+  console.log(await firstPromise, await secondPromise);
+}
+{% endcapture %}
+
+{% capture awaitPromiseAll %}
+async function asyncPromAll() {
+  const resultArray = await Promise.all([asyncTask1(), asyncTask2(), asyncTask3(), asyncTask4()]);
+  for (let i = 0; i < resultArray.length; i++){
+    console.log(resultArray[i]);
+  }
+}
+{% endcapture %}
+
+{% capture asyncExample %}
+console.log('First message!');
+setTimeout(() => {
+   console.log('This message will always run last...');
+}, 0);
+console.log('Second message!');
+{% endcapture %}
+
+{% capture xhrGetRequest %}
+const xhr = new XMLHttpRequest();
+const url = 'https://api-to-call.com/endpoint'
+
+xhr.responseType = 'json';
+xhr.onreadystatechange = () => {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+  return xhr.response;
+  }
+}
+
+xhr.open('GET', url)
+xhr.send()
+{% endcapture %}
+
+{% capture xhrPostRequest %}
+const xhr = new XMLHttpRequest();
+const url = 'https://api-to-call.com/endpoint'
+const data = JSON.stringify({id: '200'});
+
+xhr.responseType = 'json'
+xhr.onreadystatechange = () => {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    return xhr.response;
+  }
+}
+
+xhr.open('POST', url);
+xhr.send(data);
+{% endcapture %}
+
+{% capture fetchGet %}
+fetch('https://api-to-call.com/endpoint').then((response) => {
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Request failed!');
+},
+  (networkError) => {
+  console.log(networkError.message);
+})
+.then((jsonResponse) => {
+  return jsonResponse
+});
+{% endcapture %}
+
+{% capture fetchPost %}
+fetch('https://api-to-call.com/endpoint', {
+  method: 'POST',
+  body: JSON.stringify({id: '200'})
+}).then((response) => {
+  if(response.ok) {
+    return response.json();
+  }
+  throw new Error('Request failed!');
+},
+(networkError) => {
+  console.log(networkError.message);
+})
+.then((jsonResponse) => {
+  return jsonResponse;
+});
+{% endcapture %}
+
+{% capture fetchAsyncGet %}
+const getData = async () => {
+  try {
+    const response = await fetch('https://api-to-call.com/endpoint');
+    if(response.ok) {
+      const jsonResponse = await response.json();
+      return jsonResponse
+    }
+    throw new Error('Request failed!')
+  } catch(error) {
+    console.log(error);
+  }
+};
+{% endcapture %}
+
+{% capture fetchAsyncPost %}
+const getData = async () => {
+  try {
+    const response = await fetch('https://api-to-call.com/endpoint', {
+      method: 'POST',
+      body: JSON.stringify({id: 200})
+    });
+    if(response.ok) {
+      const jsonResponse = await response.json();
+      return jsonResponse
+    }
+    throw new Error('Request failed!')
+  } catch(error) {
+    console.log(error);
+  }
+{% endcapture %}
