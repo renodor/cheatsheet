@@ -21,6 +21,7 @@
 title: renodor - Cheatsheet
 description: >- # this means to ignore newlines until "baseurl:"
   This is a personal cheatsheet with some HTML, CSS, JS and Ruby boilerplate codes and simple explanations.
+# baseurl: cheatsheet
 github_username:  renodor
 
 
