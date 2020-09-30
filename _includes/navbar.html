@@ -13,7 +13,7 @@
             <ul class="nav-sub-links">
               {% for subsection in section[1] %}
                 <li>
-                  <a class="nav-link sub-section-link" href="{% link {{ section[0] }}.html %}#{{ subsection }}">{{ subsection }}</a>
+                  <a class="nav-link sub-section-link" href="{% link sections/{{ section[0] }}.html %}#{{ subsection }}">{{ subsection }}</a>
                 </li>
               {% endfor %}
             </ul>
