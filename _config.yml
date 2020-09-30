@@ -28,6 +28,7 @@ github_username:  renodor
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-redirect-from
 highlighter: rouge
 
 # Exclude from processing.
