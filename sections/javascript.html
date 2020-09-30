@@ -5,10 +5,10 @@ permalink: /javascript/
 
 {% include highlighted_code/javascript_code.html %}
 
-{% for section in page.sections %}
-  {% if section[0] == page.section-name %}
-    <h1>{{ section[0] }}</h1>
-    {% for subsection in section[1] %}
+{% for section in site.data.sections %}
+  {% if section.title == page.section-name %}
+    <h1>{{ section.title }}</h1>
+    {% for subsection in section.subsections %}
       <div class="sub-section" id={{ subsection }}>
         <h2 class="sub-section-title">{{ subsection }}</h2>
         {% case subsection %}

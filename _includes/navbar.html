@@ -1,19 +1,19 @@
 <div class="navbar-container">
   <div class="navbar">
     <ul>
-      {% for section in page.sections %}
+      {% for section in site.data.sections %}
         <li>
           <button type="button" class="nav-link section-link">
-            <span>{{ section[0] }}</span>
+            <span>{{ section.title }}</span>
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fillRule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
           <div class="navbar-sub-sections">
             <ul class="nav-sub-links">
-              {% for subsection in section[1] %}
+              {% for subsection in section.subsections %}
                 <li>
-                  <a class="nav-link sub-section-link" href="/{{ section[0] }}#{{ subsection }}">{{ subsection }}</a>
+                  <a class="nav-link sub-section-link" href="/{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
                 </li>
               {% endfor %}
             </ul>
