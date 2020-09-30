@@ -1,0 +1,153 @@
+{% capture naming %}
+selector {
+ property: value;
+ property: value;
+ property: value;
+}
+{% endcapture %}
+
+{% capture import %}
+'@import url("components/avatar.css");',
+{% endcapture %}
+
+{% capture gradientFilter %}
+background: linear-gradient(135deg,       /* angle */
+                            yellow 0%,    /* start-color and start-point */
+                            green 50%),   /* end-color and end-point */
+            url('background.jpg')
+{% endcapture %}
+
+{% capture positioning %}
+#relative {
+  position: relative;
+}
+
+#absolute {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+{% endcapture %}
+
+{% capture flexbox %}
+.flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-item {
+  flex: 0 0 200px;
+}
+{% endcapture %}
+
+{% capture marginCollapse %}
+#element-one {
+  margin-right: 20px;
+  margin-bottom: 30px;
+}
+
+#element-two {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+{% endcapture %}
+
+{% capture resetDefault %}
+* {
+  margin: 0;
+  padding: 0;
+}
+{% endcapture %}
+
+{% capture boxModelBorderBox %}
+* {
+  box-sizing: border-box;
+}
+{% endcapture %}
+
+{% capture typography %}
+h1 {
+  font-family: "Garamond", "Times", serif;
+}
+{% endcapture %}
+
+{% capture fontFace %}
+@font-face {
+  font-family: "Roboto";
+  src: url(fonts/Roboto.woff2) format('woff2'),
+       url(fonts/Roboto.woff) format('woff'),
+       url(fonts/Roboto.tff) format('truetype');
+}
+{% endcapture %}
+
+{% capture gridColumns %}
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 200px 300px;
+}
+{% endcapture %}
+
+{% capture gridTemplate %}
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 500px;
+  grid-template: 200px 300px / 20% 10% 70%;
+}
+{% endcapture %}
+
+{% capture gridItem %}
+.item {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+{% endcapture %}
+
+{% capture gridExampleHtml %}
+<div class="container">
+  <header>Welcom!</header>
+  <nav>Links</nav>
+  <section class="info">Info!</section>
+  <section class="services">Services!</section>
+  <footer>Contact us!</footer>
+</div>
+{% endcapture %}
+
+{% capture gridExampleCss %}
+.container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  grid-template-areas: "head head"
+                       "nav nav"
+                       "info services"
+                       "footer footer";
+  grid-template-rows: 300px 120px 800px 120px;
+  grid-template-columns: 1fr 3fr;
+}
+
+header {
+  grid-area: head;
+}
+
+nav {
+  grid-area: nav;
+}
+
+.info {
+  grid-area: info;
+}
+
+.services {
+  grid-areas: services;
+}
+
+footer {
+  grid-area: footer;
+}
+{% endcapture %}
