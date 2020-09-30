@@ -13,7 +13,11 @@
             <ul class="nav-sub-links">
               {% for subsection in section.subsections %}
                 <li>
-                  <a class="nav-link sub-section-link" href="/{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
+                  {% if page.section-name == section.title %}
+                    <a class="nav-link sub-section-link" href="#{{ subsection }}">{{ subsection }}</a>
+                  {% else %}
+                    <a class="nav-link sub-section-link" href="/{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
+                  {% endif %}
                 </li>
               {% endfor %}
             </ul>
