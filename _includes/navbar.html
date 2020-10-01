@@ -17,7 +17,7 @@
                     <a class="nav-link sub-section-link" href="#{{ subsection }}">{{ subsection }}</a>
                   {% else %}
                     <span>{{ site.url }}</span>
-                    <a class="nav-link sub-section-link" href="{{ site.url }}/{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
+                    <a class="nav-link sub-section-link" href="{{ site.url }}{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
                   {% endif %}
                 </li>
               {% endfor %}
