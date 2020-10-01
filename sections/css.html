@@ -109,7 +109,7 @@ permalink: /css/
             </div>
           {% when 'the-box-model' %}
             <div>
-              <img alt="box model" src="/assets/img/boxmodel.svg" />
+              <img alt="box model" src="{{ site.baseurl }}/assets/img/boxmodel.svg" />
               <p>Border style values : <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-style#Values" rel="noreferrer" target="_blank">Moz doc</a></p>
               <p>If an element with a fixed width has the property: <samp>margin: 0 auto;</samp>, it will center it in its containing elements.</p>
             </div>
@@ -149,7 +149,7 @@ permalink: /css/
                 <li>The padding will be included inside the overall width and height of the box</li>
                 <li>So the height and width of the box will remained fixed (even if padding and border changes)</li>
               </ul>
-              <img alt="border box model" src="/assets/img/border-box-model.png" />
+              <img alt="border box model" src="{{ site.baseurl }}/assets/img/border-box-model.png" />
               <p>Overall it makes that the width and height of your element is not affected by the padding and border.</p>
             </div>
           {% when 'colors' %}
@@ -160,7 +160,7 @@ permalink: /css/
                 <li><b>RGBA</b> = red, green, blue, alpha. Alows you to add a forth value between 0.0 and 1.0 define the transparency/opacity of your color. So <samp>color:transparent</samp> = <samp>color: rgba(0, 0, 0, 0);</samp></li>
               </ul>
               <p>In RGB system, if you put the same value for the 3 colors, you are on the grey scale. At 0 you are totally black and at 255 you are totally white. And in between you have greyscales:</p>
-              <img alt="rgb grayscale" src="/assets/img/rgb-greyscale.png" />
+              <img alt="rgb grayscale" src="{{ site.baseurl }}/assets/img/rgb-greyscale.png" />
               <p><b>HSL Model:</b></p>
               <p>HSL = hue, saturation, lightness. Synthax: <samp>color: hsl(120, 60%, 70%)</samp> :</p>
               <ul>
@@ -170,7 +170,7 @@ permalink: /css/
               </ul>
               <p>Useful if you just want to change the lightness or saturation of a color (more complex in RGB). Also usfull if you whant to have a set of colors that work well together: same saturation and lightness.</p>
               <p>As for RGB you also have the <b>HSLA</b> model with transparency.</p>
-              <img alt="hsl wheel" src="/assets/img/hsl-wheel.png" />
+              <img alt="hsl wheel" src="{{ site.baseurl }}/assets/img/hsl-wheel.png" />
             </div>
           {% when 'typography' %}
             <div>
@@ -203,7 +203,7 @@ permalink: /css/
                   </ul>
                 </li>
               </ul>
-              <img alt="css line height" src="/assets/img/line-height.png" />
+              <img alt="css line height" src="{{ site.baseurl }}/assets/img/line-height.png" />
               <p><b>Font-face:</b></p>
               <p>You can use <samp>font-face</samp> to load any font you want into the browser of your user. You can use it with your own font in your own server or with an external source. You need to specify :</p>
               <ul>
