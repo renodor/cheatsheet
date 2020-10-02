@@ -10,7 +10,7 @@ permalink: /javascript/
     <h1>{{ section.title }}</h1>
     {% for subsection in section.subsections %}
       <div class="sub-section" id={{ subsection }}>
-        <h2 class="sub-section-title">{{ subsection }}</h2>
+        <h2 class="sub-section-title">{{ subsection | replace: '-', ' ' }}</h2>
         {% case subsection %}
           {% when 'variables' %}
             <div>

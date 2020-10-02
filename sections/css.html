@@ -10,7 +10,7 @@ permalink: /css/
     <h1>{{ section.title }}</h1>
     {% for subsection in section.subsections %}
       <div class="sub-section" id={{ subsection }}>
-        <h2 class="sub-section-title">{{ subsection }}</h2>
+        <h2 class="sub-section-title">{{ subsection | replace: '-', ' ' }}</h2>
         {% case subsection %}
           {% when'naming' %}
             <div>
@@ -31,7 +31,7 @@ permalink: /css/
                 <li><samp>%</samp> : relative to the parent element</li>
               </ul>
             </div>
-          {% when 'import-CSS-files' %}
+          {% when 'import-css-files' %}
             <div>
               <p>You can import a CSS file within another CSS file (even from an external source):</p>
               {% highlight css %}{{ import }}{% endhighlight %}

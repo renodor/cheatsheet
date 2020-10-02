@@ -23,9 +23,9 @@
               {% for subsection in section.subsections %}
                 <li>
                   {% if page.section-name == section.title %}
-                    <a class="nav-link sub-section-link" href="#{{ subsection }}">{{ subsection }}</a>
+                    <a class="nav-link sub-section-link" href="#{{ subsection }}">{{ subsection | replace: '-', ' ' }}</a>
                   {% else %}
-                    <a class="nav-link sub-section-link" href="{{ site.baseurl }}/{{ section.title }}#{{ subsection }}">{{ subsection }}</a>
+                    <a class="nav-link sub-section-link" href="{{ site.baseurl }}/{{ section.title }}#{{ subsection }}">{{ subsection | replace: '-', ' ' }}</a>
                   {% endif %}
                 </li>
               {% endfor %}
