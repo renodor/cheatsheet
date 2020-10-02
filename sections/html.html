@@ -15,10 +15,10 @@ redirect_from:
         <h2 class="sub-section-title">{{ subsection | replace: '-', ' ' }}</h2>
         {% case subsection %}
           {% when 'naming' %}
-            {% highlight html %}{{ naming }}{% endhighlight %}
+            {% include bloc_code.html content=naming %}
           {% when 'boilerplate' %}
             <p>HTML Boilerplate with facebook meta-tags, twitter meta-tags, Bootstrapp (CSS CDN, JS and JS dependencies jQuery & Popper.js) and fontawesome</p>
-            {% highlight html %}{{ boilerplate }}{% endhighlight %}
+            {% include bloc_code.html content=boilerplate %}
           {% when 'tables' %}
             {% highlight html %}{{ tables }}{% endhighlight %}
           {% when 'forms' %}

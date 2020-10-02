@@ -1,3 +1,5 @@
+// NAVBAR 
+
 const sectionLinks = document.querySelectorAll('.section-link');
 
 const closeAllSubSections = () => {
@@ -34,3 +36,7 @@ sectionLinks.forEach((sectionLink) => {
     }
   })
 })
+
+
+// COPY BLOC CODE
+
