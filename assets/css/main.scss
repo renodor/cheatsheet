@@ -9,6 +9,11 @@
 
 @import 'highlighter';
 
+::selection {
+  background-color: #9b9b9b;
+  color: white;
+}
+
 html {
   scroll-behavior: smooth;
 }
