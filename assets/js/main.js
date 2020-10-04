@@ -40,3 +40,16 @@ sectionLinks.forEach((sectionLink) => {
 
 // COPY BLOC CODE
 
+const copyBtns = document.querySelectorAll('.copy-code');
+
+copyBtns.forEach((copyBtn) => {
+  copyBtn.addEventListener('click', event => {
+    console.log();
+    window.getSelection().selectAllChildren(
+      event.currentTarget.parentNode
+    );
+    document.execCommand('copy');
+  })
+});
+
+
