@@ -42,13 +42,27 @@ sectionLinks.forEach((sectionLink) => {
 
 const copyBtns = document.querySelectorAll('.copy-code');
 
+const switchIcons = (clickedBtn) => {
+  const svgSave = clickedBtn.innerHTML;
+  clickedBtn.viewBox.baseVal.width = 16;
+  clickedBtn.viewBox.baseVal.height = 16;
+  clickedBtn.innerHTML = "<path d=\"M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z\"/>"
+
+  setTimeout(() => {
+    clickedBtn.viewBox.baseVal.width = 30;
+    clickedBtn.viewBox.baseVal.height = 30;
+    clickedBtn.innerHTML = svgSave;
+  }, 2000);
+}
+
 copyBtns.forEach((copyBtn) => {
   copyBtn.addEventListener('click', event => {
-    console.log();
+    const clickedBtn = event.currentTarget;
     window.getSelection().selectAllChildren(
-      event.currentTarget.parentNode
+      clickedBtn.parentNode
     );
     document.execCommand('copy');
+    switchIcons(clickedBtn);
   })
 });
 
