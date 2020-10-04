@@ -1,12 +1,33 @@
-.highlight {
-  margin: 0 0 30px 0;
-  pre {
-    padding: 15px;
+.code-container {
+  position: relative;
+  .highlight {
+    margin: 0 0 30px 0;
     border-radius: 5px;
-    overflow-x: auto;
-    code {
-      font-size: 15px;
+    pre {
+      border-radius: 5px;
+      padding: 15px;
+      overflow-x: auto;
+      code {
+        font-size: 15px;
+      }
     }
+  }
+  .copy-code {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    padding: 10px;
+    fill: transparent;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: fill .3s ease, opacity .3s ease;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &:hover .copy-code {
+    fill: white;
   }
 }
 
