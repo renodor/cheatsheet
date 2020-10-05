@@ -1,7 +1,9 @@
+{% assign lang='css' %}
 {% case subsection %}
   {% when'naming' %}
     <div>
-      {% highlight css %}{{ naming }}{% endhighlight %}
+
+      {% include bloc_code.html language=lang content=naming %}
     </div>
   {% when 'priority' %}
     <div>
@@ -21,13 +23,13 @@
   {% when 'import-css-files' %}
     <div>
       <p>You can import a CSS file within another CSS file (even from an external source):</p>
-      {% highlight css %}{{ import }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=import %}
       <p>So a good practice is to link your <b>index.html</b> to one <b>home.css</b> or <b>index.css</b> file, and put all the other CSS sheets inside this same file</p>
     </div>
   {% when 'gradient-filter' %}
     <div>
       <p>The format of a CSS gradient filter:</p>
-      {% highlight css %}{{ gradientFilter }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=gradientFilter %}
     </div>
   {% when 'positioning' %}
     <div>
@@ -42,7 +44,7 @@
         <li>I create a first div with <samp>position: relative</samp> (not because I want to move it but just because I want to pin it)</li>
         <li>I put an inner div inside my div with <samp>position: absolute</samp>. So it will be positioned relatively to my parent div. And now I can use left and right to position it within my div</li>
       </ul>
-      {% highlight css %}{{ positioning }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=positioning %}
       <p><b>Offset properties:</b> <samp>left right top bottom</samp>. Can be set in px, em, or %. Doesn't work on static elements.</p>
       <p><b>Z-index:</b> greater <samp>z-index</samp> will be in front of lower <samp>z-index</samp>. Doesn't work on static elements.</p>
     </div>
@@ -77,7 +79,7 @@
         <li>You can then use the <samp>:nth-child</samp> selectors</li>
       </ul>
       <p>Example:</p>
-      {% highlight css %}{{ flexbox }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=flexbox %}
     </div>
   {% when 'float' %}
     <div>
@@ -104,7 +106,7 @@
     <div>
       <p>Horizontal margins (let and right) between two elements are added together to define the space between those elements.</p>
       <p>On the contrary, vertical margin collapse. It means that they are packed together and thus the larger of the two vertical margins will set the distance between two elements:</p>
-      {% highlight css %}{{ marginCollapse }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=marginCollapse %}
       <p>>>> There will be 40px of horizontal space between those two elements.</p>
       <p>>>> But There will be 30px of vertical space between those two elements (and not 50px)</p>
     </div>
@@ -122,14 +124,14 @@
   {% when 'reset-default' %}
     <div>
       <p>All web browsers have default stylesheet values (known as "user agent"). Often set a default value for padding and margin for example. So it is useful to reset those values with the <samp>*</samp> propriety:</p>
-      {% highlight css %}{{ resetDefault }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=resetDefault %}
       <p>(When you set a value to 0 in CSS you don't need any unit measurement).</p>
       <p>Other proprieties may be useful to reset: <a href="https://discuss.codecademy.com/t/are-margin-and-padding-values-the-only-ones-that-need-reset/365556" rel="noreferrer" target="_blank">Code Ac</a></p>
     </div>
   {% when 'box-model-border-box' %}
     <div>
       <p>By setting the default model of all HTML elements to border-box, with the <samp>box-sizing</samp> propriety like that:</p>
-      {% highlight css %}{{ boxModelBorderBox }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=boxModelBorderBox %}
       <p>You define a new box model called "border-box" that have the following proprieties:</p>
       <ul>
         <li>The border thickness will be included inside the overall width and height of the box</li>
@@ -162,7 +164,7 @@
   {% when 'typography' %}
     <div>
       <p>In CSS you have the system of fallback fonts:</p>
-      {% highlight css %}{{ typography }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=typography %}
       <p>sThis says "use Garamond, if not available, use Times, if not available, any serif font pre-installed on the user device".</p>
       <p><b>Font types are:</b></p>
       <ul>
@@ -198,7 +200,7 @@
         <li>the direction of the font file</li>
         <li>the format of the font file (Different browsers support different font types, so providing multiple font file options will support more browsers).</li>
       </ul>
-      {% highlight css %}{{ fontFace }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=fontFace %}
     </div>
   {% when 'grid' %}
     <div>
@@ -210,14 +212,14 @@
         <li>Then you can define the columns of a grid with the propriety: <samp>grid-template-columns: 200px 300px</samp> (This means there will be 2 columns, the first one of 300px and the second one of 300px)</li>
         <li>You can define column width in px or % (of the total grid width), and you can mix between units in the same grid</li>
       </ul>
-      {% highlight css %}{{ gridColumns }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=gridColumns %}
       <p>Inside containers you also define rows:</p>
       <ul>
         <li>Work the same way as columns, with the propriety : <samp>grid-template-rows: 200px 300px</samp> (only that it defines the height instead of the width. So if you define it in %, it is according to grid height)</li>
         <li>By default, rows are sized to fit inside the grid</li>
       </ul>
       <p>You can also use one propriety for <b>both rows and columns:</b> <samp>colums: grid-template</samp></p>
-      {% highlight css %}{{ gridTemplate }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=gridTemplate %}
       <p>(Before the / are rows, after are columns)</p>
       <p><b>Fractions:</b> the <samp>fr</samp> unit define the size of columns and rows as a fraction of grid length.</p>
       <p><u>Ex:</u> <samp>grid-template: 2fr 1fr 1fr / 1fr 3fr 1fr</samp> >>> first row will be 2/4 of the grid, second row 1/4, third row 1/4. First column will be 1/5, second 3/5, third 1/5.</p>
@@ -232,7 +234,7 @@
       </ul>
       <p><b>Grid items:</b></p>
       <p><samp>grid-row-start</samp> and <samp>grid-row-end</samp> make a single grid items take up multiple rows. Same for <samp>grid-column-start</samp> and <samp>grid-column-end</samp>.</p>
-      {% highlight css %}{{ gridItem }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=gridItem %}
       <p>>>> The element .item will starts at row 1 and stops at row 3 (so it will take the space of 2 rows). Same for columns.</p>
       <p>You can also use it like that: <samp>grid-row: 1 / 3</samp> and <samp>grid-column: 1 / 3</samp> >>> Will start at 1 and stop at 3.</p>
       <p>You can also use the <samp>span</samp> kw: <samp>grid-column: 4 / span 2</samp> >>> means item will starts at column 4 and take 2 spaces. (So stops at 6).</p>
@@ -252,8 +254,8 @@
       <p>So <samp>grid-area: 2 / 3 / 4 / span 5;</samp> >>> means this item will start at row 2 and end at row 4. It will start at column 3 and take 5 column space.</p>
       <p><b>Grid template areas:</b> <samp>grid-template-areas</samp> property allows you to name sections of your webpage to use it as values of a grid.</p>
       <u>Example:</u>
-      {% highlight css %}{{ gridExampleHtml }}{% endhighlight %}
-      {% highlight css %}{{ gridExampleCss }}{% endhighlight %}
+      {% include bloc_code.html language='html' content=gridExampleHtml %}
+      {% include bloc_code.html language=lang content=gridExampleCss %}
       <p>With this code you build the following grid:</p>
       <ul>
         <li>head will take 1st row and 2 columns</li>

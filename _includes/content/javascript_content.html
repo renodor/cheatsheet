@@ -1,17 +1,18 @@
+{% assign lang='javascript' %}
 {% case subsection %}
   {% when 'variables' %}
     <div>
       <p><samp>var</samp> : variable. Scope is global or locall to an entire function (regardless of block scope)</p>
       <p><samp>let</samp> : variable that can be reassigned. Limited to the scope of a the block statement (block-scoped)</p>
       <p><samp>const</samp> : variablethat can't be reassigned. (But value it holds can change, for example if its an object, you can change elements of the objects but not reassign it to a whole new object)</p>
-      {% highlight javascript %}{{ variables }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=variables %}
       <p>
         <b>Tips:</b> <samp>x = x + 1</samp> can also be written : <samp>x += 1</samp>
         <br />Same for <samp>-=</samp>, <samp>*=</samp>, <samp>/=</samp>
         <br />Same for <samp>++</samp>, <samp>--</samp>, <samp>//</samp>, <samp>**</samp>, it means adding, subtract, divise or multiply by 1
       </p>
       <p><b>String Interpolation:</b> to insert a variable within a string without using the "+". You need to wrap your string with backticks: <samp>`</samp> and interpolate code with <samp>${}</samp></p>
-      {% highlight javascript %}{{ stringInterpolation }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=stringInterpolation %}
     </div>
   {% when 'math' %}
     <div>
@@ -40,25 +41,25 @@
           </ul>
         </li>
       </ul>
-      {% highlight javascript %}{{ conditionalStatements }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=conditionalStatements %}
       <p><b>Short-circuit Evaluation:</b> The pipe comparison tool <samp>||</samp> can replace an <samp>if</samp>. Indeed it will return option "A" OR "B". So it will test first the first option. So if "A" exists, it takes "A", otherwise it takes "B". So it works exactly like an <samp>if</samp>.</p>
-      {% highlight javascript %}{{ shortCircuitEvaluation }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=shortCircuitEvaluation %}
     </div>
   {% when 'functions' %}
     <div>
-      {% highlight javascript %}{{ functions }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=functions %}
       <p>Function have "hoisting" caracteristic, meaning you can call it (and use it) before declaring it (even if it is not a good practice).</p>
       <p>Since ES6 you can define a default value of a function parameter.</p>
-      {% highlight javascript %}{{ functionDefaultParameter }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=functionDefaultParameter %}
       <p><b>Return:</b> by default a fonction will always return <samp>undefined</samp>. Even when it work perfectly. In order for a function to return a result you need to use the keword <samp>return</samp>. With that I tell the function what value it has to return.</p>
-      {% highlight javascript %}{{ functionReturn }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=functionReturn %}
       <p>The <samp>return</samp> kw also allows you to stop the execution of a function. Indeed a function will stop when it meets return</p>
-      {% highlight javascript %}{{ functionReturnKw }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=functionReturnKw %}
       <p><b>Function Expression:</b> Allows you to store an anonymous function inside a variable and then call this function by calling the variable. You can also add arguments directly inside the variable (we usually use the <samp>const</samp> kw for that):</p>
-      {% highlight javascript %}{{ functionExpression }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=functionExpression %}
       <p><b>Warning:</b> a function expression is not "hoisted". You can't call it before declaring it</p>
       <p><b>Arrow functions:</b> Since ES6, arrow functions synthax allows to define a function without using the "function" kw:</p>
-      {% highlight javascript %}{{ arrowFunctions }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=arrowFunctions %}
       <p><b>Arrow functions specificities:</b></p>
       <ul>
         <li>Functions with only 1 argument doesn't need parenthesis: <samp>const varA = arg1 => { ... };</samp> (if there are 0 or more than 1 argument you do need parenthesis).</li>
@@ -117,7 +118,7 @@
       </p>
       <p>The <b>"stop condition"</b> is a boulean. The loop continues as long as this bolean is true. And it stops when the boulean is false.</p>
       <p><u>Ex:</u></p>
-      {% highlight javascript %}{{ forLoop }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=forLoop %}
       <p><b>While Loop:</b></p>
       <p>
         <samp>while (stop condition) {
@@ -126,7 +127,7 @@
       </p>
       <p>You just specify the stop condition. You have to define the initialisation before and the iteration within the code to execute</p>
       <p><u>Ex:</u></p>
-      {% highlight javascript %}{{ whileLoop }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=whileLoop %}
       <p><b>Do...While Loop</b></p>
       <p>
         <samp>do {
@@ -135,14 +136,14 @@
       </p>
       <p>It is similar to the while loop but you specify the code to execute before. So it will execute at least one time (and until the stop condition is false). Whereas a normal while loop can sometimes never run if the stop condition is always false.</p>
       <p><u>Ex:</u></p>
-      {% highlight javascript %}{{ doWhileLoop }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=doWhileLoop %}
       <p><b>Break:</b> the break kw allows you to force a loop to stop (even if the stop condition is still true). Inside the block code of your loop you have to add an if condition like that : <samp>if (condition) { break; }</samp></p>
       <p>(A loop within a loop is called a "nested loop").</p>
     </div>
   {% when 'high-order-functions' %}
     <div>
       <p>You can assign a fonction to a variable:</p>
-      {% highlight javascript %}{{ highOrderFunctions }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=highOrderFunctions %}
       <p>And so you can then call the function by calling the variable like that: <samp>variableA();</samp> (You can even pass arguments to it.)</p>
       <p>In JS, functions, like variables, are "first class objects", so like other objects you can assign proprieties to it like (<samp>.length()</samp> <samp>.name()</samp>, <samp>.toString()</samp> etc...)</p>
       <p>You can also pass a function as an argument to another function. You call those functions <b>"call back"</b> because they are called during the execution of the high-order function.</p>
@@ -154,23 +155,23 @@
       <p>Iterators are built-in array methods that allows you to iterate (loop) easily on arrays</p>
       <p><b>.forEach() :</b> apply the same function to all the elements of an array.</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ forEach }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=forEach %}
       <p>>>> Will apply the <samp>console.log()</samp> to each elements of 'fruits'. (So we can say that forEach(); takes a call-back function as an argument.)</p>
       <p>This function doesn't create a new array or change the original array. It just apply the function to each elements of the array. And it doesn't return anything, it always return undefined.</p>
       <p><b>.map()</b> : also apply a function to all elements of an array, but this time it returns a new array (with the new values). So you can assign the map method to a new variable to store the array that will be created during the execution.</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ map }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=map %}
       <p><b>.filter()</b> : Apply a statement to all elements of an array, and return a new array with only the elements for witch this statement returned true</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ filter }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=filter %}
       <p><b>.findIndex()</b> : apply a statement to all elements of an array, and return the index of the first element that return true. (It stops at the first it finds).</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ findIndex }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=findIndex %}
       <p>If <samp>.findIndex()</samp> doesn't find any element that fulfill the condition, it will return <samp>-1</samp></p>
       <p><b>.reduce()</b> : apply a function to all elements of an array, and return only one value. It takes 2 parameter: an accumulator and the currentValue.</p>
       <p>Initially the accumulator is the index 0 of the array, and the currentValue is the index 1 of the array. It will then loop over the array and apply a function using this two parameters. So during the second loop for example, the accumulator will be the returned value of the first loop, and the currentValue will be the index 3 of the array, etc...</p>
       <u>Ex</u>
-      {% highlight javascript %}{{ reduce }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=reduce %}
       <p>So here, initially:</p>
       <ul>
         <li>accumulator = <samp>1</samp></li>
@@ -183,7 +184,7 @@
         <br />So at the end, <samp>summedNumbers</samp> will return <samp>17</samp>.
       </p>
       <p>You can also add a second argument to the reduce method, which will define an initial value to the accumulator. (Other than the index 0 of the array). So it will add a new step to the operation.</p>
-      {% highlight javascript %}{{ reduce2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=reduce2 %}
       <p>Instead of starting with accumulator = 1, you start with accumulator = 100. And so initialy, currentValue is 1. After that, it is the same:</p>
       <ul>
         <li>100 + 1 = 101</li>
@@ -198,7 +199,7 @@
     <div>
       <p>In JS an Object is defined with the <samp>{ }</samp> notation : <samp>let spaceship = {};</samp></p>
       <p>Objects are used to store data thanks to key/value pairs (called properties). Properties can be anything (string, number, functions etc...)</p>
-      {% highlight javascript %}{{ objects }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=objects %}
       <p>You then access properties with the .dot operator: <samp>spaceship.color</samp> >>> will return <samp>silver</samp></p>
       <p>Or with brackets: <samp>spaceship['Fuel Type']</samp> (You have to use brackets actually if the property name has a space, a number or a special character)</p>
       <p>If you call a property that doesn't existe, it returns <samp>undefined</samp></p>
@@ -213,26 +214,26 @@
         <li>A method is what an object <b>does</b></li>
       </ul>
       <p>When you add a method to an object, the value of the property is an anonymus function:</p>
-      {% highlight javascript %}{{ objectWithMethod }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=objectWithMethod %}
       <p>Or shorter like that:</p>
-      {% highlight javascript %}{{ objectWithMethod2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=objectWithMethod2 %}
       <p>To call a method inside an object you also use the .dot operator, with the function name and parenthesis: <samp>alienShip.invade();</samp></p>
       <p>You can nest objects within objects (pass an object as a parameter of an higher object). And you can then call nested objects with a serie of .dot operators: <samp>spaceship.nanoelectronics['back-up'].battery;</samp></p>
       <p><b>Pass by Reference:</b> is the fact of modifiying an object property directly via a function.</p>
       <p>First you define your object:</p>
-      {% highlight javascript %}{{ passByReference }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=passByReference %}
       <p>Then you create functions that will modify/add a property to this objec:</p>
-      {% highlight javascript %}{{ passByReference2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=passByReference2 %}
       <p>Then if you call those functions on your object:</p>
       <ul>
         <li><samp>greenEnergy(spaceship);</samp></li>
         <li><samp>remomtelyDisable(spaceship);</samp></li>
       </ul>
       <p>It will modify your object like that:</p>
-      {% highlight javascript %}{{ passByReference3 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=passByReference3 %}
       <p><b>Object loop</b> : You can't use a normal loop on objects (because object key-value pairs are not in order). So you have to use <samp>for...in</samp> loop.</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ objectLoop }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=objectLoop %}
       <p>Will outputs:</p>
       <ul>
         <li>"captain: Lily"</li>
@@ -241,11 +242,11 @@
         <li>"translator: Patrick"</li>
       </ul>
       <p><b>"This" KW</b>: when you define a method inside an object an that this function call properties of this same object, you have to use the <samp>this</samp> kw, otherwise the scope of the function doesn't allows you to access the property:</p>
-      {% highlight javascript %}{{ thisKw }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=thisKw %}
       <p>Without the this kw, the <samp>provideInfo()</samp> function doesn't work because it can't access <samp>model</samp> and <samp>energyLevel</samp>.</p>
       <p><b>WARNING:</b> the <samp>this</samp> kw doesn't work the same way, with arrow functions. Because arrow function already have an inherent this which is the one of the global scope. So you can't use <samp>this</samp> with arrow functions inside objects.</p>
       <p><b>Privacy: </b> In JS there is no built-in privacy for objects. So there is a naming convention to signal that a property is not supposed to be altered:</p>
-      {% highlight javascript %}{{ privacy }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=privacy %}
       <p><b>Getters:</b> You use the "get" functions inside an object to perform more complex operations inside your object. (It is like a normal method property with a <samp>get</samp> before function name). It allows you to :</p>
       <ul>
         <li>Access and perform actions on the data of the object</li>
@@ -258,25 +259,25 @@
         <li>When calling a get method, no need to put parenthesis (it is like accessing a property)</li>
       </ul>
       <u>Ex:</u>
-      {% highlight javascript %}{{ getter }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=getter %}
       <p><b>Setters Methods</b> work exactly like getter methods but allows you to reassign values of existing properties within an object:</p>
       <ul>
         <li>getters allows you to "get" (access) values within an object</li>
         <li>setters allows you to "set" (change, modify, reassign) values within an object</li>
       </ul>
       <u>Ex:</u>
-      {% highlight javascript %}{{ setter }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=setter %}
       <p><b>Factory functions:</b> represent the "structure" of an object. You use it when you want to create a lot of similar objects. You create a factory function that have the « property » structure of the object you want to create. For that you need to create a function that « return » an object. And you pass your object properties as your function arguments. And then by calling this function and passing it arguments, you create a new object.</p>
       <p><u>Ex:</u> this is a factory function to create a monster</p>
-      {% highlight javascript %}{{ factoryFunctions }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=factoryFunctions %}
       <p>Then you can create a new monster only by calling the function:</p>
-      {% highlight javascript %}{{ createFactoryFunction }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=createFactoryFunction %}
       <p>Since ES6 you have a shortcut. Because the key and the value of the proprerties where always the same, you can simplify and write only the key, like that:</p>
-      {% highlight javascript %}{{ factoryFunctionEs6 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=factoryFunctionEs6 %}
       <p><b>Destructured assignment:</b> is a shortcut that allows you to extract the property of an object to put it in a variable. Normally you would do like that:</p>
-      {% highlight javascript %}{{ destructuredAssignment }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=destructuredAssignment %}
       <p>But to save you some keystrokes you can put the name of the property inside {} directly as the name of the variable like that: </p>
-      {% highlight javascript %}{{ destructuredAssignment2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=destructuredAssignment2 %}
       <p><b>Common built-in object methods:</b></p>
       <ul>
         <li><samp>Object.keys(my_object)</samp> : will return an array with all the keys of my_object</li>
@@ -288,11 +289,11 @@
     <div>
       <p>Classes are tool to quickly produce similar objects. Classes are like "templates" used to create objects.</p>
       <p>For example if you have this object:</p>
-      {% highlight javascript %}{{ class }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=class %}
       <p>You can create this class to build the same type of objects:</p>
-      {% highlight javascript %}{{ class2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=class2 %}
       <p>And then you can create new objects thanks to the class. It is called <b>"create an instance"</b>. Like that:</p>
-      {% highlight javascript %}{{ classInstance }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=classInstance %}
       <p>Details of how to build a class:</p>
       <ul>
         <li>By convention class names are capitalize and CamelCase</li>
@@ -303,19 +304,19 @@
       </ul>
       <p><b>Inheritance:</b> when you have several similar classes you can create a "parent" class that will share the same properties and methods that its children classes. The children classes will have the same properties and methods but you can also add new ones.</p>
       <p>So if we take our last example (dog creation). We can actually create a parent <samp>Animal</samp> class, like that:</p>
-      {% highlight javascript %}{{ inheritance }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=inheritance %}
       <p>And after that create a child <samp>Cat</samp> class, that will have the same <samp>name</samp> and <samp>behavior</samp> properties, but also a new one called <samp>usesLitter</samp> :</p>
-      {% highlight javascript %}{{ childClass }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=childClass %}
       <p>So to create a child class you need:</p>
       <ul>
         <li>The <samp>extend</samp> kw. That makes the parent class available inside the child class</li>
         <li>The <samp>super</samp> kw. That calls the constructor of the parent class. You need it for the property that have an argument (To be able to pass this argument to the child class). Otherwise you don't need to even define the property, each child class automatically have the properties (and methods) of its parents. You <b>always</b> have to call the <samp>super</samp> properties before the ones specific to the child class. (Always use the <samp>super</samp> kw before the <samp>this</samp> kw)</li>
       </ul>
       <p><b>Tips:</b> if you have several properties with arguments that need to be called in the parent class by the <samp>super</samp> KW, you all put it in the SAME super kw (not several ones). Like that:</p>
-      {% highlight javascript %}{{ superKw }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=superKw %}
       <p><b>Static Methods:</b> Sometimes you will want a class to have methods that aren't available in individual instances, but that you can call directly on the class itself. (They are similar to class methods in Ruby)</p>
       <p>To create a static method you need to use the <samp>static</samp> kw like that:</p>
-      {% highlight javascript %}{{ staticMethod }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=staticMethod %}
       <p>We create a static method that return a random name when called. Because of the <samp>static</samp> kw we can only access this method by appending it to the <samp>Animal</samp> class.</p>
       <p>So you can call the <samp>generateName</samp> method like that : <samp>Animal.generateName()</samp></p>
       <p>But if you create instances of <samp>Animal</samp> (or child classes), for example : <samp>const tyson = new Animal('Tyson')</samp></p>
@@ -329,13 +330,13 @@
         <li>Export your code with the <samp>module.exports</samp> statement</li>
         <li>Import your code with the <samp>require('file_path')</samp> function</li>
       </ul>
-      {% highlight javascript %}{{ oldModuleExport }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=oldModuleExport %}
       <p>>>> You imported your module and assigned it to a local variable. You then can use all the methods and properties of your module within your file.</p>
       <p>You can also wrap your data within the <samp>module.exports</samp> statement to directly export it:</p>
-      {% highlight javascript %}{{ oldModuleExportWrapped }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=oldModuleExportWrapped %}
       <p><b>The new way (ES6)</b> to do it is with <samp>export</samp> & <samp>import</samp> kws.</p>
       <p><b>Export Default:</b> if you want to export your entire code into one module:</p>
-      {% highlight javascript %}{{ exportDefault }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=exportDefault %}
       <ul>
         <li>You can have only one export default per file</li>
         <li>The export name must be the name of the object you export (can be anything: a method, an object, a variable etc...)</li>
@@ -343,22 +344,22 @@
         <li>After the <samp>from</samp> kw you put the path of the file</li>
       </ul>
       <p><b>Named Exports and Imports:</b> in ES6 the <samp>export</samp> and <samp>import</samp> kw also allows you to export data through the use of variables. You can create variables, methods, objects or any data and export it with its specific name to be stored in its own variable:</p>
-      {% highlight javascript %}{{ namedExport }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=namedExport %}
       <p>You can also write the <samp>export</samp> kw before your variable/function to export it directly:</p>
-      {% highlight javascript %}{{ wrappedExport }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=wrappedExport %}
       <p><b>Export as & import as:</b> You can use the <samp>export as</samp> kw to change the name of the variable you want to export:</p>
-      {% highlight javascript %}{{ exportAs }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=exportAs %}
       <p>After that you have to import it normally with the alias name you created</p>
       <p>You can also <samp>import as</samp> to give an alias or change the alias of a variable when you import it</p>
       <p><b>Import all</b>: you can import an entire module and give it a specific alias. It will store it in an object that you can use later on</p>
-      {% highlight javascript %}{{ exportAll }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=exportAll %}
       <p>You can also combine and mix every export types together (default exports, named exports, direct on declaration export etc…):</p>
-      {% highlight javascript %}{{ mixedExport }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=mixedExport %}
     </div>
   {% when 'promises' %}
     <div>
       <p>Here an example of a promise construction:</p>
-      {% highlight javascript %}{{ promise }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=promise %}
       <ul>
         <li>We declare a variable: <samp>myFirstPromise</samp> that will store our promise</li>
         <li>To create a new promise you use the promise constructor method <samp>Promise()</samp> with the <samp>new</samp> kw</li>
@@ -375,10 +376,10 @@
         <li><b>rejected:</b> when it settled and the operation failed (the <samp>reject()</samp> function is executed)</li>
       </ul>
       <p><b>Asynchronicity example using setTimeout():</b> <samp>setTimeout()</samp> is a functions used to execute some code after a delay</p>
-      {% highlight javascript %}{{ setTimeout }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=setTimeout %}
       <p>Asynchronous JavaScript uses something called the <b>event-loop</b>. After two seconds, <samp>delayedHello()</samp> is added to a line of code <b>waiting to be run. Before it can run, any synchronous code from the program will run.</b> Next, any asynchronous code in front of it in the line will run. (This means it might be more than two seconds before <samp>delayedHello()</samp> is actually executed).</p>
       <p><u>Ex:</u> of how you will use setTimeout() to construct asynchronous promise</p>
-      {% highlight javascript %}{{ asynchronousPromise }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=asynchronousPromise %}
       <p>>>> We invoked <samp>returnPromiseFunction()</samp> wich return a promise. We assign that promise to the variable <samp>prom</samp>. <samp>prom</samp> will initially have a status of <b>"pending"</b>. (it hasn't settled yet). Then after 1 second it will settle and be <b>"fulfilled"</b>, and resolve with the message "I resolved!".</p>
       <p><b>Then() method:</b> asynchronous promise always have an initial state of pending and then will settle. We use the <samp>then()</samp> method to say to the program what after it settled: "I have a promise, here's what I want to happen when it settle". So <samp>then()</samp> will be fired only after the status of the promise has been settled (fulfilled or rejected).</p>
       <p><samp>then()</samp> is a higher-order function, it takes two callback functions as arguments. We refer to these callbacks as handlers:</p>
@@ -388,16 +389,16 @@
       </ul>
       <p>We can invoke <samp>then()</samp> with one, both or zero handlers</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ then }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=then %}
       <p>>>> Since <samp>prom</samp> resolves, <samp>handleSuccess()</samp> is invoked with prom‘s resolved value, 'Yay', so 'Yay' is logged to the console.</p>
       <p>But with typical promise, we won't know whether it will fulfill or reject, so we need to provide the logic for either case (the success handler and the failure handler):</p>
-      {% highlight javascript %}{{ then2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=then2 %}
       <p><b>catch() method:</b> to write cleaner code we use the separation of concerns principle. So we separate our resolved logic from our rejected logic:</p>
-      {% highlight javascript %}{{ catch }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=catch %}
       <p>And to be even cleaner we use the <samp>catch()</samp> function. It takes only one argument: the failure handler. It is like using a <samp>then()</samp> with only the failure handler:</p>
-      {% highlight javascript %}{{ catch2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=catch2 %}
       <p><b>Chaining multiple promises:</b> it is called composition:</p>
-      {% highlight javascript %}{{ chainingPromises }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=chainingPromises %}
       <ul>
         <li>We invoke <samp>firstPromiseFunction()</samp> witch returns a promise</li>
         <li>We invoke <samp>then()</samp> with an anonymous function as the success handler</li>
@@ -416,7 +417,7 @@
         <li>If every promise in the argument fulfills > <samp>Promise.all()</samp> will resolve with an array containing the resolved value from each promise in the argument array</li>
         <li>If any promise from the argument array rejects > <samp>Promise.all()</samp> will immediately reject with the reject value of the promise that rejected</li>
       </ul>
-      {% highlight javascript %}{{ promiseAll }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=promiseAll %}
       <p><b>To sum up about promises:</b></p>
       <ul>
         <li>Promises are JavaScript objects that represent the eventual result of an asynchronous operation</li>
@@ -434,7 +435,7 @@
   {% when 'async-await' %}
     <div>
       <p>Since ES8, <samp>async…await</samp> was introduced and allows a better readability and scalability of promises. <samp>async</samp> kw is used to write function that handle asynchronous actions. <samp>async</samp> kw allows to creates functions that return a Promise:</p>
-      {% highlight javascript %}{{ async }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=async %}
       <p>Async functions always return a promise. It will return in 3 possible ways:</p>
       <ul>
         <li>If there is nothing returned, it will return a promise with a fulfilled value of undefined</li>
@@ -442,12 +443,12 @@
         <li>If a promise is returned it will simply return that promise</li>
       </ul>
       <p>So, a normal promise written like that:</p>
-      {% highlight javascript %}{{ asyncVsPromise }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=asyncVsPromise %}
       <p>Can be written with the <samp>async</samp> kw like that:</p>
-      {% highlight javascript %}{{ asyncVsPromise2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=asyncVsPromise2 %}
       <p><b>Await:</b> Without the <samp>await</samp> kw, an async function don't do much. The <samp>await</samp> kw can only be used inside an async function. It returns the resolved value of a promise. <samp>await</samp> will pauses the execution of the async function until the desired promise is settled.</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ await }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=await %}
       <ul>
         <li>Inside <samp>asyncFuncExample()</samp> we use <samp>await</samp> to pause our execution until <samp>myPromise()</samp> is settled</li>
         <li>We moreover assign <samp>myPromise()</samp> resolved value to the variable <samp>resolvedValue</samp></li>
@@ -456,31 +457,31 @@
       </ul>
       <p>It is particulary usefull when you do dependent promises (a serie of asynchronous action).</p>
       <p>Indeed, with native promises you will do a chain of <samp>then()</samp> functions. Like that:</p>
-      {% highlight javascript %}{{ awaitChain }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=awaitChain %}
       <p>Whereas with <samp>async…wait</samp>:</p>
-      {% highlight javascript %}{{ awaitChain2 }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=awaitChain2 %}
       <p><b>Try...Catch:</b> When <samp>catch()</samp> is used with a long promise chain, there is no indication of where in the chain the error was thrown. This make debugging challenging.</p>
       <p>With <samp>async…await</samp>, we use the <samp>try…catch</samp> statements for error handling:</p>
-      {% highlight javascript %}{{ tryCatch }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=tryCatch %}
       <p>Here we will "try" what is in the body of the <samp>try</samp> kw. If any of the promised will reject, the catch <samp>body</samp> will be executed, with the <samp>err</samp> argument being the reject value of the promise that was rejected.</p>
       <p><b>Handling Independent Promises:</b> If we have several independent promises that we need to await there is a trick. Indeed, we don't want to wait promise1 to be solved, then promise2 to be solved, and then do our resolution…</p>
       <p>We want both promises to run (at the same time) and then, when both are solved, we want our resolution. We can do it like that:</p>
-      {% highlight javascript %}{{ independentPromises }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=independentPromises %}
       <p><b>Await Promise.all()</b> : We can also use the <samp>await Promise.all()</samp> to wait for multiple promises. Indeed <samp>Promise.all()</samp> takes an array of promises as argument and will resolve when all of these promise are fulfilled. So if we put await before it, it will await all those promises to be settled before going further.</p>
-      {% highlight javascript %}{{ awaitPromiseAll }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=awaitPromiseAll %}
     </div>
   {% when 'http-requests' %}
     <div>
       <p>One of JavaScript's greatest assets is its non-blocking properties, or that it is an <b>asynchronous language</b>. It uses an event loop to handle asynchronous function calls: when a program is run, function calls are made and added to a stack. The functions that make requests that need to wait for servers to respond get sent to a separate queue. Once the stack has cleared, then the functions in the queue are executed.</p>
       <u>Ex:</u>
-      {% highlight javascript %}{{ asyncExample }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=asyncExample %}
       <p>The first and second message are run from the stack. The one in <samp>setTimeout()</samp> is added to the queue so it will always run after the others. (Even if the <samp>setTimeout()</samp> is set to 0 milliseconds.</p>
       <p><b>XHR Get Request:</b> the AJAX GET request allows you to retrieve data from a server.</p>
       <p>Boilerplate of an AJAX GET request using an XMLHttpRequest:</p>
-      {% highlight javascript %}{{ xhrGetRequest }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=xhrGetRequest %}
       <p><b>XHR Post Request:</b> The AJAX POST request allows you to send data to a server.</p>
       <p>Boilerplate of an AJAX POST request using an XMLHttpRequest:</p>
-      {% highlight javascript %}{{ xhrGetRequest }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=xhrGetRequest %}
       <p><b>Fetch Function:</b></p>
       <ul>
         <li>It creates a request object that contains relevant information that an API needs</li>
@@ -488,7 +489,7 @@
         <li>It Returns a promise that ultimately resolves to a response object, which contains the status of the promise with information the API sent back</li>
       </ul>
       <p><b>Boilerplate of a fetch GET request:</b></p>
-      {% highlight javascript %}{{ fetchGet }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=fetchGet %}
       <ul>
         <li>You call the <samp>fetch()</samp> function and pass the URL of your API request as an argument</li>
         <li>You chain a <samp>then()</samp> method with an anonymous arrow function as its first argument (which is the "success handler")</li>
@@ -501,13 +502,13 @@
         <li>You pass it a callback function that take <samp>jsonResponse</samp> as its parameter and return <samp>jsonResponse</samp></li>
       </ul>
       <p><b>Boilerplate of a fetch POST request:</b></p>
-      {% highlight javascript %}{{ fetchPost }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=fetchPost %}
       <p>It is similar to the GET request, only that the initial call takes two arguments: an endpoint and an object, instead of just one. In this object you have the verb and the body of the HTTP request. The body is the info you want to send to the server.</p>
       <p><b>Fetch with Async and await KW</b>: you can also use <samp>async</samp>, <samp>await</samp>, <samp>try</samp> and <samp>catch</samp> kw with <samp>fetch()</samp> to use GET and POST XHR requests:</p>
       <p><b>GET:</b></p>
-      {% highlight javascript %}{{ fetchAsyncGet }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=fetchAsyncGet %}
       <p><b>POST:</b></p>
-      {% highlight javascript %}{{ fetchAsyncPost }}{% endhighlight %}
+      {% include bloc_code.html language=lang content=fetchAsyncPost %}
     </div>
   {% else %}
     nada
