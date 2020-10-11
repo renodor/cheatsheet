@@ -3,7 +3,7 @@
 {% case subsection %}
   {% when 'variables' %}
     <div>
-      <p><samp>var</samp> : variable. Scope is global or locall to an entire function (regardless of block scope)</p>
+      <p><samp>Var</samp> : variable. Scope is global or locall to an entire function (regardless of block scope)</p>
       <p><samp>let</samp> : variable that can be reassigned. Limited to the scope of a the block statement (block-scoped)</p>
       <p><samp>const</samp> : variablethat can't be reassigned. (But value it holds can change, for example if its an object, you can change elements of the objects but not reassign it to a whole new object)</p>
       {% include bloc_code.html language=lang content=variables %}
