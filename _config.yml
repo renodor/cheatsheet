@@ -52,6 +52,7 @@ highlighter: rouge
 #   - vendor/gems/
 #   - vendor/ruby/
 
+safe: true
 
 defaults:
   -
