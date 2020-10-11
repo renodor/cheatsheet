@@ -1,13 +1,27 @@
 {% assign lang='html' %}
-{% case subsection %}
-  {% when 'naming' %}
+
+<div class="sub-section" id='naming'>
+  <h2 class="sub-section-title">naming</h2>
+  <div>
     {% include bloc_code.html language=lang content=naming %}
-  {% when 'boilerplate' %}
+  </div>
+</div>
+<div class="sub-section" id='boilerplate'>
+  <h2 class="sub-section-title">boilerplate</h2>
+  <div>
     <p>HTML Boilerplate with facebook meta-tags, twitter meta-tags, Bootstrapp (CSS CDN, JS and JS dependencies jQuery & Popper.js) and fontawesome</p>
     {% include bloc_code.html language=lang content=boilerplate %}
-  {% when 'tables' %}
+  </div>
+</div>
+<div class="sub-section" id='tables'>
+  <h2 class="sub-section-title">tables</h2>
+  <div>
     {% include bloc_code.html language=lang content=tables %}
-  {% when 'forms' %}
+  </div>
+</div>
+<div class="sub-section" id='forms'>
+  <h2 class="sub-section-title">forms</h2>
+  <div>
     <p>A form is defined by a <samp>&lt;form&gt;</samp> tag. Inside you define :</p>
     <ul>
       <li>An <samp>action</samp> : where to send the form data when submited</li>
@@ -59,6 +73,5 @@
       <li><samp>rows</samp> : determine the width of the field</li>
       <li><samp>cols</samp> :  determine the height</li>
     </ul>
-  {% else %}
-    nada
-{% endcase %}
+  </div>
+</div>
