@@ -1,5 +1,3 @@
-{% include highlighted_code/{{ include.section-name }}_code.html %}
-
 {% for section in site.data.sections %}
   {% if section.title == include.section-name %}
     <h1>{{ section.title }}</h1>
