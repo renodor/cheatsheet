@@ -26,10 +26,10 @@ github_username:  renodor
 
 
 # Build settings
-theme: minima
+# theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-redirect-from
+  # - jekyll-redirect-from
 highlighter: rouge
 
 # Exclude from processing.
