@@ -73,7 +73,7 @@ const links = document.querySelectorAll(".sub-section-link");
 
 links.forEach((link) => {
   link.addEventListener("click", (event) => {
-    if (event.currentTarget.dataset.linkType) {
+    if (event.currentTarget.dataset.anchorLink) {
       event.preventDefault();
       const href = event.currentTarget.getAttribute("href");
       const offsetTop = document.querySelector(href).offsetTop;
