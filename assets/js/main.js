@@ -67,3 +67,21 @@ copyBtns.forEach((copyBtn) => {
 });
 
 
+// SMOOTH SCROLL ONLY FOR ANCHOR LINKS
+
+const links = document.querySelectorAll(".sub-section-link");
+
+links.forEach((link) => {
+  link.addEventListener("click", (event) => {
+    if (event.currentTarget.dataset.linkType) {
+      event.preventDefault();
+      const href = event.currentTarget.getAttribute("href");
+      const offsetTop = document.querySelector(href).offsetTop;
+
+      scroll({
+        top: offsetTop,
+        behavior: "smooth"
+      });
+    }
+  })
+})
