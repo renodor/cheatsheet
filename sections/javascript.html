@@ -3,16 +3,14 @@ section-name: javascript
 permalink: /javascript/
 ---
 
-{% for section in site.data.sections %}
-  {% if section.title == page.section-name %}
+{% for subsections in site.data.javascript_subsections %}
     <h1>{{ section.title }}</h1>
-    {% for subsection in section.subsections %}
+    {% for subsection in subsections %}
       <div class="sub-section" id={{ subsection }}>
         <h2 class="sub-section-title">{{ subsection | replace: '-', ' ' }}</h2>
         {% include content/{{ page.section-name }}_content.html subsection=subsection %}
       </div>
     {% endfor %}
-  {% endif %}
 {% endfor %}
 
 
