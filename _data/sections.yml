@@ -46,6 +46,7 @@
     - run-ruby-code
     - data-types
     - variables
+    - methods
     - conditional-statements
     - loops
     - arrays

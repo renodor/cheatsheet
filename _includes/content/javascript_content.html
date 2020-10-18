@@ -3,10 +3,11 @@
 {% case subsection %}
   {% when 'variables' %}
     <div>
-      <p><samp>var</samp> : variable. Scope is global or locall to an entire function (regardless of block scope)</p>
+      <p><samp>var</samp> : variable. Scope is global or local to an entire function (regardless of block scope)</p>
       <p><samp>let</samp> : variable that can be reassigned. Limited to the scope of a the block statement (block-scoped)</p>
-      <p><samp>const</samp> : variablethat can't be reassigned. (But value it holds can change, for example if its an object, you can change elements of the objects but not reassign it to a whole new object)</p>
+      <p><samp>const</samp> : variable that can't be reassigned. (But value it holds can change, for example if its an object, you can change elements of the objects but not reassign it to a whole new object)</p>
       {% include bloc_code.html language=lang content=variables %}
+      <p><b>Naming convention:</b> in JS variables are lower camelCase: <samp>myVariable</samp></p>
       <p>
         <b>Tips:</b> <samp>x = x + 1</samp> can also be written : <samp>x += 1</samp>
         <br />Same for <samp>-=</samp>, <samp>*=</samp>, <samp>/=</samp>
@@ -48,13 +49,14 @@
     </div>
   {% when 'functions' %}
     <div>
+      <p><b>Naming convention:</b> in JS methods are lower camelCase: <samp>myFunction</samp></p>
       {% include bloc_code.html language=lang content=functions %}
       <p>Function have "hoisting" caracteristic, meaning you can call it (and use it) before declaring it (even if it is not a good practice).</p>
       <p>Since ES6 you can define a default value of a function parameter.</p>
       {% include bloc_code.html language=lang content=functionDefaultParameter %}
       <p><b>Return:</b> by default a fonction will always return <samp>undefined</samp>. Even when it work perfectly. In order for a function to return a result you need to use the keword <samp>return</samp>. With that I tell the function what value it has to return.</p>
       {% include bloc_code.html language=lang content=functionReturn %}
-      <p>The <samp>return</samp> kw also allows you to stop the execution of a function. Indeed a function will stop when it meets return</p>
+      <p>The <samp>return</samp> kw also allows you to stop the execution of a function. Indeed a function will stop when it meets return:</p>
       {% include bloc_code.html language=lang content=functionReturnKw %}
       <p><b>Function Expression:</b> Allows you to store an anonymous function inside a variable and then call this function by calling the variable. You can also add arguments directly inside the variable (we usually use the <samp>const</samp> kw for that):</p>
       {% include bloc_code.html language=lang content=functionExpression %}
@@ -297,7 +299,7 @@
       {% include bloc_code.html language=lang content=classInstance %}
       <p>Details of how to build a class:</p>
       <ul>
-        <li>By convention class names are capitalize and CamelCase</li>
+        <li><b>Naming convention:</b> in JS Classes are upper CamelCase: <samp>MyClass</samp></li>
         <li>You need a <b>constructor method</b>. You will invoke it every time you create a new instance of the class</li>
         <li>Inside the <samp>constructor()</samp> method you use the <samp>this</samp> kw (to refers to an instance of this class)</li>
         <li>You can't include comas between your different methods (only synthax difference with an object)</li>

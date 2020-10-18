@@ -2,63 +2,108 @@
 {% assign lang='ruby' %}
 {% case subsection %}
   {% when 'run-ruby-code' %}
-    <p><b>Install Ruby:</b> better to install it with <a href="https://github.com/rbenv/rbenv" target="_blank">rbenv</a> that lets you chose a specific Ruby version to use in different applications or environments:</p>
-    <ul>
-      <li><samp>rbenv versions</samp> : lists all Ruby versions known to rbenv, and shows an asterisk next to the currently active version</li>
-      <li><samp>rbenv local</samp> : gives you the Ruby version usued in the current application</li>
-      <li><samp>rbenv local 2.6.6</samp> : set Ruby version 2.6.6 to be used in the current application</li>
-      <li><samp>rbenv global</samp> : gives you the Ruby version used globally in your computer</li>
-      <li><samp>rbenv global 2.6.6</samp> : set Ruby version 2.6.6 to be used globally in your computer</li>
-    </ul>
-    <p><b>In a terminal:</b> IRB (stand for "interactive Ruby"). Installed by default with Ruby. Just launch your terminal and type <samp>irb</samp>, and you can type and execute ruby code without creating a file. IRB is a "Read-Eval-Print-Loop" (REPL) tool, it gives you access to all Ruby's built-in features and all the gems you've installed. You can require other gems, or modules as well. Run <samp>exit</samp> to quit irb.</p>
-    <p><b>With a Ruby file:</b> create a ruby file (ex: file_name.rb) and in the terminal execute <samp>ruby file_name.rb</samp></p>
+    <div>
+      <p><b>Install Ruby:</b> better to install it with <a href="https://github.com/rbenv/rbenv" target="_blank">rbenv</a> that lets you chose a specific Ruby version to use in different applications or environments:</p>
+      <ul>
+        <li><samp>rbenv versions</samp> : lists all Ruby versions known to rbenv, and shows an asterisk next to the currently active version</li>
+        <li><samp>rbenv local</samp> : gives you the Ruby version usued in the current application</li>
+        <li><samp>rbenv local 2.6.6</samp> : set Ruby version 2.6.6 to be used in the current application</li>
+        <li><samp>rbenv global</samp> : gives you the Ruby version used globally in your computer</li>
+        <li><samp>rbenv global 2.6.6</samp> : set Ruby version 2.6.6 to be used globally in your computer</li>
+      </ul>
+      <p><b>In a terminal:</b> IRB (stand for "interactive Ruby"). Installed by default with Ruby. Just launch your terminal and type <samp>irb</samp>, and you can type and execute ruby code without creating a file. IRB is a "Read-Eval-Print-Loop" (REPL) tool, it gives you access to all Ruby's built-in features and all the gems you've installed. You can require other gems, or modules as well. Run <samp>exit</samp> to quit irb.</p>
+      <p><b>With a Ruby file:</b> create a ruby file (ex: file_name.rb) and in the terminal execute <samp>ruby file_name.rb</samp></p>
+    </div>
   {% when 'data-types' %}
-    <p><b>String:</b> defined between single quotes: <samp>'my string'</samp> or double quotes: <samp>"my other string"</samp>. Double quotes are mandatory for string interpolation: <samp>"My name is #{first_name}"</samp></p>
-    <p><b>Integer:</b> <samp>23</samp></p>
-    <p><b>Float:</b> <samp>3.14</samp></p>
-    <p><b>Array:</b> a list of elements: <samp>['a', 'b', 'c']</samp></p>
-    <p><b>Bolean:</b> <samp>true</samp> or <samp>false</samp>. In Ruby everything is "truthy" except <samp>false</samp> and <samp>nil</samp></p>
-    <p><b>Range:</b> interval between 2 datas:</p>
-    <ul>
-      <li><samp>(1..10)</samp> is a range between 1 and 10 (with 10 included)</li>
-      <li><samp>(1...10)</samp> is a range between 1 and 10 (with 10 excluded)</li>
-      <li>You can do letter ranges as well: <samp>('a'...'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
-    </ul>
-    <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
-    <p><u>Simplified example:</u> You would use a string to right a country: <samp>'Panama'</samp> but you would use a symbol to define the concepte of "country" <samp>:country</samp>.</p>
-    <p><b>Hash:</b> are like objects in JS. Used to store key-value pairs:</p>
-    <ul>
-      <li><samp>grades = { 'Pierre' => 10, 'Paul' => 14, 'Jack' => 9 }</samp></li>
-      <li>We usually use symbols for hash keys: <samp>grades = { :pierre => 10, :paul => 14, :jack' => 9 }</samp>, which can also be written: <samp>grades = { pierre: 10, paul: 14, jack: 9 }</samp></li>
-    </ul>
-    <p><b>Nil:</b> <samp>nil</samp> means "nothing". Equivalent of <samp>null</samp> in JS.</p>
-    <p><b>In Ruby everything is Object:</b> meaning that all those data types are actually objects, that are instances of classes. For example <samp>"my string"</samp> is an instance of the class <samp>String</samp> :</p>
-    <ul>
-      <li>You can get the class of an element with the method <samp>class</samp>. For example <samp>23.class</samp> will outputs <samp>Integer</samp>. And <samp>Integer.class</samp> will outputs <samp>Class</samp></li>
-      <li>You can get the parent of a class with the method <samp>superclass</samp>. For example <samp>"renodor".class.superclass</samp> will outputs <samp>Object</samp></li>
-      <li>Boolean is actually not a class, <samp>true</samp> and <samp>false</samp> both have their own class, respectively <samp>TrueClass</samp> and <samp>FalseClass</samp></li>
-      <li><samp>nil</samp> class is <samp>NilClass</samp></li>
-    </ul>
-    <p>Eventually all instances of classes inherit from the parent class <samp>Object</samp>. And all classes inherit from the class <samp>Class</samp> that inherit itself from the class <samp>Object</samp> as well. (And at the end, the parent class of all classes in Ruby is the class <samp>BasicObject</samp>)</p>
-    <p><b>Ruby is a strongly typed language:</b> meaning that you can't compare/compute different data types (ie: objects that are instances of different classes). So you often have to convert a data type into another one, and Ruby has built-in methods for that:</p>
-    <ul>
-      <li><samp>to_s</samp> : transform an object into a string: <samp>123.to_s = "123"</samp></li>
-      <li><samp>to_i</samp> : transform an object into a integer: <samp>"123".to_i = 123</samp></li>
-      <li><samp>to_f</samp> : transform an object into a float: <samp>23.to_f = 23.0</samp></li>
-      <li><samp>to_a</samp> : transform an object into an array: <samp>(1..5).to_a = [1, 2, 3, 4, 5]</samp></li>
-      <li><samp>to_sym</samp> : transform an object into a symbol: <samp>'renodor'.to_sym = :renodor</samp></li>
-      <li><samp>to_h</samp> : transform an object into a hash: <samp>[['name', 'Gaston'], ['username', 'LaGaffe']].to_h = {"name"=>"Gaston", "username"=>"LaGaffe"}</samp></li>
-    </ul>
+    <div>
+      <p><b>String:</b> defined between single quotes: <samp>'my string'</samp> or double quotes: <samp>"my other string"</samp>. Double quotes are mandatory for string interpolation: <samp>"My name is #{first_name}"</samp></p>
+      <p><b>Integer:</b> <samp>23</samp></p>
+      <p><b>Float:</b> <samp>3.14</samp></p>
+      <p><b>Array:</b> a list of elements: <samp>['a', 'b', 'c']</samp></p>
+      <p><b>Bolean:</b> <samp>true</samp> or <samp>false</samp>. In Ruby everything is "truthy" except <samp>false</samp> and <samp>nil</samp></p>
+      <p><b>Range:</b> interval between 2 datas:</p>
+      <ul>
+        <li><samp>(1..10)</samp> is a range between 1 and 10 (with 10 included)</li>
+        <li><samp>(1...10)</samp> is a range between 1 and 10 (with 10 excluded)</li>
+        <li>You can do letter ranges as well: <samp>('a'...'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
+      </ul>
+      <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
+      <p><u>Simplified example:</u> You would use a string to right a country: <samp>'Panama'</samp> but you would use a symbol to define the concepte of "country" <samp>:country</samp>.</p>
+      <p><b>Hash:</b> are like objects in JS. Used to store key-value pairs:</p>
+      <ul>
+        <li><samp>grades = { 'Pierre' => 10, 'Paul' => 14, 'Jack' => 9 }</samp></li>
+        <li>We usually use symbols for hash keys: <samp>grades = { :pierre => 10, :paul => 14, :jack' => 9 }</samp>, which can also be written: <samp>grades = { pierre: 10, paul: 14, jack: 9 }</samp></li>
+      </ul>
+      <p><b>Nil:</b> <samp>nil</samp> means "nothing". Equivalent of <samp>null</samp> in JS.</p>
+      <p><b>In Ruby everything is Object:</b> meaning that all those data types are actually objects, that are instances of classes. For example <samp>"my string"</samp> is an instance of the class <samp>String</samp> :</p>
+      <ul>
+        <li>You can get the class of an element with the method <samp>class</samp>. For example <samp>23.class</samp> will outputs <samp>Integer</samp>. And <samp>Integer.class</samp> will outputs <samp>Class</samp></li>
+        <li>You can get the parent of a class with the method <samp>superclass</samp>. For example <samp>"renodor".class.superclass</samp> will outputs <samp>Object</samp></li>
+        <li>Boolean is actually not a class, <samp>true</samp> and <samp>false</samp> both have their own class, respectively <samp>TrueClass</samp> and <samp>FalseClass</samp></li>
+        <li><samp>nil</samp> class is <samp>NilClass</samp></li>
+      </ul>
+      <p>Eventually all instances of classes inherit from the parent class <samp>Object</samp>. And all classes inherit from the class <samp>Class</samp> that inherit itself from the class <samp>Object</samp> as well. (And at the end, the parent class of all classes in Ruby is the class <samp>BasicObject</samp>)</p>
+      <p><b>Ruby is a strongly typed language:</b> meaning that you can't compare/compute different data types (ie: objects that are instances of different classes). So you often have to convert a data type into another one, and Ruby has built-in methods for that:</p>
+      <ul>
+        <li><samp>to_s</samp> : transform an object into a string: <samp>123.to_s = "123"</samp></li>
+        <li><samp>to_i</samp> : transform an object into a integer: <samp>"123".to_i = 123</samp></li>
+        <li><samp>to_f</samp> : transform an object into a float: <samp>23.to_f = 23.0</samp></li>
+        <li><samp>to_a</samp> : transform an object into an array: <samp>(1..5).to_a = [1, 2, 3, 4, 5]</samp></li>
+        <li><samp>to_sym</samp> : transform an object into a symbol: <samp>'renodor'.to_sym = :renodor</samp></li>
+        <li><samp>to_h</samp> : transform an object into a hash: <samp>[['name', 'Gaston'], ['username', 'LaGaffe']].to_h = {"name"=>"Gaston", "username"=>"LaGaffe"}</samp></li>
+      </ul>
+    </div>
   {% when 'variables' %}
-    <p>In Ruby to define a variable you just write its name and = its value: <samp>name = 'Tintin'</samp> >> we assigned the value <samp>'Tintin'</samp> to the variable <samp>name</samp>. Here we actually defined a local variable (accesible in the local scope). Variable types are defined its first letter:</p>
-    <ul>
-      <li>Local variables start with a lowercase letter or an underscore: <samp>my_local_variable</samp></li>
-      <li>Global variables start with $ : <samp>$my_global_variable</samp></li>
-      <li>Instance variables start with @ : <samp>@my_instance_variable</samp></li>
-      <li>Class variables start with @@ : <samp>@@my_class_variable</samp></li>
-    </ul>
-    <p><b>Constant:</b> a Ruby constant is like a variable, except that its value is supposed to remain constant for the duration of the program (but Ruby does not actually enforce it). Constants must start with a capital letter, and by convention most constants are written in all uppercase: <samp>MY_CONSTANT</samp>. If you really want your constant to actually remains constant, you can use the method <samp>freeze</samp> that will prevent any object to be modified:</p>
-    {% include bloc_code.html language=lang content=freezeConstant %}
+    <div>
+      <p>In Ruby to assign a value to a variable you just use the equal sign: <samp>name = 'Tintin'</samp> >> we assigned the value <samp>'Tintin'</samp> to the variable <samp>name</samp>.</p>
+      <p><b>Naming convention:</b> in Ruby variables are snake_case: <samp>my_variable</samp></p>
+      <p>Here we actually defined a local variable (accesible in the local scope). Variable types are defined by its first letter:</p>
+      <ul>
+        <li>Local variables start with a lowercase letter or an underscore: <samp>my_local_variable</samp></li>
+        <li>Global variables start with $ : <samp>$my_global_variable</samp></li>
+        <li>Instance variables start with @ : <samp>@my_instance_variable</samp></li>
+        <li>Class variables start with @@ : <samp>@@my_class_variable</samp></li>
+      </ul>
+      <p><b>Constant:</b> a Ruby constant is like a variable, except that its value is supposed to remain constant for the duration of the program (but Ruby does not actually enforce it). Constants must start with a capital letter, and by convention most constants are written in all uppercase: <samp>MY_CONSTANT</samp>. If you really want your constant to actually remains constant, you can use the method <samp>freeze</samp> that will prevent any object to be modified:</p>
+      {% include bloc_code.html language=lang content=freezeConstant %}
+      <p><b>Abbreviated assignments:</b></p>
+      <ul>
+        <li><samp>a += 1</samp> is the same than <samp>a = a + 1</samp></li>
+        <li><samp>a -= 1</samp> is the same than <samp>a = a - 1</samp></li>
+        <li><samp>a *= 1</samp> is the same than <samp>a = a * 1</samp></li>
+        <li><samp>a /= 1</samp> is the same than <samp>a = a / 1</samp></li>
+      </ul>
+      <p><b>Multiple assignments:</b></p>
+      <ul>
+        <li>You can assign multiple variables at the same time: <samp>a, b = 1, 2</samp> >> <samp>1</samp> will be assigned to <samp>a</samp> and <samp>2</samp> will be assigned to <samp>b</samp> (but it is not recommanded)</li>
+        <li>You can assign the same value to multiple variables at the same time: <samp>a, b = 1</samp> >> <samp>1</samp> will be assigned to <samp>a</samp> and <samp>b</samp></li>
+      </ul>
+    </div>
+  {% when 'methods' %}
+    <div>
+      <p>Ruby simple method definition with a parameter:</p>
+      {% include bloc_code.html language=lang content=method %}
+      <p><b>Return:</b></p>
+      <ul>
+        <li>By default <b>in Ruby a method returns its last line</b> (its last expression)</li>
+        <li>Additionally, the <samp>return</samp> kw can be used to make it explicit what value will be returned</li>
+        <li>But the <samp>return</samp> kw is also used to stop the execution of a method. Indeed a <b>Ruby method will stop and return has soon as it gets to the <samp>return</samp> kw</b></li>
+      </ul>
+      <p><b>Naming convention:</b></p>
+      <ul>
+        <li>In Ruby methods are snake_case: <samp>my_method</samp></li>
+        <li>By convention, methods ending with a ? return a boolean (<samp>true</samp> or <samp>false</samp>). <u>Ex:</u> <samp>2.even?</samp> will return <samp>true</samp> because 2 is an even number</li>
+        <li>By convention, methods ending with a ! are considered "dangerous". Meaning that it permanently modify the object it is called on. <u>Ex:</u></li>
+      </ul>
+      {% include bloc_code.html language=lang content=dangerousMethods %}
+      <p><b>Parameters:</b></p>
+      <p>Parentheses around parameters are optional (you see it a lot in Rails):</p>
+      {% include bloc_code.html language=lang content=methodWithoutParenthesis %}
+      <p>Multiple arguments are separated by a comma:</p>
+      {% include bloc_code.html language=lang content=methodWithMultipleParameters %}
+      <p>Parameters may have default values, but parameters with default values must be grouped together:</p>
+      {% include bloc_code.html language=lang content=methodWithDefaultParameters %}
+    </div>
   {% else %}
     nada
 {% endcase %}

@@ -7,3 +7,39 @@ NUMBERS << 5
 
 # We will outputs: FrozenError: can't modify frozen Array
 {% endcapture %}
+
+{% capture method %}
+def add_five(number)
+  number + 5
+end
+{% endcapture %}
+
+{% capture dangerousMethods %}
+name = 'renodor'
+name.capitalize # outputs 'Renodor', but name's value is still 'renodor':
+puts name # outputs 'renodor'
+
+# whereas:
+name.capitalize! # outputs 'Renodor', and name's value is now 'Renodor':
+puts name # outputs 'Renodor'
+{% endcapture %}
+
+{% capture methodWithoutParenthesis %}
+def add_five number
+  number + 5
+end
+{% endcapture %}
+
+{% capture methodWithMultipleParameters %}
+def add_values(a, b)
+  a + b
+end
+{% endcapture %}
+
+{% capture methodWithDefaultParameters %}
+def add_values(a = 1, b = 2, c)
+  a + b + c
+end
+{% endcapture %}
+
+
