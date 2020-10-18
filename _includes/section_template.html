@@ -1,6 +1,9 @@
 {% for section in site.data.sections %}
   {% if section.title == include.section-name %}
     <h1>{{ section.title }}</h1>
+    {% if include.section-intro %}
+      {{ include.section-intro }}
+    {% endif %}
     {% for subsection in section.subsections %}
       <div class="sub-section" id={{ subsection }}>
         <h2 class="sub-section-title">{{ subsection | replace: '-', ' ' }}</h2>

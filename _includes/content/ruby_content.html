@@ -1,0 +1,42 @@
+{% include highlighted_code/ruby_code.html %}
+{% assign lang='ruby' %}
+{% case subsection %}
+  {% when 'run-ruby-code' %}
+    <p><b>Install Ruby:</b> better to install it with <a href="https://github.com/rbenv/rbenv" target="_blank">rbenv</a> that lets you chose a specific Ruby version to use in different applications or environments:</p>
+    <ul>
+      <li><samp>rbenv versions</samp> : lists all Ruby versions known to rbenv, and shows an asterisk next to the currently active version</li>
+      <li><samp>rbenv local</samp> : gives you the Ruby version usued in the current application</li>
+      <li><samp>rbenv local 2.6.6</samp> : set Ruby version 2.6.6 to be used in the current application</li>
+      <li><samp>rbenv global</samp> : gives you the Ruby version used globally in your computer</li>
+      <li><samp>rbenv global 2.6.6</samp> : set Ruby version 2.6.6 to be used globally in your computer</li>
+    </ul>
+    <p><b>In a terminal:</b> IRB (stand for "interactive Ruby"). Installed by default with Ruby. Just launch your terminal and type <samp>irb</samp>, and you can type and execute ruby code without creating a file. IRB is a "Read-Eval-Print-Loop" (REPL) tool, it gives you access to all Ruby's built-in features and all the gems you've installed. You can require other gems, or modules as well. Run <samp>exit</samp> to quit irb.</p>
+    <p><b>With a Ruby file:</b> create a ruby file (ex: file_name.rb) and in the terminal execute <samp>ruby file_name.rb</samp></p>
+  {% when 'data-types' %}
+    <p><b>String:</b> defined between single quotes: <samp>'my string'</samp> or double quotes: <samp>"my other string"</samp>. Double quotes are mandatory for string interpolation: <samp>"My name is #{first_name}"</samp></p>
+    <p><b>Integer:</b> <samp>23</samp></p>
+    <p><b>Float:</b> <samp>3.14</samp></p>
+    <p><b>Array:</b> a list of elements: <samp>['a', 'b', 'c']</samp></p>
+    <p><b>Bolean:</b> <samp>true</samp> or <samp>false</samp>. In Ruby everything is "truthy" except <samp>false</samp> and <samp>nil</samp></p>
+    <p><b>Range:</b> interval between 2 datas:</p>
+    <ul>
+      <li><samp>(1..10)</samp> is a range between 1 and 10 (with included)</li>
+      <li><samp>(1...10)</samp> is a range between 1 and 10 (with 10 excluded)</li>
+      <li>You can do letter ranges as well: <samp>('a'...'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
+    </ul>
+    <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). For (a simplified) example a string for a country name would be <samp>'Panama'</samp> but a symbol for a country name would be <samp>:country</samp>. You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
+    <p><b>Hash:</b> are like objects in JS. Used to store key-value pairs:</p>
+    <ul>
+      <li><samp>grades = { 'Pierre' => 10, 'Paul' => 14, 'Jack' => 9 }</samp></li>
+      <li>We usually use symbols for hash keys: <samp>grades = { :pierre => 10, :paul => 14, :jack' => 9 }</samp>, which can also be written: <samp>grades = { pierre: 10, paul: 14, jack: 9 }</samp></li>
+    </ul>
+    <p><b>Nil:</b> <samp>nil</samp> means "nothing". Equivalent of <samp>null</samp> in JS.</p>
+    <p><b>In Ruby everything is Object:</b> meaning that all those data types are actually objects, that are instances of classes. For example <samp>"my string"</samp> is an instance of the class <samp>String</samp> :</p>
+    <ul>
+      <li>You can get the class of an element with the method <samp>class</samp>. For example <samp>23.class</samp> will outputs <samp>Integer</samp>. And <samp>Integer.class</samp> will outputs <samp>Class</samp></li>
+      <li>You can get the parent of a class with the method <samp>superclass</samp>. For example <samp>"renodor".class.superclass</samp> will outputs <samp>Object</samp></li>
+    </ul>
+    <p>Eventually all instances of classes inherit from the parent class <samp>Object</samp>. And all classes inherit from the class <samp>Class</samp> that inherit itself from the class <samp>Object</samp> as well. (And at the end, the parent class of all classes in Ruby is the class <samp>BasicObject</samp>)</p>
+  {% else %}
+    nada
+{% endcase %}
