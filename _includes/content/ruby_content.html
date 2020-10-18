@@ -37,6 +37,11 @@
       <li>You can get the parent of a class with the method <samp>superclass</samp>. For example <samp>"renodor".class.superclass</samp> will outputs <samp>Object</samp></li>
     </ul>
     <p>Eventually all instances of classes inherit from the parent class <samp>Object</samp>. And all classes inherit from the class <samp>Class</samp> that inherit itself from the class <samp>Object</samp> as well. (And at the end, the parent class of all classes in Ruby is the class <samp>BasicObject</samp>)</p>
+    <p><b>Ruby is a strongly typed language:</b> meaning that you can't compare/compute different data types (ie: objects that are instances of different classes). So you often have to convert a data type into another one, and Ruby has built-in methods for that:</p>
+    <ul>
+      <li><samp>to_s</samp> : transform an object into a string : <samp>123.to_s = "123"</samp></li>
+      <li><samp>to_i</samp> : transform an object into a integer : <samp>"123".to_i = 123</samp></li>
+    </ul>
   {% else %}
     nada
 {% endcase %}
