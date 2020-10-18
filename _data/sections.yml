@@ -45,6 +45,7 @@
   subsections:
     - run-ruby-code
     - data-types
+    - variables
     - conditional-statements
     - loops
     - arrays

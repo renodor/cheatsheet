@@ -1,0 +1,9 @@
+{% capture freezeConstant %}
+# If we freeze an Array:
+NUMBERS = [1, 2, 3, 4].freeze
+
+# And then try to add a new value to this Array
+NUMBERS << 5
+
+# We will outputs: FrozenError: can't modify frozen Array
+{% endcapture %}

@@ -20,11 +20,12 @@
     <p><b>Bolean:</b> <samp>true</samp> or <samp>false</samp>. In Ruby everything is "truthy" except <samp>false</samp> and <samp>nil</samp></p>
     <p><b>Range:</b> interval between 2 datas:</p>
     <ul>
-      <li><samp>(1..10)</samp> is a range between 1 and 10 (with included)</li>
+      <li><samp>(1..10)</samp> is a range between 1 and 10 (with 10 included)</li>
       <li><samp>(1...10)</samp> is a range between 1 and 10 (with 10 excluded)</li>
       <li>You can do letter ranges as well: <samp>('a'...'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
     </ul>
-    <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). For (a simplified) example a string for a country name would be <samp>'Panama'</samp> but a symbol for a country name would be <samp>:country</samp>. You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
+    <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
+    <p><u>Simplified example:</u> You would use a string to right a country: <samp>'Panama'</samp> but you would use a symbol to define the concepte of "country" <samp>:country</samp>.</p>
     <p><b>Hash:</b> are like objects in JS. Used to store key-value pairs:</p>
     <ul>
       <li><samp>grades = { 'Pierre' => 10, 'Paul' => 14, 'Jack' => 9 }</samp></li>
@@ -46,7 +47,18 @@
       <li><samp>to_f</samp> : transform an object into a float: <samp>23.to_f = 23.0</samp></li>
       <li><samp>to_a</samp> : transform an object into an array: <samp>(1..5).to_a = [1, 2, 3, 4, 5]</samp></li>
       <li><samp>to_sym</samp> : transform an object into a symbol: <samp>'renodor'.to_sym = :renodor</samp></li>
+      <li><samp>to_h</samp> : transform an object into a hash: <samp>[['name', 'Gaston'], ['username', 'LaGaffe']].to_h = {"name"=>"Gaston", "username"=>"LaGaffe"}</samp></li>
     </ul>
+  {% when 'variables' %}
+    <p>In Ruby to define a variable you just write its name and = its value: <samp>name = 'Tintin'</samp> >> we assigned the value <samp>'Tintin'</samp> to the variable <samp>name</samp>. Here we actually defined a local variable (accesible in the local scope). Variable types are defined its first letter:</p>
+    <ul>
+      <li>Local variables start with a lowercase letter or an underscore: <samp>my_local_variable</samp></li>
+      <li>Global variables start with $ : <samp>$my_global_variable</samp></li>
+      <li>Instance variables start with @ : <samp>@my_instance_variable</samp></li>
+      <li>Class variables start with @@ : <samp>@@my_class_variable</samp></li>
+    </ul>
+    <p><b>Constant:</b> a Ruby constant is like a variable, except that its value is supposed to remain constant for the duration of the program (but Ruby does not actually enforce it). Constants must start with a capital letter, and by convention most constants are written in all uppercase: <samp>MY_CONSTANT</samp>. If you really want your constant to actually remains constant, you can use the method <samp>freeze</samp> that will prevent any object to be modified:</p>
+    {% include bloc_code.html language=lang content=freezeConstant %}
   {% else %}
     nada
 {% endcase %}
