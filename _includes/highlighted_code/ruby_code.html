@@ -42,4 +42,83 @@ def add_values(a = 1, b = 2, c)
 end
 {% endcapture %}
 
+{% capture ifConditions %}
+if condition
+  # code to execute
+end
+
+if condition
+  # code to execute
+else
+  # code to execute
+end
+
+if condition
+  # code to execute
+elsif other_condition
+  # code to execute
+else
+  # code to execute
+end
+
+# Simpler form for one line statements:
+code to execute if condition
+{% endcapture %}
+
+{% capture UnlessConditions %}
+unless condition
+ # code to execute
+end
+
+# Simpler form for one line statements:
+code to execute unless condition
+# (This is the same as: code to execute if !condition)
+{% endcapture %}
+
+{% capture caseStatement %}
+age = 50
+case age
+  when 0
+    p "you're not born yet little man"
+  when 10
+    p "time to have fun"
+  when 18
+    p "time to have more fun"
+  when 30
+    p "time to have fun again"
+  when 50
+    p "yep, still fun"
+  when 100
+    p "probably a lot of fun too"
+  else
+    p "it's not worth it"
+end
+{% endcapture %}
+
+{% capture ternary %}
+condition ? 'I will be executed if its true' : 'I will be executed if its false'
+{% endcapture %}
+
+{% capture andStatement %}
+if condition && other_condition
+  # will be executed if BOTH conditions are true
+end
+{% endcapture %}
+
+{% capture orStatement %}
+if condition || other_condition
+  # will be executed if AT LEAST one of the two conditions is true
+end
+{% endcapture %}
+
+{% capture truthTable %}
+true  && true   #=> true
+false && false  #=> false
+true  && false  #=> false
+
+true  || true   #=> true
+false || false  #=> false
+true  || false  #=> true
+{% endcapture %}
+
 

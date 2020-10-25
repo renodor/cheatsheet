@@ -104,6 +104,24 @@
       <p>Parameters may have default values, but parameters with default values must be grouped together:</p>
       {% include bloc_code.html language=lang content=methodWithDefaultParameters %}
     </div>
+  {% when 'conditional-statements' %}
+    <div>
+      <p>In Ruby <b>everything is truthy except <samp>false</samp> and <samp>nil</samp></b></p>
+      <p><b>If statements:</b> execute the code if the condition is true</p>
+      {% include bloc_code.html language=lang content=ifConditions %}
+      <p><b>Unless statements:</b> execute the code if the condition is false. Normally (in other programming languages), you would use the reverse of a condition to achieve that: <samp>if !(condition)</samp>. But in Ruby you can use the <samp>unless</samp> keyword:</p>
+      {% include bloc_code.html language=lang content=UnlessConditions %}
+      <p><b>Case statement:</b> you define an expression to compare, and then you treat different case scenarios. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=caseStatement %}
+      <p><b>Ternary:</b> a shorter way to write simple conditionals:</p>
+      {% include bloc_code.html language=lang content=ternary %}
+      <p><b>&&</b> means "and":</p>
+      {% include bloc_code.html language=lang content=andStatement %}
+      <p><b>||</b> means "or":</p>
+      {% include bloc_code.html language=lang content=orStatement %}
+      <p>So basically <samp>true && false</samp> is <samp>false</samp> whereas <samp>true || false</samp> is <samp>true</samp>:</p>
+      {% include bloc_code.html language=lang content=truthTable %}
+    </div>
   {% else %}
     nada
 {% endcase %}
