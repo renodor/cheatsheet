@@ -64,3 +64,16 @@
 .highlight .vg { color: #bf616a } /* Name.Variable.Global */
 .highlight .vi { color: #bf616a } /* Name.Variable.Instance */
 .highlight .il { color: #d08770 } /* Literal.Number.Integer.Long */
+
+.highlight .language-css {
+  .nl, .py { color: #b8b8b8 };
+}
+
+.highlight .language-javascript {
+  .o { color: #eafefd };
+  .na { color: #dfdfdf};
+}
+
+.highlight .language-ruby {
+  .nb { color: #b0ebfa };
+}

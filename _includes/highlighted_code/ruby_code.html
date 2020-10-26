@@ -15,13 +15,13 @@ end
 {% endcapture %}
 
 {% capture dangerousMethods %}
-name = 'renodor'
-name.capitalize # outputs 'Renodor', but name's value is still 'renodor':
-puts name # outputs 'renodor'
+username = 'renodor'
+username.capitalize # outputs 'Renodor', but username's value is still 'renodor':
+puts username # outputs 'renodor'
 
 # whereas:
-name.capitalize! # outputs 'Renodor', and name's value is now 'Renodor':
-puts name # outputs 'Renodor'
+username.capitalize! # outputs 'Renodor', and username's value is now 'Renodor':
+puts username # outputs 'Renodor'
 {% endcapture %}
 
 {% capture methodWithoutParenthesis %}

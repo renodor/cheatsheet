@@ -7,14 +7,16 @@ selector {
 {% endcapture %}
 
 {% capture import %}
-'@import url("components/avatar.css");',
+@import url("components/avatar.css");
 {% endcapture %}
 
 {% capture gradientFilter %}
-background: linear-gradient(135deg,       /* angle */
-                            yellow 0%,    /* start-color and start-point */
-                            green 50%),   /* end-color and end-point */
-            url('background.jpg')
+body {
+  background: linear-gradient(135deg,       /* angle */
+                              yellow 0%,    /* start-color and start-point */
+                              green 50%),   /* end-color and end-point */
+              url('background.jpg')
+}
 {% endcapture %}
 
 {% capture positioning %}
@@ -109,7 +111,7 @@ h1 {
 
 {% capture gridExampleHtml %}
 <div class="container">
-  <header>Welcom!</header>
+  <header>Welcome!</header>
   <nav>Links</nav>
   <section class="info">Info!</section>
   <section class="services">Services!</section>
