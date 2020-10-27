@@ -122,6 +122,19 @@
       <p>So basically <samp>true && false</samp> is <samp>false</samp> whereas <samp>true || false</samp> is <samp>true</samp>:</p>
       {% include bloc_code.html language=lang content=truthTable %}
     </div>
+  {% when 'loops' %}
+    <div>
+      <p><b>Finished loop:</b></p>
+      {% include bloc_code.html language=lang content=finishedLoop %}
+      <p><b>While loop:</b></p>
+      {% include bloc_code.html language=lang content=whileLoop %}
+      <p><b>Until loop:</b></p>
+      {% include bloc_code.html language=lang content=untilLoop %}
+      <p><b>For loop:</b></p>
+      {% include bloc_code.html language=lang content=forLoop %}
+      <p>The for loop is not really used in Ruby, we use much more the <samp>each</samp> function to iterate over an array:</p>
+      {% include bloc_code.html language=lang content=eachFunction %}
+    </div>
   {% else %}
     nada
 {% endcase %}

@@ -62,7 +62,7 @@ else
 end
 
 # Simpler form for one line statements:
-code to execute if condition
+code_to_execute if condition
 {% endcapture %}
 
 {% capture UnlessConditions %}
@@ -71,8 +71,8 @@ unless condition
 end
 
 # Simpler form for one line statements:
-code to execute unless condition
-# (This is the same as: code to execute if !condition)
+code_to_execute unless condition
+# (This is the same as: code_to_execute if !condition)
 {% endcapture %}
 
 {% capture caseStatement %}
@@ -121,4 +121,49 @@ false || false  #=> false
 true  || false  #=> true
 {% endcapture %}
 
+{% capture finishedLoop %}
+10.times do
+  # code
+end
+# will execute the code 10 times
 
+# you can also pass an argument to the times function:
+10.times do |n|
+  puts "#{n} - I am repeating myself"
+end
+# will ouputs:
+# 1 - I am repeating myself
+# 2 - I am repeating myself
+# 3 - I am repeating myself
+# etc...
+{% endcapture %}
+
+{% capture whileLoop %}
+while condition
+  # code
+end
+# will stop the loop only when the condition is FALSE
+{% endcapture %}
+
+{% capture untilLoop %}
+until condition
+  # code
+end
+# will stop the loop only when the condition is TRUE
+{% endcapture %}
+
+{% capture forLoop %}
+for num in [1, 2, 3]
+  puts num
+end
+# will outputs:
+# 1
+# 2
+# 3
+{% endcapture %}
+
+{% capture eachFunction %}
+[1, 2, 3].each do |num|
+  puts num
+end
+{% endcapture %}
