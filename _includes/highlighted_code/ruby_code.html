@@ -167,3 +167,13 @@ end
   puts num
 end
 {% endcapture %}
+
+{% capture exitLoop %}
+def my_loop
+  (1..100).to_a.shuffle.each do |num| # will iterate over numbers from 1 to 100 in a random order
+    next if num.odd? # will skip iteration if current number is odd
+    break if num > 50 # will break from the loop if current number is higher than 50
+    return num if num == 98 # will stop the loop and return current number if its 98
+  end
+end
+{% endcapture %}

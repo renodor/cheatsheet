@@ -134,6 +134,14 @@
       {% include bloc_code.html language=lang content=forLoop %}
       <p>The for loop is not really used in Ruby, we use much more the <samp>each</samp> function to iterate over an array:</p>
       {% include bloc_code.html language=lang content=eachFunction %}
+      <p><b>Exit early of a loop:</b> you can exit early of a Ruby loop in three different ways:</p>
+      <ul>
+        <li><samp>next</samp> keyword: will skip the current iteration and directly go to the next one</li>
+        <li><samp>break</samp> keyword: will break the loop completely and exit early from it</li>
+        <li><samp>return</samp> keyword: as seen in the <a href="#methods">method</a> section, the <samp>return</samp> keyword will stop the execution of a method. So it can be used to exit early from a loop and return a specific value</li>
+      </ul>
+      <u>Ex:</u>
+      {% include bloc_code.html language=lang content=exitLoop %}
     </div>
   {% else %}
     nada
