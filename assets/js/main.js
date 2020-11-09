@@ -82,6 +82,8 @@ links.forEach((link) => {
         top: offsetTop,
         behavior: "smooth"
       });
+
+      window.history.pushState('state', document.title, event.currentTarget.href);
     }
   })
 })
