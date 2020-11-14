@@ -143,6 +143,55 @@
       <u>Ex:</u>
       {% include bloc_code.html language=lang content=exitLoop %}
     </div>
+  {% when 'arrays' %}
+    <div>
+      <p>Arrays are ordered, indexed collections of objects. In Ruby arrays can contain different types of objects (A single array can contains integers, strings, other arrays, objects etc...)</p>
+      <p><b>Create arrays:</b></p>
+      <ul>
+        <li>Calling the literal constructor: <samp>[]</samp>. Ex: <samp>arr = [1, 'hello', 2.5]</samp></li>
+        <li>Calling <samp>new</samp> on the <samp>Array</samp> class: <samp>Array.new</samp>. If you add one argument it will define the initial size of the array: <samp>Array.new(3)</samp>, will create: <samp>[nil, nil, nil]</samp>. If you add a second argument it will define the default value of the array elements: <samp>Array.new(3, true)</samp> will create <samp>[true, true, true]</samp></li>
+        <li>(So to create an empty array an assign it to a variable, just do: <samp>arr = []</samp> or <samp>arr = Array.new</samp>)</li>
+        <li>You can also pass a block to the <samp>Array.new</samp> method to create more complexe arrays. Ex: <samp>Array.new(4) { |i| i.to_s }</samp> will create: <samp>['0', '1', '2', '3']</samp></li>
+        <li>Ruby has a shortcut to create an array of strings: <samp>%w(pierre paul jacques)</samp> is the same as <samp>['pierre', 'paul', 'jacques']</samp> (If you have string interpolations you need to use <samp>%W</samp> (capital W), because it will create a string array with double quotes.</li>
+      </ul>
+      <p><b>Index:</b></p>
+      <ul>
+        <li>Ruby arrays start at index O</li>
+        <li>The last element has the index -1. The second to last element has the index -2. And the element before the index -3 etc...</li>
+        <li><samp>.first</samp> method will return the first array element</li>
+        <li><samp>.last</samp> method will return the last array element</li>
+        <li><samp>arr[n]</samp> will return elements at index n of array <samp>arr</samp>. Ex: if <samp>arr = [1, 2, 3]</samp>, <samp>arr[1]</samp> will return <samp>2</samp></li>
+        <li>If you call <samp>arr[n]</samp> on an element that doesn't exists, it returns <samp>nil</samp>. Ex: <samp>arr[10]</samp>, returns <samp>nil</samp></li>
+        <li><samp>.size</samp>, <samp>.count</samp>, <samp>.length</samp> will all return the number of elements of an array</li>
+      </ul>
+      <p><b>Update arrays:</b></p>
+      <ul>
+        <li><samp>arr << 'yeah'</samp> will add <samp>'yeah'</samp> at the end of array <samp>arr</samp></li>
+        <li><samp>.push(x)</samp> method does exactly the same: <samp>arr.push('yeah')</samp> will add <samp>'yeah'</samp> at the end of array <samp>arr</samp>. You can push several elements at the same time: <samp>.push(x, y, z)</samp></li>
+        <li><samp>.unshift(x)</samp> method will add element x at the beginning of the array (pushing other elements on index further). You can unshift several elements at the same time: <samp>.unshift(x, y, z)</samp></li>
+        <li><samp>.insert(n, 'yeah')</samp> will insert 'yeah' at index n (pushing other elements one index further). Ex: if <samp>arr = [1, 2, 3]</samp> and you do <samp>arr.insert(2, 'yeah')</samp> now <samp>arr</samp> is <samp>[1, 2, 'yeah', 3]</samp></li>
+        <li><samp>arr[n] = 'yeah'</samp> will replace element at index n by 'yeah'. Ex: if you do <samp>arr[2] = 'yeah'</samp>, now <samp>arr</samp> is <samp>[1, 2, 'yeah']</samp></li>
+        <li>You can call the two previous methods on indexes that doesn't exists. It will create nil elements to flll the gaps. Ex: <samp>arr.insert(10, 'hello')</samp>, now <samp>arr</samp> is <samp>[1, 2, 3, nil, nil, nil, nil, nil, nil, nil, "hello"]</samp></li>
+        <li>You can also insert several elements at the same time: Ex: if <samp>arr = [1, 2, 3]</samp> and you do <samp>arr.insert(1, 'a', 'b', 'c')</samp> now <samp>arr</samp> is <samp>[1, "a", "b", "c", 2, 3]</samp></li>
+      </ul>
+      <p><b>Delete array elements:</b></p>
+      <ul>
+        <li><samp>.delete(x)</samp> will delete x from array. If there are several elements corresponding it will delete them all.</li>
+        <li><samp>.delete_at(n)</samp> will dete element at index n.</li>
+      </ul>
+      <p><b>Iterators:</b></p>
+      <p><b>Each:</b> will iterate over each elements of the array and execute the bloc code to it. It will NOT modify the original array, it will just apply the code to each elements.</p>
+      {% include bloc_code.html language=lang content=each %}
+      <p><b>Each with index:</b> is the same as each but with a second argument that represents the index of the current iteration:</p>
+      {% include bloc_code.html language=lang content=each_with_index %}
+      <p><b>Map:</b> it will also apply the block code to each elements of the array, but it will create a new array and returns it. So if you assign the map method to a new variable, this new variable will contains the new array. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=map %}
+      <p>(You can also use <samp>.map_with_index</samp>)</p>
+      <p><b>Arrays and strings</b></p>
+      <p><samp>.join</samp> method will join all elements of an array and transform it into a string. You can give it a string as an argument that will serve as a separator between elements. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=join %}
+      <p><samp>.split</samp> will split a string into an array. By default it looks for spaces or comas to separate the string into words. But you can add add an argument to specify how to split it. <samp>.split('')</samp> will split each letter of a word. <u>Ex:</u></p>
+    </div>
   {% else %}
     nada
 {% endcase %}

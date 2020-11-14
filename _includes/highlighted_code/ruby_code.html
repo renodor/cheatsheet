@@ -78,20 +78,20 @@ code_to_execute unless condition
 {% capture caseStatement %}
 age = 50
 case age
-  when 0
-    p "you're not born yet little man"
-  when 10
-    p "time to have fun"
-  when 18
-    p "time to have more fun"
-  when 30
-    p "time to have fun again"
-  when 50
-    p "yep, still fun"
-  when 100
-    p "probably a lot of fun too"
-  else
-    p "it's not worth it"
+when 0
+  p "you're not born yet little man"
+when 10
+  p "time to have fun"
+when 18
+  p "time to have more fun"
+when 30
+  p "time to have fun again"
+when 50
+  p "yep, still fun"
+when 100
+  p "probably a lot of fun too"
+else
+  p "it's not worth it"
 end
 {% endcapture %}
 
@@ -173,7 +173,41 @@ def my_loop
   (1..100).to_a.shuffle.each do |num| # will iterate over numbers from 1 to 100 in a random order
     next if num.odd? # will skip iteration if current number is odd
     break if num > 50 # will break from the loop if current number is higher than 50
-    return num if num == 98 # will stop the loop and return current number if its 98
+    return num if num == 98 # will stop the loop and exist the method returning current number if its 98
   end
 end
+{% endcapture %}
+
+{% capture each %}
+[1, 2, 3].each do |num|
+  puts num
+end
+# will outputs:
+# 1
+# 2
+# 3
+{% endcapture %}
+
+{% capture each_with_index %}
+['hello', 'bonjour', 'hola'].each_with_index do |word, i|
+  puts "#{i}- #{word}"
+end
+# will outputs:
+# 0- hello
+# 1- bonjour
+# 2- hola
+{% endcapture %}
+
+{% capture map %}
+new_arr = [1, 2, 3].map do |num|
+  num * 10
+end
+
+p new_arr # will outputs [10, 20 30]
+{% endcapture %}
+
+{% capture join %}
+[1, 2, 3].join # will outputs "123"
+[1, 2, 3].join(' ') # will outputs "1 2 3"
+[1, 2, 3].join('-') # will outputs "1-2-3"
 {% endcapture %}
