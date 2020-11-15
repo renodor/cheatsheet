@@ -9,9 +9,14 @@ NUMBERS << 5
 {% endcapture %}
 
 {% capture method %}
+# method definition:
 def add_five(number)
   number + 5
 end
+
+# calling the method:
+add_five(5)
+# >> will return 10
 {% endcapture %}
 
 {% capture dangerousMethods %}
@@ -210,4 +215,87 @@ p new_arr # will outputs [10, 20 30]
 [1, 2, 3].join # will outputs "123"
 [1, 2, 3].join(' ') # will outputs "1 2 3"
 [1, 2, 3].join('-') # will outputs "1-2-3"
+{% endcapture %}
+
+{% capture split %}
+'I am a sentence'.split # will outputs ["I", "am", "a", "sentence"]
+'abcd'.split('') # will outputs ["a", "b", "c", "d"]
+'Hey, hi Mark!'.split(',') # will outputs ["Hey", " hi Mark!"]
+{% endcapture %}
+
+{% capture count %}
+arr = [1, 2, 2, 3, 4]
+arr.count # will outputs 5
+arr.count(2) # will outputs 2
+arr.count { |num| num > 3 } # will outputs 1
+{% endcapture %}
+
+{% capture select %}
+new_array = [0, 1, 2, 3, 4, 5, 6].select do |num|
+  num.even?
+end
+
+p new_array # will outputs [0, 2, 4, 6]
+{% endcapture %}
+
+{% capture reject %}
+new_array = [0, 1, 2, 3, 4, 5, 6].reject do |num|
+  num.even?
+end
+
+p new_array # will outputs [1, 3, 5]
+{% endcapture %}
+
+{% capture block_one_line %}
+{ |num| num * 10 }
+
+# as in:
+arr.each { |num| num * 10 }
+{% endcapture %}
+
+{% capture block_multi_line %}
+do |num|
+  num * 10
+end
+
+# as in:
+arr.each do |num|
+  num * 10
+end
+{% endcapture %}
+
+{% capture yield %}
+# method definition
+def strange_greetings
+  p 'Hello'
+  yield
+  p 'Aaaaaand its over.'
+end
+
+# method calling
+strange_greetings do
+  p 'I am strange'
+  p 'but its cool right?'
+end
+
+# This will outputs in this order:
+# "Hello"
+# "I am strange,"
+# "but its cool right?"
+# "Aaaaaand its over."
+{% endcapture %}
+
+{% capture hash %}
+# define an empty hash:
+panama = {}
+
+# add new key/value pairs to my hash:
+panama['population'] = 4170607
+panama['type'] = 'tropical'
+
+# now my hash has two key/value pairs:
+panama = {
+  "population" => 4170607,
+  "type" = "tropical"
+}
 {% endcapture %}

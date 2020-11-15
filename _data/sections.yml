@@ -50,10 +50,9 @@
     - conditional-statements
     - loops
     - arrays
-    - ranges
+    - hashes
     - iterators
     - block
-    - hashes
     - symobls
     - regex
     - parsing-and-storing-data

@@ -23,9 +23,9 @@
       <p><b>Bolean:</b> <samp>true</samp> or <samp>false</samp>. In Ruby everything is "truthy" except <samp>false</samp> and <samp>nil</samp></p>
       <p><b>Range:</b> interval between 2 datas:</p>
       <ul>
-        <li><samp>(1..10)</samp> is a range between 1 and 10 (with 10 included)</li>
-        <li><samp>(1...10)</samp> is a range between 1 and 10 (with 10 excluded)</li>
-        <li>You can do letter ranges as well: <samp>('a'...'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
+        <li><samp>(1..10)</samp> is a range between 1 and 10 (10 is included)</li>
+        <li><samp>(1...10)</samp> is a range between 1 and 9 (10 is excluded)</li>
+        <li>You can do letter ranges as well: <samp>('a'..'e')</samp> is a, b, c, d, e (or symbol ranges as well)</li>
       </ul>
       <p><b>Symbols:</b> defined using a <samp>:</samp> and the name of the symbol: <samp>:my_symbol</samp>. It is a "string cousin". Mostly used for hash keys. They are like "named strings" used to represent something (whereas in general a string is a data itself). You can considere it as "the thing named" (<samp>:id</samp> is "the thing named id")</p>
       <p><u>Simplified example:</u> You would use a string to right a country: <samp>'Panama'</samp> but you would use a symbol to define the concepte of "country" <samp>:country</samp>.</p>
@@ -81,7 +81,7 @@
     </div>
   {% when 'methods' %}
     <div>
-      <p>Ruby simple method definition with a parameter:</p>
+      <p>Ruby simple method definition and call with a parameter:</p>
       {% include bloc_code.html language=lang content=method %}
       <p><b>Return:</b></p>
       <ul>
@@ -162,7 +162,6 @@
         <li><samp>.last</samp> method will return the last array element</li>
         <li><samp>arr[n]</samp> will return elements at index n of array <samp>arr</samp>. Ex: if <samp>arr = [1, 2, 3]</samp>, <samp>arr[1]</samp> will return <samp>2</samp></li>
         <li>If you call <samp>arr[n]</samp> on an element that doesn't exists, it returns <samp>nil</samp>. Ex: <samp>arr[10]</samp>, returns <samp>nil</samp></li>
-        <li><samp>.size</samp>, <samp>.count</samp>, <samp>.length</samp> will all return the number of elements of an array</li>
       </ul>
       <p><b>Update arrays:</b></p>
       <ul>
@@ -179,7 +178,34 @@
         <li><samp>.delete(x)</samp> will delete x from array. If there are several elements corresponding it will delete them all.</li>
         <li><samp>.delete_at(n)</samp> will dete element at index n.</li>
       </ul>
-      <p><b>Iterators:</b></p>
+      <p><b>Arrays and strings</b></p>
+      <p><samp>.join</samp> method will join all elements of an array and transform it into a string. You can give it a string as an argument that will serve as a separator between elements. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=join %}
+      <p><samp>.split</samp> will split a string into an array. By default it looks for spaces or comas to separate the string into words. But you can add add an argument to specify how to split it. <samp>.split('')</samp> will split each letter of a word. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=split %}
+      <p><b>Counting array elements:</b></p>
+      <ul>
+        <li><samp>arr.length</samp> and <samp>arr.size</samp> are two similar methods that return the number of element of <samp>arr</samp></li>
+        <li><samp>arr.count</samp> will also return the number of elements, but can take an argument or a block. If an argument or a block is given, it will count the number of elements that are equal to the argument or the block. <u>Ex:</u></li>
+      </ul>
+      {% include bloc_code.html language=lang content=count %}
+    </div>
+  {% when 'hashes' %}
+    <div>
+      <p>A hash is a collection of key/value pairs. Unlike arrays, hashes don't have index and are not ordered. You retrieve the values thanks to their keys. (They are like Javascript objects).</p>
+      <p><b>Create hashes:</b></p>
+      <ul>
+        <li>Using its implicit form: <samp>my_hash = { 'country' => 'Panama', 'population' => 4170607 }</samp></li>
+        <li>Calling the method <samp>new</samp> on the <samp>Hash</samp> class: <samp>Hash.new</samp></li>
+        <li>By default if you try to access a key that does not exist, it will return <samp>nil</samp>. But you can pass an argument to the <samp>new</samp> method to overwrite this default value. Ex: <samp>my_hash = Hash.new(0)</samp>. Now if you call <samp>my_hash['anything']</samp> (<samp>'anything'</samp> is a key that doesn't exists on the hash), it will return <samp>0</samp>. You can also define this default value with the <samp>default</samp> method: <samp>my_hash.default = O</samp></li>
+        <li>Then to add new values to a hash you just bind a value to a new key.</li>
+      </ul>
+      <u>Ex:</u>
+      {% include bloc_code.html language=lang content=hash %}
+      <p><b>Read hashes:</b></p>
+    </div>
+  {% when 'iterators' %}
+    <div>
       <p><b>Each:</b> will iterate over each elements of the array and execute the bloc code to it. It will NOT modify the original array, it will just apply the code to each elements.</p>
       {% include bloc_code.html language=lang content=each %}
       <p><b>Each with index:</b> is the same as each but with a second argument that represents the index of the current iteration:</p>
@@ -187,10 +213,27 @@
       <p><b>Map:</b> it will also apply the block code to each elements of the array, but it will create a new array and returns it. So if you assign the map method to a new variable, this new variable will contains the new array. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=map %}
       <p>(You can also use <samp>.map_with_index</samp>)</p>
-      <p><b>Arrays and strings</b></p>
-      <p><samp>.join</samp> method will join all elements of an array and transform it into a string. You can give it a string as an argument that will serve as a separator between elements. <u>Ex:</u></p>
-      {% include bloc_code.html language=lang content=join %}
-      <p><samp>.split</samp> will split a string into an array. By default it looks for spaces or comas to separate the string into words. But you can add add an argument to specify how to split it. <samp>.split('')</samp> will split each letter of a word. <u>Ex:</u></p>
+      <p><b>Select:</b> will return a new array containing all elements that responds to the condition of the block. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=select %}
+      <p><b>Reject:</b> will return a new array containing all elements that does not responds to the condition of the block. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=reject %}
+    </div>
+  {% when 'block' %}
+    <div>
+      <p>In Ruby, a block is a piece of code. It is a way of grouping several code statements together, you can think of it as an anonymous method. There is two different way to write a ruby block:</p>
+      <p><b>One line synthax:</b></p>
+      {% include bloc_code.html language=lang content=block_one_line %}
+      <p><b>Multi-line synthax:</b></p>
+      {% include bloc_code.html language=lang content=block_multi_line %}
+      <p>A multi-line block works as a method: it returns the last statement executed</p>
+      <p><b>Yield:</b> is a Ruby keyword that will <b>execute</b> a block. It makes a bridge between a method and a block. So <samp>yield</samp> allows to execute more code (a block), than a simple argument. When you have a <samp>yield</samp> in a method definition, and you call this method with a block it will:<p>
+      <ol>
+        <li>call the method, and execute it until the <samp>yield</samp> kw</li>
+        <li>when the <samp>yield</samp> kw is found, it will execute the block passed to the method calling</li>
+        <li>then it will finish the method execution normally</li>
+      </ol>
+      <u>Ex:</u>
+      {% include bloc_code.html language=lang content=yield %} 
     </div>
   {% else %}
     nada
