@@ -154,7 +154,7 @@
         <li>You can also pass a block to the <samp>Array.new</samp> method to create more complexe arrays. Ex: <samp>Array.new(4) { |i| i.to_s }</samp> will create: <samp>['0', '1', '2', '3']</samp></li>
         <li>Ruby has a shortcut to create an array of strings: <samp>%w(pierre paul jacques)</samp> is the same as <samp>['pierre', 'paul', 'jacques']</samp> (If you have string interpolations you need to use <samp>%W</samp> (capital W), because it will create a string array with double quotes.</li>
       </ul>
-      <p><b>Index:</b></p>
+      <p><b>Read arrays (thanks to index):</b></p>
       <ul>
         <li>Ruby arrays start at index O</li>
         <li>The last element has the index -1. The second to last element has the index -2. And the element before the index -3 etc...</li>
@@ -175,8 +175,10 @@
       </ul>
       <p><b>Delete array elements:</b></p>
       <ul>
-        <li><samp>.delete(x)</samp> will delete x from array. If there are several elements corresponding it will delete them all.</li>
-        <li><samp>.delete_at(n)</samp> will dete element at index n.</li>
+        <li><samp>arr.delete(x)</samp> will delete x from array. If there are several elements corresponding it will delete them all.</li>
+        <li><samp>arr.delete_at(n)</samp> will delete element at index n.</li>
+        <li><samp>arr.clear</samp> will delete all elements of the array</li>
+        <li><samp>arr.compact</samp> will return a copy of the array with all <samp>nil</samp> element removed</li>
       </ul>
       <p><b>Arrays and strings</b></p>
       <p><samp>.join</samp> method will join all elements of an array and transform it into a string. You can give it a string as an argument that will serve as a separator between elements. <u>Ex:</u></p>
@@ -198,25 +200,58 @@
         <li>Using its implicit form: <samp>my_hash = { 'country' => 'Panama', 'population' => 4170607 }</samp></li>
         <li>Calling the method <samp>new</samp> on the <samp>Hash</samp> class: <samp>Hash.new</samp></li>
         <li>By default if you try to access a key that does not exist, it will return <samp>nil</samp>. But you can pass an argument to the <samp>new</samp> method to overwrite this default value. Ex: <samp>my_hash = Hash.new(0)</samp>. Now if you call <samp>my_hash['anything']</samp> (<samp>'anything'</samp> is a key that doesn't exists on the hash), it will return <samp>0</samp>. You can also define this default value with the <samp>default</samp> method: <samp>my_hash.default = O</samp></li>
-        <li>Then to add new values to a hash you just bind a value to a new key.</li>
+        <li>You can store any data type on a hash: string, numbers, arrays, other hashes etc...</li>
       </ul>
       <u>Ex:</u>
       {% include bloc_code.html language=lang content=hash %}
       <p><b>Read hashes:</b></p>
+      <ul>
+        <li><samp>my_hash[key]</samp> will return the <samp>value</samp> of this key. Ex: <samp>my_hash['country']</samp> will return <samp>panama</samp></li>
+        <li>If you call a key that does not exists, it will return <samp>nil</samp> (or the value default value you set when you created the hash)</li>
+      </ul>
+      <p><b>Update hashes:</b></p>
+      <ul>
+        <li>Keys of an hash must be uniques. So to update the value of an existing key, you just reassign it: <samp>my_hash[key] = 'new value'</samp></li>
+        <li>To add new values to a hash, just bind a value to a new key</li>
+      </ul>
+      <p><b>Delete hash values</b></p>
+      <ul>
+        <li><samp>my_hash.delete(key)</samp> will delete this key (and so the value as well)</li>
+        <li>You can't really delete a value, but you can set it to <samp>nil</samp>: <samp>my_hash[key] = nil</samp></li>
+        <li><samp>my_hash.clear</samp> will delete all key/value pairs of an hash</li>
+        <li><samp>my_hash.compact</samp> will return a copy of the hash removing all key/values paires for which the key is <samp>nil</samp></li>
+      </ul>
+      <p><b>Get hash keys and values:</b></p>
+      <ul>
+        <li><samp>my_hash.keys</samp> return an array with all the keys of <samp>my_hash</samp></li>
+        <li><samp>my_hash.values</samp> return an array with all the values of <samp>my_hash</samp></li>
+      </ul>
+      <p><b>Hash and symbols:</b> we usually use symbols for hash keys, which allows to shorten the hash synthax:</p>
+      {% include bloc_code.html language=lang content=hash_with_symbols %}
     </div>
   {% when 'iterators' %}
     <div>
-      <p><b>Each:</b> will iterate over each elements of the array and execute the bloc code to it. It will NOT modify the original array, it will just apply the code to each elements.</p>
+      <p>Iterators are methods that allows you to iterate (loop) easily on objects that contain several elements. You can iterate over arrays, hashes, or ranges for example. In Ruby, objects that can be iterate over belong to the <a href="https://ruby-doc.org/core-2.6.5/Enumerable.html" target="_blank">Enumerable</a> module.</p>
+      <p><b>Each:</b> will iterate over each elements of an enumerable and execute the bloc code to it. It will NOT modify the original enumerable, it will just apply the code to each elements.</p>
       {% include bloc_code.html language=lang content=each %}
+      <p>If you loop over an hash, you need to provide 2 arguments to the <samp>each</samp> method</p>
+      <ul>
+        <li>The first one represents the hash keys</li>
+        <li>The second one represents the hash values</li>
+      </ul>
+      {% include bloc_code.html language=lang content=each_hash %}
       <p><b>Each with index:</b> is the same as each but with a second argument that represents the index of the current iteration:</p>
       {% include bloc_code.html language=lang content=each_with_index %}
       <p><b>Map:</b> it will also apply the block code to each elements of the array, but it will create a new array and returns it. So if you assign the map method to a new variable, this new variable will contains the new array. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=map %}
       <p>(You can also use <samp>.map_with_index</samp>)</p>
+      <p>Hashes doesn't have a <samp>map</samp> method</p>
       <p><b>Select:</b> will return a new array containing all elements that responds to the condition of the block. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=select %}
+      <p><samp>select</samp> works the same way with hashes but yo have to pass 2 arguments to it, representing respectively the hash keys and values</p>
       <p><b>Reject:</b> will return a new array containing all elements that does not responds to the condition of the block. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=reject %}
+      <p><samp>reject</samp> works the same way with hashes but yo have to pass 2 arguments to it, representing respectively the hash keys and values</p>
     </div>
   {% when 'block' %}
     <div>

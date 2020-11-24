@@ -53,7 +53,6 @@
     - hashes
     - iterators
     - block
-    - symobls
     - regex
     - parsing-and-storing-data
     - debugger
