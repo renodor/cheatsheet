@@ -145,7 +145,7 @@
     </div>
   {% when 'arrays' %}
     <div>
-      <p>Arrays are ordered, indexed collections of objects. In Ruby arrays can contain different types of objects (A single array can contains integers, strings, other arrays, objects etc...)</p>
+      <p>Arrays are ordered, indexed collections of objects. In Ruby arrays can contain different types of objects: a single array can contains integers, strings, other arrays, objects etc...</p>
       <p><b>Create arrays:</b></p>
       <ul>
         <li>Calling the literal constructor: <samp>[]</samp>. Ex: <samp>arr = [1, 'hello', 2.5]</samp></li>
@@ -232,26 +232,27 @@
   {% when 'iterators' %}
     <div>
       <p>Iterators are methods that allows you to iterate (loop) easily on objects that contain several elements. You can iterate over arrays, hashes, or ranges for example. In Ruby, objects that can be iterate over belong to the <a href="https://ruby-doc.org/core-2.6.5/Enumerable.html" target="_blank">Enumerable</a> module.</p>
-      <p><b>Each:</b> will iterate over each elements of an enumerable and execute the bloc code to it. It will NOT modify the original enumerable, it will just apply the code to each elements.</p>
+      <p><b>Each:</b> will iterate over each elements of an enumerable and execute the block code to it. It will NOT modify the original enumerable, it will just apply the code to each elements.</p>
       {% include bloc_code.html language=lang content=each %}
+      <p><b>Each with index:</b> is the same as each but with a second argument that represents the index of the array:</p>
+      {% include bloc_code.html language=lang content=each_with_index %}
       <p>If you loop over an hash, you need to provide 2 arguments to the <samp>each</samp> method</p>
       <ul>
         <li>The first one represents the hash keys</li>
         <li>The second one represents the hash values</li>
       </ul>
       {% include bloc_code.html language=lang content=each_hash %}
-      <p><b>Each with index:</b> is the same as each but with a second argument that represents the index of the current iteration:</p>
-      {% include bloc_code.html language=lang content=each_with_index %}
-      <p><b>Map:</b> it will also apply the block code to each elements of the array, but it will create a new array and returns it. So if you assign the map method to a new variable, this new variable will contains the new array. <u>Ex:</u></p>
+      <p>Hashes doesn't have <samp>each_with_index</samp>, because they doesn't have index, but have other methods like <samp>each_key</samp> or <samp>each_value</samp></p>
+      <p><b>Map:</b> it will also apply the block code to each elements of an array, but it will create a new array and returns it. So if you assign the map method to a new variable, this new variable will contains the new array. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=map %}
       <p>(You can also use <samp>.map_with_index</samp>)</p>
       <p>Hashes doesn't have a <samp>map</samp> method</p>
       <p><b>Select:</b> will return a new array containing all elements that responds to the condition of the block. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=select %}
-      <p><samp>select</samp> works the same way with hashes but yo have to pass 2 arguments to it, representing respectively the hash keys and values</p>
+      <p><samp>select</samp> works the same way with hashes but you have to pass 2 arguments to it, representing respectively the hash keys and values</p>
       <p><b>Reject:</b> will return a new array containing all elements that does not responds to the condition of the block. <u>Ex:</u></p>
       {% include bloc_code.html language=lang content=reject %}
-      <p><samp>reject</samp> works the same way with hashes but yo have to pass 2 arguments to it, representing respectively the hash keys and values</p>
+      <p><samp>reject</samp> works the same way with hashes but you have to pass 2 arguments to it, representing respectively the hash keys and values</p>
     </div>
   {% when 'block' %}
     <div>
