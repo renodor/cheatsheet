@@ -275,60 +275,50 @@
     <div>
       <p>Regular Expressions are used to match pattern against a string. It can be used for example to validate user data submited by a form, or to extract specific data from a text etc...</p>
       <p><b>Create regex:</b> in Ruby we usually create regex using <samp>/.../</samp>. But you can also use <samp>%r{...}</samp> or call <samp>new</samp> on <samp>Regexp</samp> class</p>
-      <p><b>How does regex work:</b> check <a href="https://rubular.com/" target="_blank">Rubular</a></p>
+      <p><a href="https://rubular.com/" target="_blank">Rubular</a> is the refering tool to create/test Ruby regex (+ has a cheatsheet)</p>
+      <p><b>Warning:</b> the following explanations maybe specific to Ruby. Indeed Ruby uses its regex engine, other languages use other regex engines, so regex interpretation can be different</p>
+      <p><b>Quantifiers:</b> are applied to the previous character, and helps identify how many of this character we are expecting:</p>
       <ul>
-        <li>
-          <b>Quantifiers:</b> are applied to the previous character, and helps identify how many of this character we are expecting:
-          <ul>
-            <li><samp>/x?/</samp> means "0 or 1 x"</li>
-            <li><samp>/x*/</samp> means "0 or more x"</li>
-            <li><samp>/x+/</samp> means "1 or more x"</li>
-            <li><samp>/x{3}/</samp> means "3 x"</li>
-            <li><samp>/x{3,}/</samp> means "3 or more x"</li>
-            <li><samp>/x{3,6}/</samp> means "between 3 and 6 x"</li>
-          </ul>
-        </li>
-        <li><b>Group:</b> <samp>/(abc)/</samp> will group those 3 characters together</li>
-        <li><b>Or:</b> <samp>/a|b/</samp> means a or b</li>
-        <li>
-          <b>Intervals:</b>
-          <ul>
-            <li><samp>/./</samp> means "any single character"</li>
-            <li><samp>/[aB9]/</samp> means "a or B or 9" (whereas <samp>ab</samp> just means "a followed by b")</li>
-            <li><samp>/[0-9]/</samp> means "any number between 0 and 9"</li>
-            <li><samp>/[a-r]/</samp> means "any letter between a and r</li>
-            <li><samp>/[a-zA-Z]/</samp> means "any letter between a and z or A and Z</li>
-            <li><samp>/[^abc]/</samp> means "any letter EXCEPT a, b or c" (need to be between [], otherwise it means something else)</li>
-          </ul>
-        </li>
-        <li><b>Special characters:</b> to match a character already has a specific meaning in regex (ex: <samp>+</samp>), you need to put a <samp>\</samp> before it. ex: <samp>/1\+1/</samp></li>
-        <li>
-          <b>Shortcuts:</b>
-          <ul>
-            <li><samp>/\d/</samp> means "any digits" (<samp>[0-9]</samp>)</li>
-            <li><samp>/\D/</samp> means "any non digit (<samp>[^0-9]</samp>)</li>
-            <li><samp>/\w/</samp> means "any word character" (letter, number or underscore: <samp>[a-zA-Z0-9_]</samp>)</li>
-            <li><samp>/\w/</samp> means "any non word character" (<samp>[^a-zA-Z0-9_]</samp></li>
-            <li><samp>/\s/</samp> means "any whitespace character" (spaces, tab, line break etc...)</li>
-            <li>Ruby also suppports some bracket expressions, like <samp>/[[:upper:]]/</samp> which means "any uppercase character" (check <a href="https://ruby-doc.org/" target="_blank">ruby doc</a> for more) </li>
-          </ul>
-        </li>
-        <li>
-          <b>Anchors:</b>
-          <ul>
-            <li><samp>\A</samp> means that my regex starts <b>after</b> it. Ex: 'renodor' will match <samp>/\Arenodor/</samp> but not <samp>/\Aenodor/</samp> (but it will match <samp>/enodor/</samp>)</li>
-            <li><samp>\z</samp> means that my regex ends <b>before</b> it. Ex: 'renodor' will match <samp>/renodor\z/</samp> but not <samp>/renodo\z/</samp> (but it will match <samp>/renodo/</samp>)</li>
-            <li><samp>^</samp> means that my line starts after it, but not necessarily my regex. It is like a lighter version of <samp>\A</samp>: I can start a regex, break line, and then call <samp>^</samp> on the beginning of my second line, and it will match (whereas <samp>\A</samp> won't because it is not the beginning of my regex)</li>
-            <li><samp>$</samp> means that my line ends before it, but not necessarily my regex. It is like a lighter version of <samp>\z</samp></li>
-            <li><samp>\b</samp> means a word bondary (beginning, or ending of a word). Ex: 'renodor' will match <samp>/\brenodor\b/</samp> but not <samp>renodor123</samp> (but it will match /renodor/)<samp>/</samp></li>
-          </ul>
-        </li>
-        <li>
-          <b>Modifiers:</b> are placed right after the regex, ex: <samp>/renodor/i</samp>
-          <ul>
-            <li><samp>i</samp> make the regex case insensitive</li>
-          </ul>
-        </li>
+        <li><samp>/x?/</samp> means "0 or 1 x"</li>
+        <li><samp>/x*/</samp> means "0 or more x"</li>
+        <li><samp>/x+/</samp> means "1 or more x"</li>
+        <li><samp>/x{3}/</samp> means "3 x"</li>
+        <li><samp>/x{3,}/</samp> means "3 or more x"</li>
+        <li><samp>/x{3,6}/</samp> means "between 3 and 6 x"</li>
+      </ul>
+      <p><b>Group:</b> <samp>/(abc)/</samp> will group those 3 characters together</p>
+      <p><b>Or:</b> <samp>/a|b/</samp> means a or b</p>
+      <p><b>Intervals:</b></p>
+      <ul>
+        <li><samp>/./</samp> means "any single character" (but not a newline)</li>
+        <li><samp>/[aB9]/</samp> means "a or B or 9" (whereas <samp>ab</samp> just means "a followed by b")</li>
+        <li><samp>/[0-9]/</samp> means "any number between 0 and 9"</li>
+        <li><samp>/[a-r]/</samp> means "any letter between a and r</li>
+        <li><samp>/[a-zA-Z]/</samp> means "any letter between a and z or A and Z</li>
+        <li><samp>/[^abc]/</samp> means "any letter EXCEPT a, b or c" (need to be between [], otherwise it means something else)</li>
+      </ul>
+      <p><b>Special characters:</b> to match a character already has a specific meaning in regex (ex: <samp>+</samp>), you need to put a <samp>\</samp> before it. ex: <samp>/1\+1/</samp></p>
+      <p><b>Shortcuts:</b></p>
+      <ul>
+        <li><samp>/\d/</samp> means "any digits" (<samp>[0-9]</samp>)</li>
+        <li><samp>/\D/</samp> means "any non digit (<samp>[^0-9]</samp>)</li>
+        <li><samp>/\w/</samp> means "any word character" (letter, number or underscore: <samp>[a-zA-Z0-9_]</samp>)</li>
+        <li><samp>/\w/</samp> means "any non word character" (<samp>[^a-zA-Z0-9_]</samp></li>
+        <li><samp>/\s/</samp> means "any whitespace character" (spaces, tab, line break etc...)</li>
+        <li>Ruby also suppports some bracket expressions, like <samp>/[[:upper:]]/</samp> which means "any uppercase character" (check <a href="https://ruby-doc.org/core-2.7.2/Regexp.html#class-Regexp-label-Character+Classes" target="_blank">ruby doc</a> for more) </li>
+      </ul>
+      <p><b>Anchors:</b></p>
+      <ul>
+        <li><samp>\A</samp> means that my regex starts <b>after</b> it. Ex: 'renodor' will match <samp>/\Arenodor/</samp> but not <samp>/\Aenodor/</samp> (whereas it will match <samp>/enodor/</samp>)</li>
+        <li><samp>\z</samp> means that my regex ends <b>before</b> it. Ex: 'renodor' will match <samp>/renodor\z/</samp> but not <samp>/renodo\z/</samp> (whereas it will match <samp>/renodo/</samp>)</li>
+        <li><samp>^</samp> means that my line starts after it, but not necessarily my regex. It is like a lighter version of <samp>\A</samp>: I can start a regex, break line, and then call <samp>^</samp> on the beginning of my second line, and it will match (whereas <samp>\A</samp> won't because it is not the beginning of my regex)</li>
+        <li><samp>$</samp> means that my line ends before it, but not necessarily my regex. It is like a lighter version of <samp>\z</samp></li>
+        <li><samp>\b</samp> means a word bondary (beginning, or ending of a word). Ex: 'renodor' will match <samp>/\brenodor\b/</samp> but not <samp>renodor123</samp> (whereas it will match <samp>/renodor/</samp>)</li>
+      </ul>
+      <p><b>Modifiers:</b> are placed right after the regex, ex: <samp>/renodor/i</samp></p>
+      <ul>
+        <li><samp>i</samp> make the regex case insensitive</li>
+        <li><samp>m</samp> allows the dot <samp>.</samp> (that means by default any character except the newline) to match also newlines: <samp>"a\nb"</samp> will match <samp>/a.b/m</samp> (whereas <samp>/a.b/</samp> won't)</li>
       </ul>
     </div>
   {% else %}
