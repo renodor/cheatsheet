@@ -342,9 +342,9 @@ regex = /(a)(b)(c)/
 match_data_result = regex.match('abc')
 # Now my variable match_data_result contains a MatchData object that looks like that:
 # <MatchData "abc" 1:"a" 2:"b" 3:"c">
-# So I can get the different regex groups:
 
-match_data_result[0] # will return "abc" (the whole string)
+# So I can get the different regex groups:
+match_data_result[0] # will return "abc" (the whole match)
 match_data_result[1] # will return "a" (the first group)
 match_data_result[2] # will return "b" (the second group)
 match_data_result[3] # will return "c" (the third group)
@@ -352,9 +352,9 @@ match_data_result[3] # will return "c" (the third group)
 
 {% capture regex-match-data-named-groups %}
 # I create a Regex looking for:
-# - 1 or more of any word characters (And I name this group "first_name")
+# - one or more of any word characters (and I name this group "first_name")
 # - a ":"
-# - 1 or more of any word characters (And I name this group "last_name")
+# - one or more of any word characters (and I name this group "last_name")
 regex = /(?<first_name>\w+):(?<last_name>\w+)/
 
 # I create my MatchData object
@@ -378,9 +378,9 @@ match_data_result[:last_name] # will return "Wayne" (and match_data_result['last
 # You can also capture groups in your regex and reuse it:
 'renodor'.gsub(/(o|e)/, '~\1~') # will return 'r~e~n~o~d~o~r':
 # Indeed, I created a regex that look for 'e' or 'o' and put it in a group
-# In the second argument of gsub, \1 refers to the my group.
+# In the second argument of gsub, \1 refers to my group.
 # so '~\1~' means "when you find my group, put a ~ before and after it"
 
-# You can also use named groups:
+# You can also use named groups, and then call them with the \k<group_name> notation:
 'renodor'.gsub(/(?<my_group>o|e)/, '-\k<my_group>-') # will return 'r-e-n-o-d-o-r'
 {% endcapture %}
