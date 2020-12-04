@@ -274,7 +274,7 @@
   {% when 'regex' %}
     <div>
       <p>Regular Expressions are used to match pattern against a string. It can be used for example to validate user data submited by a form, or to extract specific data from a text etc...</p>
-      <p><b>Create regex:</b> in Ruby we usually create regex using <samp>/.../</samp>. But you can also use <samp>%r{...}</samp> or call <samp>new</samp> on <samp>Regexp</samp> class</p>
+      <p><b>Create regex:</b> in Ruby we usually create regex using <samp>/.../</samp>. But you can also use <samp>%r{...}</samp> or call <samp>new</samp> on <samp>Regexp</samp> class. Indeed in Ruby, regex belong to a specific <samp>Regexp</samp> class.</p>
       <p><a href="https://rubular.com/" target="_blank">Rubular</a> is the refering tool to create/test Ruby regex (+ has a cheatsheet)</p>
       <p><b>Warning:</b> the following explanations maybe specific to Ruby. Indeed Ruby uses its regex engine, other languages use other regex engines, so regex interpretation can be different</p>
       <p><b>Quantifiers:</b> are applied to the previous character, and helps identify how many of this character we are expecting:</p>
@@ -320,6 +320,22 @@
         <li><samp>i</samp> make the regex case insensitive</li>
         <li><samp>m</samp> allows the dot <samp>.</samp> (that means by default any character except the newline) to match also newlines: <samp>"a\nb"</samp> will match <samp>/a.b/m</samp> (whereas <samp>/a.b/</samp> won't)</li>
       </ul>
+      <p><b>Common Ruby Regex methods:</b></p>
+      <ul>
+        <li><samp>regex =~ string</samp> returns the position of the regex, or <samp>nil</samp> if not found</li>
+        <li><samp>regex.match?(string)</samp> returns <samp>true</samp> if stirng match regex, <samp>false</samp> if not</li>
+      </ul>
+      <p>So we can use those two methods to build conditions:</p>
+      {% include bloc_code.html language=lang content=regex-condition %}
+      <p>(The order doesn't change anything, <samp>string.match?(regex)</samp> or <samp>string =~ regex</samp> works the same</p>
+      <p><b>Match Data:</b> <samp>string.match(regex)</samp> returns a <samp>MatchData</samp> object, or <samp>nil</samp> if there is no match. This object contains the different matches it founds, so that you can play with. It is especially usefull when you use groups in your regex:</p>
+      {% include bloc_code.html language=lang content=regex-match-data %}
+      <p>You can even name your regex groups and then call them by their names:</p>
+      {% include bloc_code.html language=lang content=regex-match-data-named-groups %}
+      <p><b>Scan:</b> <samp>scan</samp> is similar to <samp>match</samp> but instead of returning only the first match it will scan the whole string and return all matches in an array. If you create regex groups, it will return nested arrays:</p>
+      {% include bloc_code.html language=lang content=regex-scan %}
+      <p><b>Gsub:</b> <samp>.gsub</samp> is called on a string and allows you to replace part of this string. It is often used with regex:</p>
+      {% include bloc_code.html language=lang content=regex-gsub %}
     </div>
   {% else %}
     nada
