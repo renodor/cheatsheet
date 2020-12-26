@@ -337,6 +337,23 @@
       <p><b>Gsub:</b> <samp>.gsub</samp> is called on a string and allows you to replace part of this string. It is often used with regex:</p>
       {% include bloc_code.html language=lang content=regex-gsub %}
     </div>
+  {% when 'parsing-and-storing-data' %}
+    <div>
+      <p>Parse data = get data from another language and adapt it to the language you want to use</p>
+      <p>To manipulate CSV data in Ruby we use the <a href="https://ruby-doc.org/stdlib-2.6.1/libdoc/csv/rdoc/CSV.html"
+        target="_blank">CSV class</a> that already includes a lot of built-in methods. You need to <samp>require 'csv'</samp>, and then you can use it</p>
+      <p><b>Parse CSV:</b></p>
+      {% include bloc_code.html language=lang content=parse_csv %}
+      <p>You can use <samp>csv options</samp> to better handle the parsing. Csv options is a Hash were can define different parameters. Check <a href="https://ruby-doc.org/stdlib-2.6.1/libdoc/csv/rdoc/CSV.html#new-method" target="_blank">here</a> to see all available options. <u>Ex:</u></p>
+      {% include bloc_code.html language=lang content=csv_options %}
+      <p><b>Store CSV:</b></p>
+      {% include bloc_code.html language=lang content=store_csv %}
+      <p>To manipulate JSON data in Ruby we use the <a href="https://ruby-doc.org/stdlib-2.7.2/libdoc/json/rdoc/JSON.html">JSON class</a> that already includes a lot of built-in methods. You need to <samp>require 'csv'</samp>, and then you can use it</p>
+      <p><b>Parse JSON:</b></p>
+      {% include bloc_code.html language=lang content=parse_json %}
+      <p><b>Store JSON:</b></p>
+      {% include bloc_code.html language=lang content=store_json %}
+    </div>
   {% else %}
     nada
 {% endcase %}
