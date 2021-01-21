@@ -348,11 +348,17 @@
       {% include bloc_code.html language=lang content=csv_options %}
       <p><b>Store CSV:</b></p>
       {% include bloc_code.html language=lang content=store_csv %}
-      <p>To manipulate JSON data in Ruby we use the <a href="https://ruby-doc.org/stdlib-2.7.2/libdoc/json/rdoc/JSON.html">JSON class</a> that already includes a lot of built-in methods. You need to <samp>require 'csv'</samp>, and then you can use it</p>
+      <p><b>JSON:</b> JavaScript Object Notation is a human-readable format used to store and transport data. It is syntatically identical to JavaScript objects, and very similar to Ruby Hashes.</p>
+      <p>To manipulate JSON data in Ruby we use the <a href="https://ruby-doc.org/stdlib-2.7.2/libdoc/json/rdoc/JSON.html">JSON class</a> that already includes a lot of built-in methods. You need to <samp>require 'csv'</samp>, and then you can use it:</p>
       <p><b>Parse JSON:</b></p>
       {% include bloc_code.html language=lang content=parse_json %}
+      <p><b>Parse JSON from the web with an API:</b> a simplified explanation of what is an API (Application Programming Interface) would be: it is the interface a program provides so that you can interact with its data. Nowadays, the format norm to exchange data is JSON. So most APIs use JSON to send or receive data. (Ex: on <a href="https://swapi.dev/">Swapi</a> API you can get data about star wars movies)</p>
+      {% include bloc_code.html language=lang content=parse_json_from_web %}
       <p><b>Store JSON:</b></p>
       {% include bloc_code.html language=lang content=store_json %}
+      <p><b>Scraping</b>: when you have no API, you need to get what you are looking for directly on the HTML... We say that you scrape the HTML</p>
+      <p>To work with HTML (and XML) in Ruby we use <a href="https://nokogiri.org/">nokogiri</a> gem</p>
+      {% include bloc_code.html language=lang content=scrapping %}
     </div>
   {% else %}
     nada

@@ -391,23 +391,27 @@ require 'csv'
 
 file_path = 'path/to/file.csv'
 
-csv.foreach(file_path) do |row|
+CSV.foreach(file_path) do |row|
   p row[0]
 end
 # For each row of the file, it will output the value of the first column
-# You can also replace the 0 by the name of the column itself
+
+CSV.foreach(file_path) do |row|
+  p "#{row[0]} | #{row[1]} | #{row[2]}"
+end
+# For each row of the file, it will output the value of the first 3 columns separated by pipes
 {% endcapture %}
 
 {% capture csv_options %}
 require 'csv'
 
 file_path = 'path/to/file.csv'
-csv_options = { col_sep: ',', quote_char: '"', header: :first_row }
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
 # We precise that it's a comma separated csv, strings are double quoted, and the first row is the header
 # (so that the header won't be returned when using csv.foreach)
 
 CSV.foreach(file_path, csv_options) do |row|
-  # code
+  p row['column_name'] # and now we can use the column name instead of its index
 end
 {% endcapture %}
 
@@ -415,7 +419,7 @@ end
 require 'csv'
 
 file_path = 'path/to/file.csv'
-csv_options = { quote_char: '"', force_quote: true }
+csv_options = { col_sep: ',', force_quotes: true, quote_char: '"' }
 
 CSV.open(file_path, 'wb', csv_options) do |csv|
   csv << ['Name', 'Type', 'Origin']
@@ -435,18 +439,42 @@ end
 require 'json'
 
 file_path = 'path/to/file.json'
-file = File.read(file_path) # We use the File class to read the JSON file and transform it to a string
-JSON.parse(file) # Returns a Hash containing the JSON file data
+serialized_file = File.read(file_path) # We use the File class to read the JSON file and transform it to a string
+JSON.parse(serialized_file) # Returns a Hash containing the JSON file data
+{% endcapture %}
+
+{% capture parse_json_from_web %}
+require 'json'
+require 'open-uri' # allow to open URLs in ruby
+
+url = 'https://my-api-endpoint'
+serialized_data = open(url).read
+JSON.parse(serialized_data) # Returns a Hash containing the JSON data from the url
 {% endcapture %}
 
 {% capture store_json %}
 require 'json'
 
-# We create our Hash data:
+# We create a Hash with data we want to store:
 data = { 'name': 'Batman', 'identity': 'Bruce Wayne', 'power': 'Rich' }
 
 file_path = 'path/to/file.json'
 File.open(file_path, 'wb') do |file|
   file.write(JSON.generate(data))
+end
+{% endcapture %}
+
+{% capture scrapping %}
+require 'open-uri'
+require 'nokogiri'
+
+url = "https://www.url-to-scrap"
+
+html_file = open(url).read
+html_doc = Nokogiri::HTML(html_file) # will create a "nokogiri" document you can manipulate (and call .search on it)
+
+css_selector = '.class-name' # this is the CSS selector you will use on the HTML document to find the specific elements you are looking for
+html_doc.search(css_selector).each do |element|
+  puts element
 end
 {% endcapture %}
