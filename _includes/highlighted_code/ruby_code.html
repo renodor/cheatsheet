@@ -478,3 +478,146 @@ html_doc.search(css_selector).each do |element|
   puts element
 end
 {% endcapture %}
+
+{% capture create_class %}
+class Car
+  # some code
+end
+{% endcapture %}
+
+{% capture create_instance %}
+nice_car = Car.new
+cool_car = Car.new
+{% endcapture %}
+
+{% capture initialize_method %}
+class Car
+  def initialize
+  end
+end
+{% endcapture %}
+
+{% capture instance_variables %}
+class Car
+  def initialize(color)
+    @engine_started = false
+    @color = color
+  end
+end
+
+green_car = Car.new('green')
+{% endcapture %}
+
+{% capture instance_methods %}
+class Car
+  def initialize(color)
+    @engine_started = false
+    @color = color
+  end
+
+  def engine_started?
+    @engine_started
+  end
+
+  def starts_engine
+    @engine_started = true
+  end
+end
+
+green_car = Car.new('green')
+green_car.engine_started? # returns false
+green_car.starts_engine # now @engine_started = true
+{% endcapture %}
+
+{% capture getter_method %}
+class Car
+  def initialize(color)
+    @color = color
+  end
+
+  def color
+    @color
+  end
+end
+
+green_car = Car.new('green')
+green_car.color # returns 'green'
+{% endcapture %}
+
+{% capture attr_reader %}
+class Car
+  attr_reader: color, brand
+
+  def initialize(color, brand)
+    @color = color
+    @brand = brand
+  end
+end
+
+green_car = Car.new('green', 'cool brand')
+green_car.color # returns 'green'
+green_car.brand # returns 'cool brand'
+{% endcapture %}
+
+{% capture setter_method %}
+class Car
+  attr_reader :color, :brand
+
+  def initialize(color, brand)
+    @color = color
+    @brand = brand
+  end
+
+  def paint=(new_color)
+    @color = new_color
+  end
+end
+
+green_car = Car.new('green', 'cool brand')
+green_car.paint = 'orange' # we change the color of the car
+green_car.color # will now return 'orange
+{% endcapture %}
+
+{% capture attr_writer %}
+class Car
+  attr_reader :color, :brand
+  attr_writer :color
+
+  def initialize(color, brand)
+    @color = color
+    @brand = brand
+  end
+end
+
+green_car = Car.new('green', 'cool brand')
+green_car.color = 'orange' # we change the color of the car
+green_car.color # will now return 'orange
+{% endcapture %}
+
+{% capture attr_accessor %}
+class Car
+  attr_reader :brand
+  attr_accessor :color
+
+  def initialize(color, brand)
+    @color = color
+    @brand = brand
+  end
+end
+{% endcapture %}
+
+{% capture private_method %}
+class Car
+  def initialize
+  end
+
+  private
+
+  def secret_fuel
+    'fusion'
+  end
+end
+
+car = Car.new
+car.secret_fuel # returns a NoMethodError: private method `secret_fuel' called
+{% endcapture %}

@@ -360,6 +360,59 @@
       <p>To work with HTML (and XML) in Ruby we use <a href="https://nokogiri.org/">nokogiri</a> gem</p>
       {% include bloc_code.html language=lang content=scrapping %}
     </div>
+  {% when 'object-oriented-programming' %}
+    <div>
+      <p><b>Object-oriented programming</b> (OOP) is a programming paradigm based on the concept of <b>objects</b>, which can contain data (attributes, properties), and behavior (methods). Ruby is an OOP language, <b>in Ruby everything is Object</b>: (almost) all data types are actually classes</b>:</p>
+      <ul>
+        <li>When you declare a string: <samp>"Hello"</samp> you are actually creating an instance of the class
+          <samp>String</samp>. It is the same as doing <samp>String.new("Hello")</samp> >> it is the <b>data</b> (or state)</li>
+        <li>Then if you do <samp>"Hello".upcase</samp> it will return <samp>"HELLO"</samp> >> you modified the <b>behavior</b> of your instance</li>
+      </ul>
+      <p>Classes allows you to create objects. An object created thanks to a class is called an <b>instance</b> of this class:</p>
+      <ul>
+        <li>A class is like a cake mold: it helps to create a cake, it defines the shape and behaviors of your objects (its data and behavior)</li>
+        <li>An instance of a class is like a cake that you created thanks to your class (the cake mold)</li>
+      </ul>
+    </div>
+  {% when 'classes' %}
+    <div>
+      <p>In Ruby you create a class with the kw <samp>class</samp>. Class names are in uppercase CamelCase (ex: <samp>SportCar</samp>)</p>
+      {% include bloc_code.html language=lang content=create_class %}
+      <p>By convention, there is always only 1 class per file, and file names are in lower_snake_case</p>
+      <p>When you have a class you can create instances using the <samp>new</samp> method (it is called "intantiate"):</p>
+      {% include bloc_code.html language=lang content=create_instance %}
+      <p>When you instantiate a class, it will automatically call its <samp>initialize</samp> method:</p>
+      {% include bloc_code.html language=lang content=initialize_method %}
+      <p>In this initialize method you can start to define data. Ex:</p>
+      {% include bloc_code.html language=lang content=instance_variables %}
+      <p>By doing so we created an instance of the class <samp>Car</samp> that is green, and with its engine not started</p>
+      <p><samp>@color</samp> and <samp>@engine_started</samp> are <b>instance variable</b>:</p>
+      <ul>
+        <li>Instance variable start with an <samp>@</samp></li>
+        <li>They are available accross the whole class code</li>
+        <li>They store the <b>state</b> (data) of one specific instance (<samp>@color</samp> can be <samp>"green"</samp> for one instance and <samp>"orange"</samp> for another instance)</li>
+      </ul>
+      <p>We can then add behavior to our class by creating an <b>instance methods</b>:</p>
+      {% include bloc_code.html language=lang content=instance_methods %}
+      <p>We now have two instance methods: one that tells us if engine is started or not, and another one that starts it.</p>
+      <ul>
+        <li>Instance methods allow you to access or define the <b>behavior</b> of a specific instance</li>
+        <li><b>Instance methods can be called only on instances</b>, not on classes (you can't do <samp>Car.starts_engine</samp>)</li>
+      </ul>
+      <p>If you want to <b>access the state</b> of your instances (the color), you need make it accessible. You can create a "getter" method (like in JS):</p>
+      {% include bloc_code.html language=lang content=getter_method %}
+      <p>But Ruby provides a shortcut for that: <samp>attr_reader</samp></p>
+      {% include bloc_code.html language=lang content=attr_reader %}
+      <p>Same you want to <b>change the state</b> of your instance, we could create a "setter" method (like in JS):</p>
+      {% include bloc_code.html language=lang content=setter_method %}
+      <p>But Ruby provides a shortcut for that: <samp>attr_writer</samp></p>
+      {% include bloc_code.html language=lang content=attr_writer %}
+      <p>Now if an attribute needs to be read AND writen, there is another shortcut: <samp>attr_accessor</samp></p>
+      {% include bloc_code.html language=lang content=attr_accessor %}
+      <p>By default in Ruby all methods are <b>public</b> (they are accessible by everyone), but you can put it <b>private</b> by writting it below the <samp>private</samp> keyword, it won't be accessible by the user. They can only be called from within the class itself</p>
+      {% include bloc_code.html language=lang content=private_method %}
+      <p><u>Tips:</u> you can require files in IRB (ex: <samp>require_relative 'car.rb'</samp>) to test your classes. And then you can reload it if it has changed: <samp>load('car.rb')</samp></p>
+    </div>
   {% else %}
     nada
 {% endcase %}
