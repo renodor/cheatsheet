@@ -621,3 +621,72 @@ end
 car = Car.new
 car.secret_fuel # returns a NoMethodError: private method `secret_fuel' called
 {% endcapture %}
+
+{% capture inheritance %}
+# Parent class
+class Building
+  attr_reader :name, :width, :length
+
+  def initialize(name, width, length)
+    @name = name
+    @width, @length = width, length
+  end
+
+  def floor_area
+    @width * @length
+  end
+end
+
+# Child class that inherits from parent class
+class Castle < Building
+end
+
+# The child class has access to all parent class instance methods and instance variables
+castle = Castle.new("Versailles", 32, 35)
+castle.name # => "Versailles"
+castle.floor_area # => 1120
+{% endcapture %}
+
+{% capture super_keyword %}
+class Castle < Building
+  # A castle always has a garden of 300 sq. m
+  def floor_area
+    super + 300  # `super` calls `floor_area` of `Building`
+  end
+end
+{% endcapture %}
+
+{% capture class_method %}
+class Castle < Building
+  def self.categories
+    ["Medieval", "Norman", "Ancient"]
+  end
+end
+
+# You can now call categories directly on Castle class
+Castle.categories.join(', ') # => Medieval, Norman, Ancient
+{% endcapture %}
+
+{% capture self %}
+class Skyscraper < Building
+  def initialize(name, width, length, height)
+    super(name, width, length)
+    @height=height
+  end
+
+  def type_of_owner
+    if @height> 50
+      "this #{self.capitalized_name} is a skyscraper for Spider-Man."
+    else
+      "this #{self.capitalized_name} is a skyscraper for beginners"
+    end
+  end
+
+  def capitalized_name
+    @name.capitalize
+  end
+end
+
+skyscraper = Skyscraper.new("empire State Building", 30, 60, 381)
+skyscraper.type_of_owner # => "This Empire State Building is a skyscrapper for Spider-Man."
+{% endcapture %}

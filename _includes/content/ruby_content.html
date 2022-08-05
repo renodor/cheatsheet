@@ -397,7 +397,7 @@
       <p>We now have two instance methods: one that tells us if engine is started or not, and another one that starts it.</p>
       <ul>
         <li>Instance methods allow you to access or define the <b>behavior</b> of a specific instance</li>
-        <li><b>Instance methods can be called only on instances</b>, not on classes (you can't do <samp>Car.starts_engine</samp>)</li>
+        <li><b>Instance methods can be called only on instances</b>, not on classes (you can't do <samp>Car.starts_engine</samp>. What car you want to start the enngine to??)</li>
       </ul>
       <p>If you want to <b>access the state</b> of your instances (the color), you need make it accessible. You can create a "getter" method (like in JS):</p>
       {% include bloc_code.html language=lang content=getter_method %}
@@ -412,6 +412,17 @@
       <p>By default in Ruby all methods are <b>public</b> (they are accessible by everyone), but you can put it <b>private</b> by writting it below the <samp>private</samp> keyword, it won't be accessible by the user. They can only be called from within the class itself</p>
       {% include bloc_code.html language=lang content=private_method %}
       <p><u>Tips:</u> you can require files in IRB (ex: <samp>require_relative 'car.rb'</samp>) to test your classes. And then you can reload it if it has changed: <samp>load('car.rb')</samp></p>
+      <p><b>Inheritance:</b> classes can inherit from a parent class and thus inherit all its instances variables and instances methods</p>
+      {% include bloc_code.html language=lang content=inheritance %}
+      <p>It does not prevent you from creating specific instance methods and instances variables on the child class. And you can also redefine instance methods of the parent class in the child class (by creating a method with the same name on the child class, it will take precedent over the one on the parent class).</p>
+      <p><b>The super keyword:</b> placed in a child instance method, <samp>super</samp> is a keyword that calls the parent's method with the same name</p>
+      {% include bloc_code.html language=lang content=super_keyword %}
+      <p><u>Tips:</u> if you call <samp>superclass</samp> on a class it returns the class it inherit from: <samp>Castle.superclass</samp> returns <samp>Building</samp></p>
+      <p><b>Class methods:</b> are methods that you call directly on the class itself. Ex: <samp>Time.now</samp> >> <samp>Time</samp> is a class (not an instance), and <samp>now</samp> a class method. To define a class method you have to use the <samp>self</samp> keyword:</p>
+      {% include bloc_code.html language=lang content=class_method %}
+      <p><b><samp>self</samp> actually refers to "itself".</b> It can also for example be called inside an instance method to refers the instance itself</p>
+      {% include bloc_code.html language=lang content=self %}
+      <p>(<samp>self</samp> is actually not mandatory in this case, if you just call <samp>capitalized_name</samp> it will work the same as <samp>self</samp> is implicite... But you got the idea)</p>
     </div>
   {% else %}
     nada
