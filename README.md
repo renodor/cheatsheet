@@ -1,6 +1,6 @@
 # Personal Cheatsheet
 
-This is a personal cheatsheet with some boilerplate codes and basic concept explanations for HTML, CSS, JS and Ruby.
+This is a personal cheatsheet with some boilerplate codes and basic concept explanations for HTML, CSS, JS, Ruby and SQL.
 
 Built with [Jekyll](https://jekyllrb.com/), a Ruby framework for static websites, and hosted on [Github pages](https://pages.github.com/).
 
