@@ -423,6 +423,8 @@
       <p><b><samp>self</samp> actually refers to "itself".</b> It can also for example be called inside an instance method to refers the instance itself</p>
       {% include bloc_code.html language=lang content=self %}
       <p>(<samp>self</samp> is actually not mandatory in this case, if you just call <samp>capitalized_name</samp> it will work the same as <samp>self</samp> is implicite... But you got the idea)</p>
+      <p><u>Tips:</u> to make all attributes of a class optional and unordered you can initialize it with an empty hash:</p>
+      {% include bloc_code.html language=lang content=initialize_with_empty_hash %}
     </div>
   {% else %}
     nada

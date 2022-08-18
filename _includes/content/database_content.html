@@ -1,0 +1,82 @@
+{% include highlighted_code/database_code.html %}
+{% assign lang='sql' %}
+{% case subsection %}
+  {% when 'database-basics' %}
+    <div>
+      <p><b>Vocabulary:</b></p>
+      <ul>
+        <li>The visual representation of a database is called a <b>schema</b></li>
+        <li>A database is composed of different <b>tables</b>: each model will have it's own table. We can have a table name "cities" for example</li>
+        <li>Each table has a set of <b>columns</b>: they represent the attributes of a table. For example the table "cities" can have the columns "name", "size", "population" etc...</li>
+        <li>When inserting data in a table you create a new <b>record</b>, which is actually just a new <b>row</b> on the table</li>
+      </ul>
+      <p>It really works like an Excel file...</p>
+      <p><b>Unique ID:</b> every record on a table of a database will have a <b>unique ID</b>. The first record created will have the ID <samp>1</samp>, the second one <samp>2</samp> etc... And ID <samp>1</samp> will <b>ALWAYS be assigned to this first record</b>. IDs are unique and can <b>never be assigned</b> to another record. Even if you delete the first record, ID <samp>1</samp> will disapear but never be re-assigned to a new record. This unique ID is also called <b>primary key</b>. Databases (like PostgreSQL) will always create and manage primary keys automatically for you.</p>
+      <p><b>1 to Many relation (1:n):</b> for example a "City" / "Inhabitant" relation is a 1 to many relation:</p>
+      <ul>
+        <li>"<b>1</b> city can have <b>many</b> inhabitants"</li>
+        <li>"City" is the parent and "Inhabitant" is the children</li>
+        <li>It is always the children that carries the relation. We say that "inhabitants <b>belongs to</b> their city"</li>
+        <li>Inhabitants will <b>carry the unique ID of their parent to know</b> what city they belongs to</li>
+        <li>We say that inhabitants carry the <b>foreign key</b> (of their city)</li>
+      </ul>
+      <p><b>May to Many relation (n:n):</b> for example a "Doctor" / "Patient" relation is a many to many relation:</p>
+      <ul>
+        <li>"<b>1</b> doctor can have <b>many</b> patients, and <b>1</b> patient, can have <b>many</b> doctors</li>
+        <li>In that case we need the create a <b>join table</b> between doctors table and patients table, which unique purpose will be to carry the relations between doctors and patients</li>
+        <li>This join table will have a <samp>doctor_id</samp> column and a <samp>patient_id</samp> column</li>
+        <li>To materialize a relation between doctor with id <samp>10</samp> and patient with ID <samp>543</samp>, we will create a new record in the join table with <samp>doctor_id = 10</samp> and <samp>patient_id = 543</samp></li>
+      </ul>
+    </div>
+  {% when 'SQL' %}
+    <div>
+      <p>SQL = Structured Query Language. It is the language of databases.</p>
+      <p><b>Give me all patient first names and last names</b></p>
+      {% include bloc_code.html language=lang content=patient_names %}
+      <p><b>Give me all patient attributes</b> (will select the whole table)</p>
+      {% include bloc_code.html language=lang content=all_patients %}
+      <p><b>Give me all patients of age 21</b></p>
+      {% include bloc_code.html language=lang content=patients_of_21 %}
+      <p><b>Give me all surgery doctors</b></p>
+      {% include bloc_code.html language=lang content=surgery_doctors %}
+      <ul>
+        <li><samp>'%surgery'</samp> means the string can start with anything but needs to end with "surgery". (ex: "specialist in surgery")</li>
+        <li><samp>'surgery%'</samp> means the string needs to start with "surgery" but can end with anything. (ex: "surgery specialist")</li>
+        <li><samp>'%surgery%'</samp> means the string needs to contain "surgery". (ex: "This doctor is a surgery specialist")</li>
+      </ul>
+      <p><b>Give me all cardiac surgery doctors named Steve</b></p>
+      {% include bloc_code.html language=lang content=surgery_doctors_named_steve %}
+      <p><b>Give me all cardiologists or dentists</b></p>
+      {% include bloc_code.html language=lang content=cardiologists_or_dentists %}
+      <p><b>Give me all patients ordered by age</b></p>
+      {% include bloc_code.html language=lang content=doctors_ordered %}
+      {% include bloc_code.html language=lang content=doctors_ordered_desc %}
+      <p><b>How many doctors do I have?</b></p>
+      {% include bloc_code.html language=lang content=count_doctors %}
+      <p><b>Count all doctors per specialty</b></p>
+      {% include bloc_code.html language=lang content=count_doctors_per_specialty %}
+      <p><b>Join: give me all the inhabitants from Paris</b></p>
+      {% include bloc_code.html language=lang content=paris_inhabitants %}
+      <p>To query data from more than one table I need to create a join between my tables and specify the nature of this join. Here I'm saying line by line:</p>
+      <ul>
+        <li>get all attributes from <samp>Inhabitants</samp> table</li>
+        <li>join <samp>Inhabitants</samp> table and <samp>Cities</samp> table, selecting inhabitants whose <samp>city_id</samp> is equal to the <samp>id</samp> of the cities I will select</li>
+        <li>only select cities with the name <samp>Paris</samp></li>
+      </ul>
+      <p>Once you joined 2 tables, in all the following SQL queries you will need to specify what table you are working on. For example we could add to the previous query: <samp>AND inhabitants.age >= 18</samp></p>
+      <p>When you have a n:n relation, you need to join both tables to the join table</p>
+      <p><b>CRUD with SQL:</b></p>
+      <p>First we will need to create a table:</p>
+      {% include bloc_code.html language=lang content=create_table %}
+      <p><b>CREATE</b></p>
+      {% include bloc_code.html language=lang content=create %}
+      <p><b>READ</b></p>
+      {% include bloc_code.html language=lang content=read %}
+      <p><b>UPDATE</b></p>
+      {% include bloc_code.html language=lang content=update %}
+      <p><b>DELETE</b></p>
+      {% include bloc_code.html language=lang content=delete %}
+    </div>
+  {% else %}
+    nada
+{% endcase %}

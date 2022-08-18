@@ -1,0 +1,79 @@
+{% capture patient_names %}
+SELECT first_name, last_name FROM patients
+{% endcapture %}
+
+{% capture all_patients %}
+SELECT * FROM patients
+{% endcapture %}
+
+{% capture patients_of_21 %}
+SELECT * FROM patients WHERE age = 21
+{% endcapture %}
+
+{% capture surgery_doctors %}
+SELECT * FROM doctors WHERE specialty LIKE '%surgery'
+{% endcapture %}
+
+{% capture surgery_doctors_named_steve %}
+SELECT * FROM doctors
+WHERE specialty = 'Cardiac Surgery'
+AND first_name = 'Steve'
+{% endcapture %}
+
+{% capture cardiologists_or_dentists %}
+DELETE * FROM doctors
+WHERE specialty = 'Cardiologist'
+OR specialty = 'Dentist'
+{% endcapture %}
+
+{% capture doctors_ordered %}
+SELECT * FROM patients ORDER BY age ASC
+{% endcapture %}
+
+{% capture doctors_ordered_desc %}
+SELECT * FROM patients ORDER BY age DESC
+{% endcapture %}
+
+{% capture count_doctors %}
+SELECT COUNT(*) FROM doctors
+{% endcapture %}
+
+{% capture count_doctors_per_specialty %}
+SELECT COUNT(*), specialty
+FROM doctors
+GROUP BY specialty
+{% endcapture %}
+
+{% capture paris_inhabitants %}
+SELECT * FROM inhabitants
+JOIN cities ON cities.id = inhabitants.city_id
+WHERE cities.name = 'Paris'
+{% endcapture %}
+
+{% capture create_table %}
+CREATE TABLE `doctors` (
+  `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+  `name` TEXT,
+  `age` INTEGER,
+  `specialty` TEXT
+);
+{% endcapture %}
+
+{% capture create %}
+INSERT INTO doctors (name, age, specialty)
+VALUES ('Dr. Crazy', 45, 'Dentist')
+{% endcapture %}
+
+{% capture read %}
+SELECT * FROM doctors
+{% endcapture %}
+
+{% capture update %}
+UPDATE doctors SET age = 40, name = 'Dr. Waaay too Crazy' WHERE id = 3
+{% endcapture %}
+
+{% capture delete %}
+DELETE FROM doctors WHERE id = 32
+{% endcapture %}
+
+

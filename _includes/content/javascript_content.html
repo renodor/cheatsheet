@@ -1,6 +1,43 @@
 {% include highlighted_code/javascript_code.html %}
 {% assign lang='javascript' %}
 {% case subsection %}
+  {% when 'data-types' %}
+    <div>
+      <p>Principal JS types:</p>
+      <ul>
+        <li><b>number:</b> <samp>13</samp></li>
+        <li><b>string:</b> <samp>'Renodor'</samp></li>
+        <li><b>boolean:</b> <samp>true</samp></li>
+        <li><b>array:</b> <samp>[13, 'Renodor', True]</samp></li>
+        <li><b>object:</b> <samp> { name: 'Renodor', age: 13 }</samp></li>
+        <li><b>null:</b> <samp>null</samp></li>
+        <li><b>undefined:</b> <samp>undefined</samp></li>
+      </ul>
+      <p>To know the type of something you can use <samp>typeof</samp> method:</p>
+      {% include bloc_code.html language=lang content=typeoff %}
+      <p>(It won't work with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" target="_blank">array</a> or <a href="https://2ality.com/2013/10/typeof-null.html" target="_blank">null</a> though...)</p>
+      <p>To convert data types:</p>
+      <ul>
+        <li><b>String to number:</b> <samp>Number.parseInt('13')</samp></li>
+        <li><b>Number to string:</b> <samp>(13).toString()</samp></li>
+      </ul>
+    </div>
+  {% when 'strings' %}
+    <div>
+      <p>A string can be define with <samp>'</samp> : <samp>'Hello'</samp>, or <samp>"</samp> : <samp>"Hello"</samp></p>
+      <p><b>Common built-in string methods:</b></p>
+      <ul>
+        <li><samp>.toUpperCase()</samp> : returns an uppercase version of string</li>
+        <li><samp>[0]</samp> : returns the first letter of string</li>
+        <li><samp>.substring(3)</samp> : cuts string at the 3rd letter (exluding it), and returns the rest</li>
+        <li><samp>.substring(2, 4)</samp> : cuts string at 2nd letter (exluding it), and returns the rest until reaching 4th letter (including it)</li>
+        <li><samp>.split(',')</samp> : split string between <samp>,</samp> into an array (<samp>"a,b,c".split(',')</samp> returns <samp>[a, b, c]</samp></li>
+        <li><samp>.length</samp> : returns sting length (This is actually not a function but an attribute, so we don't need the parenthesis)</li>
+      </ul>
+      <p><b>String Interpolation:</b> to insert a variable within a string without using the "+". You need to wrap your string
+        with backticks: <samp>`</samp> and interpolate code with <samp>${}</samp></p>
+      {% include bloc_code.html language=lang content=stringInterpolation %}
+    </div>
   {% when 'variables' %}
     <div>
       <p><samp>var</samp> : variable. Scope is global or local to an entire function (regardless of block scope)</p>
@@ -13,8 +50,6 @@
         <br />Same for <samp>-=</samp>, <samp>*=</samp>, <samp>/=</samp>
         <br />Same for <samp>++</samp>, <samp>--</samp>, <samp>//</samp>, <samp>**</samp>, it means adding, subtract, divise or multiply by 1
       </p>
-      <p><b>String Interpolation:</b> to insert a variable within a string without using the "+". You need to wrap your string with backticks: <samp>`</samp> and interpolate code with <samp>${}</samp></p>
-      {% include bloc_code.html language=lang content=stringInterpolation %}
     </div>
   {% when 'math' %}
     <div>
@@ -284,7 +319,8 @@
       <p><b>Common built-in object methods:</b></p>
       <ul>
         <li><samp>Object.keys(my_object)</samp> : will return an array with all the keys of my_object</li>
-        <li><samp>Object.entries(my_object)</samp> : will return an array with all the entries (key + value) my_object</li>
+        <li><samp>Object.values(my_object)</samp> : will return an array with all the values of my_object</li>
+        <li><samp>Object.entries(my_object)</samp> : will return an array of arrays with all the entries of my_object. Each nested array will have the key as first element and the value as second element</li>
         <li><samp>Object.assign(new_properties, my_object)</samp> : will return a new object that have the same properties of my_object + the new properties. (Or will modify those properties if they were already in my_object</li>
       </ul>
     </div>
@@ -487,11 +523,22 @@
       {% include bloc_code.html language=lang content=xhrGetRequest %}
       <p><b>Fetch Function:</b></p>
       <ul>
+        <li>It takes an URL (your API endpoint) as the first argument.</li>
+        <li>It has an optional object as second argument. In this object you can specify options for your request:
+          <ul>
+            <li>the <samp>method</samp> of your request (<samp>'GET'</samp>, <samp>'POST'</samp> etc...)</li>
+            <li>the <samp>headers</samp> of your request (<samp>{ "Authorization": "my-api-key" }</samp> for example)</li>
+            <li>the <samp>body</samp> of your request (for a POST request for example)</li>
+            <li>etc...</li>
+          </ul>
+        </li>
         <li>It creates a request object that contains relevant information that an API needs</li>
         <li>It sends that request object to the API endpoint provided</li>
-        <li>It Returns a promise that ultimately resolves to a response object, which contains the status of the promise with information the API sent back</li>
+        <li>It returns a promise that ultimately resolves to a response object, which contains the status of the promise with information the API sent back</li>
       </ul>
-      <p><b>Boilerplate of a fetch GET request:</b></p>
+      <p><b>Boilerplate of a simple fetch GET request:</b></p>
+      {% include bloc_code.html language=lang content=simpleFetchGet %}
+      <p><b>Boilerplate of a complete fetch GET request:</b></p>
       {% include bloc_code.html language=lang content=fetchGet %}
       <ul>
         <li>You call the <samp>fetch()</samp> function and pass the URL of your API request as an argument</li>
@@ -504,7 +551,9 @@
         <li>You chain another <samp>then()</samp> method (that will be executed only if the first one has finished and doesn't throw an error)</li>
         <li>You pass it a callback function that take <samp>jsonResponse</samp> as its parameter and return <samp>jsonResponse</samp></li>
       </ul>
-      <p><b>Boilerplate of a fetch POST request:</b></p>
+      <p><b>Boilerplate of a simple fetch POST request:</b></p>
+      {% include bloc_code.html language=lang content=simpleFetchPost %}
+      <p><b>Boilerplate of a complete fetch POST request:</b></p>
       {% include bloc_code.html language=lang content=fetchPost %}
       <p>It is similar to the GET request, only that the initial call takes two arguments: an endpoint and an object, instead of just one. In this object you have the verb and the body of the HTTP request. The body is the info you want to send to the server.</p>
       <p><b>Fetch with Async and await KW</b>: you can also use <samp>async</samp>, <samp>await</samp>, <samp>try</samp> and <samp>catch</samp> kw with <samp>fetch()</samp> to use GET and POST XHR requests:</p>
@@ -512,6 +561,49 @@
       {% include bloc_code.html language=lang content=fetchAsyncGet %}
       <p><b>POST:</b></p>
       {% include bloc_code.html language=lang content=fetchAsyncPost %}
+    </div>
+  {% when 'DOM' %}
+    <div>
+      <p><b>DOM:</b> the DOM is the Document Object Model, it is the browser representation of the HTML file. (Basically what you see when you open a website page on your internet browser...). Javascript allows you to interact with the DOM.</p>
+      <p><b>Common DOM manipulation methods:</b></p>
+      <ul>
+        <li><samp>document.querySelector('css-selector')</samp> : <b>select the first DOM element that respond to the CSS selector</b>. The CSS selector works exactly like in CSS, it can be a class, an ID, a HTML element etc...</li>
+        <li><samp>document.getElementById('my-id')</samp> : <b>select the first DOM element that has this id</b>. More performant than <samp>#querySelector</samp> because will only search for ids (and not classes and other selectors)</li>
+        <li><samp>document.querySelectorAll('css-selecto')</samp> : <b>select all DOM elements that respond to the CSS selector</b>, and return it in an Array</li>
+        <li><samp>element.insertAdjacentHTML('beforend', '&lt;p&gt;blablabla&lt;/p&gt;')</samp> :  <b>add HTML content to the DOM element</b>. First argument (ex: <samp>'beforeend'</samp>) defines where, and second argument defines what</li>
+        <li><samp>element.classList.add('class-name')</samp> : <b>add CSS class to the DOM element</b></li>
+        <li><samp>element.classList.remove('class-name')</samp> : <b>remove CSS class to the DOM element</b></li>
+        <li><samp>element.classList.toggle('class-name')</samp> : <b>toggle CSS class to the DOM element</b> (it will add it if it's not here, and remove it if its here)</li>
+        <li><samp>element.style.color = 'blue'</samp> : <b>change or add DOM element css property</b>. Can be any CSS property. Actually <samp>element.attribute</samp> returns the value of any HTML element attribute (<samp>style</samp>, <samp>id</samp>, <samp>src</samp> etc...), and <samp>element.attribute = "new value"</samp> modifies this attribute</li>
+        <li><samp>element.innerText</samp> : <b>returns only the text inside the DOM element</b> (without HTML tags)</li>
+        <li><samp>element.innerHTML</samp> : <b>return all the HTML content inside DOM element</b></li>
+        <li><samp>element.dataset</samp> : <b>return all data values of the DOM element in an object</b>. So for example if element is: <samp>&lt;div data-key="123" data-first-name='Renodor'&gt;&lt;/div&gt;</samp>, you will have: <samp>element.dataset.key == '123</samp>, and <samp>element.dataset.firstName == 'Renodor'</samp> (note that data attributes are converted to lower camelCase)</li>
+      </ul>
+    </div>
+  {% when 'events' %}
+    <div>
+      <p><b>Events:</b> clicks, scrolls, mouse over, select etc... All those interactions are "events" that you can "listen"
+        and react to with Javascript.</p>
+      <p><b>Some common events:</b></p>
+      <ul>
+        <li><samp>DOMContentLoaded</samp> : fire when DOM is fully loaded</li>
+        <li><samp>click</samp> : fire when you click on the element</li>
+        <li><samp>change</samp> : fire when <samp>input</samp>, <samp>select</samp> or <samp>textarea</samp> elements value change</li>
+        <li><samp>focus</samp> : fire when you focus on the element</li>
+        <li><samp>blur</samp> : fire when you loose focus on the element (<samp>focusout</samp> event also exists)</li>
+        <li><samp>keydown</samp> : fire when a key (of the keyboard) is pressed</li>
+        <li><samp>keyup</samp> : fire when a key (of the keyboard) is released</li>
+        <li><samp>mouseover</samp> : fire when cursor of mouse (or trackpad) goes onto the element</li>
+        <li><samp>resize</samp> : fire when window is resized</li>
+        <li><samp>submit</samp> : fire when the form is submited</li>
+        <li><samp>scroll</samp> : fire when the element (or the DOM) is scrolled</li>
+        <li><samp>touchstart</samp> : fire when the element is touched (for tactil screens like mobiles)</li>
+      </ul>
+      <p>Those events can be called on DOM elements (like a <samp>div</samp>, a <samp>form</samp>, an <samp>input</samp> etc...), or directly on the page itself (<samp>document</samp>, <samp>window</samp>)</p>
+      <p>To start listening on an event we use the <samp>addEventListener</samp> method:</p>
+      {% include bloc_code.html language=lang content=addEventListener %}
+      <p><samp>event.preventDefault()</samp> <b>prevent the default behavior of an event.</b> For example, by default when a form is submited the form action will be executed (probably sending you to another page). If you want to prevent that, because you want to modify the form data before sending it, you'll do something like:</p>
+      {% include bloc_code.html language=lang content=preventDefault %}
     </div>
   {% else %}
     nada

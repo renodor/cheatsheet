@@ -26,6 +26,8 @@
     - grid
 - title: javascript
   subsections:
+    - data-types
+    - strings
     - variables
     - math
     - conditional-statements
@@ -41,6 +43,8 @@
     - promises
     - async-await
     - http-requests
+    - DOM
+    - events
 - title: ruby
   subsections:
     - run-ruby-code
@@ -57,11 +61,7 @@
     - parsing-and-storing-data
     - object-oriented-programming
     - classes
-- title: rails
-  subsections:
-    - MVC
-    - active-record
 - title: database
-  subsections: 
+  subsections:
     - database-basics
-    - sql
+    - SQL

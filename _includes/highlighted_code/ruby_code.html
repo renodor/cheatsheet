@@ -690,3 +690,22 @@ end
 skyscraper = Skyscraper.new("empire State Building", 30, 60, 381)
 skyscraper.type_of_owner # => "This Empire State Building is a skyscrapper for Spider-Man."
 {% endcapture %}
+
+{% capture initialize_with_empty_hash %}
+class Robot
+  attr_reader :name, :type
+
+  def initialize(attributes = {})
+    @name = attributes[:name]
+    @type = attributes[:type]
+    @artificial_intelligence_level = attributes[:ai]
+  end
+end
+
+# All the following examples are valid
+Robot.new(name: 'R2D2')
+Robot.new(name: 'R2D2', type: 'Astromech Droid')
+Robot.new(type: 'Astromech Droid', name: 'R2D2')
+Robot.new(ai: 173, type: 'Astromech Droid')
+Robot.new(name: 'R2D2', type: 'Astromech Droid', ai: 173)
+{% endcapture %}

@@ -1,3 +1,9 @@
+{% capture typeoff %}
+typeof(13) // returns 'number'
+typeof('Renodor') // returns 'string'
+typeof(true) // returns 'boolean'
+{% endcapture %}
+
 {% capture variables %}
 let favFood = "Pizza";
 console.log(favFood) // outputs: "Pizza"
@@ -11,7 +17,7 @@ console.log(favFood); // outputs: "TypeError"
 {% endcapture %}
 
 {% capture stringInterpolation %}
-var myPet = "armadillo";
+const myPet = "armadillo";
 console.log(`I own a pet ${myPet}.`);
 // outputs: "I own a pet armadillo."
 {% endcapture %}
@@ -784,6 +790,14 @@ xhr.open('POST', url);
 xhr.send(data);
 {% endcapture %}
 
+{% capture simpleFetchGet %}
+fetch('https://api-to-call.com/endpoint')
+  .then((response => response.json)
+  .then((data) => {
+    // Do something with the data
+  });
+{% endcapture %}
+
 {% capture fetchGet %}
 fetch('https://api-to-call.com/endpoint').then((response) => {
   if (response.ok) {
@@ -797,6 +811,16 @@ fetch('https://api-to-call.com/endpoint').then((response) => {
 .then((jsonResponse) => {
   return jsonResponse
 });
+{% endcapture %}
+
+{% capture simpleFetchPost %}
+fetch('https://api-to-call.com/endpoint', {
+  method: 'POST',
+  body: JSON.stringify({ id: '200' })
+}).then((response => response.json)
+  .then((data) => {
+    // Do something with the data
+  });
 {% endcapture %}
 
 {% capture fetchPost %}
@@ -847,4 +871,20 @@ const getData = async () => {
   } catch(error) {
     console.log(error);
   }
+{% endcapture %}
+
+{% capture addEventListener %}
+element.addEventListener('click', (event) => {
+  // Do something with the event, like get the element that triggered it:
+  console.log(event.currentTarget)
+})
+{% endcapture %}
+
+{% capture preventDefault %}
+form.addEventListener('submit', (event) => {
+  // Prevent event default behavior
+  event.preventDefault()
+
+  // Now do something with the form data...
+})
 {% endcapture %}
